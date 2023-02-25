@@ -36,12 +36,12 @@ public class CardManagerScript : MonoBehaviour
 {
     public void Awake()
     {
-        CardManager.AllCards.Add(new Card("NUMBER", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage",1));
-        CardManager.AllCards.Add(new Card("NUMBER", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage",-1));
-        CardManager.AllCards.Add(new Card("NUMBER", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage",-1));
-        CardManager.AllCards.Add(new Card("NUMBER", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage",-2));
-        CardManager.AllCards.Add(new Card("OPERATOR", "Sprites/Cards/CardOperatorBG", "Sprites/Cards/CardOperatorImage",'+'));
-        CardManager.AllCards.Add(new Card("OPERATOR", "Sprites/Cards/CardOperatorBG", "Sprites/Cards/CardOperatorImage",'-'));
+        CardManager.AllCards.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage",1));
+        CardManager.AllCards.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage",-1));
+        CardManager.AllCards.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage",-1));
+        CardManager.AllCards.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage",-2));
+        CardManager.AllCards.Add(new Card("Operator", "Sprites/Cards/CardOperatorBG", "Sprites/Cards/CardOperatorImage",'+'));
+        CardManager.AllCards.Add(new Card("Operator", "Sprites/Cards/CardOperatorBG", "Sprites/Cards/CardOperatorImage",'-'));
     }
 
 }

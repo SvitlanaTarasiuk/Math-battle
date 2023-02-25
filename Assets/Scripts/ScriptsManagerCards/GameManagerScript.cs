@@ -8,6 +8,7 @@ using System;
 using Random = UnityEngine.Random;
 using static Card;
 using UnityEngine.XR;
+using UnityEngine.EventSystems;
 //using Random = System.Random;
 
 public class Game
@@ -29,20 +30,23 @@ public class Game
     }
 }
 
-public class GameManagerScript : MonoBehaviour
+public class GameManagerScript : MonoBehaviour//, IPointerClickHandler
+
 {
     public Game currentGame;
-    public Transform EnemyHand;
-    public Transform PlayerHand;
+    public Card selfCard;
     public GameObject cardPref;   
     public Button EndTurnBtn;
-    public TextMeshProUGUI countCardPlayerText;
-    public TextMeshProUGUI numberCard1Text;
-    public TextMeshProUGUI numberCard2Text;
-    public TextMeshProUGUI operatorCard3Text;
-    public Card selfCard;
+    public Transform EnemyHand;
+    public Transform PlayerHand;    
+    public TextMeshProUGUI countCardPlayerText;//залишок карт в колоді
+    public TextMeshProUGUI countCardNotGameText;//відбій карт
+    //public TextMeshProUGUI numberCard1CalculeteText;
+    //public TextMeshProUGUI numberCard2CalculeteText;
+    //public TextMeshProUGUI operatorCard3CalculeteText;   
     int countCardPlayer = 6;
-   
+    public int countCardNotGame = 0;
+
     //int turn = 30;
     //int turnTime = 30;
     //public TextMeshProUGUI turnTimeText;
@@ -62,16 +66,21 @@ public class GameManagerScript : MonoBehaviour
         //turn = 0;
 
         currentGame = new Game();
-        
-        GiveHandCards(currentGame.EnemyDesk, EnemyHand);
-        GiveHandCards(currentGame.PlayerDesk, PlayerHand);
 
+        //GiveHandCards(currentGame.EnemyDesk, EnemyHand);
+        //GiveHandCards(currentGame.PlayerDesk, PlayerHand);
+        StartGame();
         countCardPlayerText.text = countCardPlayer.ToString();
-
+        countCardNotGameText.text = countCardNotGame.ToString();    
         //StartCoroutine(TurnFunc());
     }
 
+    public void StartGame()
+    {
 
+        GiveHandCards(currentGame.EnemyDesk, EnemyHand);
+        GiveHandCards(currentGame.PlayerDesk, PlayerHand);
+    }
     public void GiveHandCards(List<Card> desk, Transform hand)
     {
 
@@ -81,26 +90,6 @@ public class GameManagerScript : MonoBehaviour
         //countCardPlayerText.text = PlayerHandCards.Count.ToString();
         
     }  
-    
-    public void GiveNewCards()
-    {
-        GiveCardToHand(currentGame.EnemyDesk, EnemyHand);
-        GiveCardToHand(currentGame.PlayerDesk, PlayerHand);
-    }
-    public void ClearHandCards()////
-    {
-         //CardInfoScript card;
-        if (currentGame.PlayerDesk.Count > 0)
-        {
-            
-            PlayerHandCards.Remove(GetComponent<CardInfoScript>());
-            //currentGame.PlayerDesk.RemoveRange(0, currentGame.PlayerDesk.Count);
-            //PlayerHandCards.Remove(card);
-            //Destroy(card.gameObject);
-        }      
-        //GiveHandCards(currentGame.PlayerDesk, PlayerHand);
-    }
-
     void GiveCardToHand(List<Card> desk, Transform hand)
     {
 
@@ -126,42 +115,81 @@ public class GameManagerScript : MonoBehaviour
         }
         desk.RemoveAt(0);
     }
-
-    //public int CalculateCard(CardInfoScript numberCard1, CardInfoScript numberCard2, CardInfoScript operatorCard)
-   
-    //public void SelectedCardToCalculete(CardInfoScript numberCard1, CardInfoScript numberCard2, CardInfoScript operatorCard)
-    public void SelectedCardToCalculete()
+    public void GiveNewCards()//додає по одній карті
     {
-        //CardInfoScript Card1=;
+        GiveCardToHand(currentGame.EnemyDesk, EnemyHand);
+        GiveCardToHand(currentGame.PlayerDesk, PlayerHand);
+    }
+
+    public void ClearHandCards()////
+    {
+        if (currentGame.PlayerDesk.Count > 0)
+        {
+             PlayerHandCards.Remove( GetComponent<CardInfoScript>());
+        }
+       
+            //currentGame.PlayerDesk.RemoveRange(0, currentGame.PlayerDesk.Count);
+
+            //PlayerHandCards.Remove(card);
+
+            //if (!card.selfCard.IsAlive)
+            //if (PlayerFieldCards.Exists(x => x == card))
+            //PlayerFieldCards.Remove(card);
+            //Destroy(card.gameObject);
+
+            //int count = card.Count == 1 ? 1 : Random.Range(0, cards.Count);
+            //    for (int i = 0; i < count; i++)
+            //    {
+            //        if (EnemyFieldCards.Count > 5)
+            //            return;
+            //        cards[0].ShowCardInfo(cards[0].selfCard, false);
+            //        cards[0].transform.SetParent(EnemyField);
+            //        EnemyFieldCards.Add(cards[0]);
+            //        EnemyHandCards.Remove(cards[0]);
+            //    }
+
+            //List<CardInfoScript> card  //CardInfoScript card
         
-        numberCard1Text.text = selfCard.Number.ToString();
-        //numberCard2Text.text = numberCard2.numberCard.text;
-        //operatorCard3Text.text = operatorCard.numberCard.text;
+        //GiveHandCards(currentGame.PlayerDesk, PlayerHand);
     }
-    public int CalculateCard()
-    {      
-        int summa=0;
-        int card1 = int.Parse(numberCard1Text.text);
-        int card2 = int.Parse(numberCard2Text.text);
-        char sign = Convert.ToChar(operatorCard3Text.text);
+
+    
+    //public int CalculateCard()
+    //{      
+    //    int summa=0;
+    //    int card1 = int.Parse(numberCard1CalculeteText.text);
+    //    int card2 = int.Parse(numberCard2CalculeteText.text);
+    //    char sign = Convert.ToChar(operatorCard3CalculeteText.text);
      
-        if (sign == '+')
-        {
-            summa = card1 + card2;
-            Debug.Log($"{card1},+, {card2},=, {summa}");
-        }
-        else if (sign == '-')
-        {
-            summa = card1 + card2;
-            Debug.Log($"{card1},+, {card2},=, {summa}");
-        }
-        return summa;        
+    //    if (sign == '+')
+    //    {
+    //        summa = card1 + card2;
+    //        Debug.Log($"{card1},+, {card2},=, {summa}");
+    //    }
+    //    else if (sign == '-')
+    //    {
+    //        summa = card1 + card2;
+    //        Debug.Log($"{card1},+, {card2},=, {summa}");
+    //    }
+    //    return summa;        
          
-    }
-    //public void SetCountCard()
-    //{
-    //    countCardPlayerText.text = countCardPlayer.ToString();
     //}
+  
+
+        //public void SelectedCardToCalculete(CardInfoScript numberCard1, CardInfoScript numberCard2, CardInfoScript operatorCard)
+    //public void SelectedCardToCalculete()
+    //{
+    //    numberCard1CalculeteText.text = GetComponent<OnClickCard>().cardClick.GetComponent<Card>().Number.ToString();
+    //    Debug.Log(numberCard1CalculeteText.text);
+
+    //    //CardInfoScript Card1=;
+
+    //    //numberCard1CalculeteText.text = selfCard.Number.ToString();
+    //    //numberCard2Text.text = numberCard2.numberCard.text;
+    //    //operatorCard3Text.text = operatorCard.numberCard.text;
+    //}
+    
+    
 
 
     //IEnumerator TurnFunc()

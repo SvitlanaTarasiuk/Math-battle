@@ -12,11 +12,10 @@ public class CardInfoScript : MonoBehaviour
     public TextMeshProUGUI nameCard;
     public TextMeshProUGUI numberCard;
     public TextMeshProUGUI operatorCard;
-
+    public bool isPlayer;
     //public GameObject hideobj;//рубашка карти
     //public GameObject highliteobj;//підсвітка карти
-    public bool isPlayer;
-    
+        
     //public void HideCardInfo(Card card)
     //{       
     //    selfCard = card;     

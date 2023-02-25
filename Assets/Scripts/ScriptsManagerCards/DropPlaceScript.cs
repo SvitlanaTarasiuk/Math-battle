@@ -1,7 +1,9 @@
-// using System.Collections;
+//using System.Collections;
 //using System.Collections.Generic;
+//using Unity.VisualScripting;
 //using UnityEngine;
 //using UnityEngine.EventSystems;
+
 
 //public enum FieldType
 //{
@@ -21,7 +23,7 @@
 
 //        CardMovementScript card = eventData.pointerDrag.GetComponent<CardMovementScript>();
 
-//        if (card && card.gameManager.PlayerFieldCards.Count< 6 &&
+//        if (card && card.gameManager.PlayerFieldCards.Count < 6 &&
 //            card.gameManager.IsPlayerTurn)
 //        {
 //            card.gameManager.PlayerHandCards.Remove(card.GetComponent<CardInfoScript>());
@@ -32,12 +34,12 @@
 
 //    public void OnPointerEnter(PointerEventData eventData)//відстежують наведення миші до границі об"єкта
 //    {
-//        if (eventData.pointerDrag == null||fieldType==FieldType.EnemyField||
-//            fieldType==FieldType.EnemyHand||fieldType==FieldType.SelfHand)
+//        if (eventData.pointerDrag == null || fieldType == FieldType.EnemyField ||
+//            fieldType == FieldType.EnemyHand || fieldType == FieldType.SelfHand)
 //            return;
 
 //        CardMovementScript card = eventData.pointerDrag.GetComponent<CardMovementScript>();
-//        if(card)
+//        if (card)
 //            card.defoultTempCardParent = transform;
 //    }
 
@@ -47,7 +49,7 @@
 //            return;
 
 //        CardMovementScript card = eventData.pointerDrag.GetComponent<CardMovementScript>();
-//        if (card && card.defoultTempCardParent==transform)
+//        if (card && card.defoultTempCardParent == transform)
 //            card.defoultTempCardParent = card.defoultParent;//після відпускання карта повернеться на місце
 //    }
 //}

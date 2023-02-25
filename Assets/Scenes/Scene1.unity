@@ -2783,6 +2783,7 @@ GameObject:
   - component: {fileID: 650094023}
   - component: {fileID: 650094027}
   - component: {fileID: 650094026}
+  - component: {fileID: 650094028}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2868,14 +2869,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddeb7055cdd8c24fb3aeddfb04b34ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyHand: {fileID: 340494529}
-  PlayerHand: {fileID: 2101107375}
   cardPref: {fileID: 6436394131778499789, guid: c995b49ef821756499464e8b0b483f0e, type: 3}
   EndTurnBtn: {fileID: 9534636}
+  EnemyHand: {fileID: 340494529}
+  PlayerHand: {fileID: 2101107375}
   countCardPlayerText: {fileID: 321201162}
-  numberCard1Text: {fileID: 173019115}
-  numberCard2Text: {fileID: 327689021}
-  operatorCard3Text: {fileID: 2033246309}
+  countCardNotGameText: {fileID: 1708906419}
+  countCardNotGame: 0
   PlayerHandCards: []
   EnemyHandCards: []
 --- !u!114 &650094027
@@ -2890,6 +2890,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e40843693af51d14ba8c122c2bbd1337, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &650094028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650094022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c49b4cc203aa6414fae5c798d1d0e7d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 0
 --- !u!1 &681109490
 GameObject:
   m_ObjectHideFlags: 0
@@ -3050,18 +3066,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700219100}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 327689020}
   m_Father: {fileID: 1050478945}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 73.7, y: -52.600006}
+  m_AnchoredPosition: {x: 73.7, y: -52.6}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &700219102
@@ -4690,8 +4706,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1087425250}
-  - {fileID: 1477668396}
   - {fileID: 700219101}
+  - {fileID: 1477668396}
   - {fileID: 1851390846}
   - {fileID: 423917912}
   - {fileID: 9534635}
@@ -5862,7 +5878,7 @@ RectTransform:
   m_Children:
   - {fileID: 2033246308}
   m_Father: {fileID: 1050478945}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -6947,6 +6963,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1705426767}
   m_CullTransparentMesh: 1
+--- !u!114 &1708906419 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2297866519506044874, guid: 1ef82508cd935d548bf88441a56659ed, type: 3}
+  m_PrefabInstance: {fileID: 7875567907173116185}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1734422557
 GameObject:
   m_ObjectHideFlags: 0
@@ -7661,13 +7688,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 650094022}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 2059921293}
+        m_TargetAssemblyTypeName: CardToCalculete, Assembly-CSharp
+        m_MethodName: BattleCalculate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8585,6 +8612,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2036107289}
   m_CullTransparentMesh: 1
+--- !u!114 &2059921293 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5290451134159255585, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+  m_PrefabInstance: {fileID: 2127850010856456745}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 222c32baadad1a3489bedb0e77a5db4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2070563620
 GameObject:
   m_ObjectHideFlags: 0
@@ -8963,6 +9001,22 @@ PrefabInstance:
       propertyPath: countCardPlayerText
       value: 
       objectReference: {fileID: 321201162}
+    - target: {fileID: 277341801735363900, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: countCardNotGameText
+      value: 
+      objectReference: {fileID: 1708906419}
+    - target: {fileID: 277341801735363900, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: numberCard1CalculeteText
+      value: 
+      objectReference: {fileID: 173019115}
+    - target: {fileID: 277341801735363900, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: numberCard2CalculeteText
+      value: 
+      objectReference: {fileID: 327689021}
+    - target: {fileID: 277341801735363900, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: operatorCard3CalculeteText
+      value: 
+      objectReference: {fileID: 2033246309}
     - target: {fileID: 2127850011606944918, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
       propertyPath: panelPause
       value: 
@@ -8972,6 +9026,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 367634406}
     - target: {fileID: 2127850011606944918, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: CalculeteBtn
+      value: 
+      objectReference: {fileID: 1851390847}
+    - target: {fileID: 2127850011606944918, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
       propertyPath: panelGameOver
       value: 
       objectReference: {fileID: 1639132370}
@@ -8979,6 +9037,18 @@ PrefabInstance:
       propertyPath: panelInfoGame
       value: 
       objectReference: {fileID: 406144220}
+    - target: {fileID: 2127850011606944918, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: numberCard1CalculeteText
+      value: 
+      objectReference: {fileID: 173019115}
+    - target: {fileID: 2127850011606944918, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: numberCard2CalculeteText
+      value: 
+      objectReference: {fileID: 327689021}
+    - target: {fileID: 2127850011606944918, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: operatorCard3CalculeteText
+      value: 
+      objectReference: {fileID: 2033246309}
     - target: {fileID: 2127850011606944919, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
       propertyPath: m_Name
       value: GameController
@@ -9027,6 +9097,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5290451134159255585, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: objClick
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290451134159255585, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: CalculeteBtn
+      value: 
+      objectReference: {fileID: 1851390847}
+    - target: {fileID: 5290451134159255585, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: numberCard1CalculeteText
+      value: 
+      objectReference: {fileID: 173019115}
+    - target: {fileID: 5290451134159255585, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: numberCard2CalculeteText
+      value: 
+      objectReference: {fileID: 327689021}
+    - target: {fileID: 5290451134159255585, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: operatorCard3CalculeteText
+      value: 
+      objectReference: {fileID: 2033246309}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
 --- !u!1001 &5746615873357893637
@@ -9146,6 +9236,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 616580809}
     m_Modifications:
+    - target: {fileID: 2297866519506044874, guid: 1ef82508cd935d548bf88441a56659ed, type: 3}
+      propertyPath: m_text
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3270343681647820582, guid: 1ef82508cd935d548bf88441a56659ed, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

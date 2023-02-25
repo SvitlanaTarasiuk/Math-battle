@@ -299,8 +299,9 @@ GameObject:
   - component: {fileID: 5486661386147447643}
   - component: {fileID: 8530415364309576499}
   - component: {fileID: 7769771766555516335}
+  - component: {fileID: -6450219107680471558}
   - component: {fileID: 609013571132876031}
-  - component: {fileID: 9159946676626750882}
+  - component: {fileID: -3813881203380125680}
   m_Layer: 5
   m_Name: CardPref
   m_TagString: Untagged
@@ -391,6 +392,21 @@ MonoBehaviour:
   numberCard: {fileID: 1231914357904044948}
   operatorCard: {fileID: 5176917501260825228}
   isPlayer: 0
+--- !u!114 &-6450219107680471558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6436394131778499789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9164c012251f47458a68ca7fff257e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  number1: 
+  number2: 
+  operator3: 
 --- !u!225 &609013571132876031
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -403,47 +419,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &9159946676626750882
-MonoBehaviour:
+--- !u!65 &-3813881203380125680
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6436394131778499789}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 277341801735363900, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
-          m_TargetAssemblyTypeName: GameManagerScript, Assembly-CSharp
-          m_MethodName: SelectedCardToCalculete
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: GameManagerScript, Assembly-CSharp
-          m_MethodName: 
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6519921952610923151
 GameObject:
   m_ObjectHideFlags: 0
