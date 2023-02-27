@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,42 +10,150 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private Color colorDamage;
     [SerializeField] private Image imageHpEnemy;
     [SerializeField] private GameUI gameUI;
+    [SerializeField] private PlayerScript player;
+    public TextMeshProUGUI shieldCountText;
+    public TextMeshProUGUI DefenseCountText;
+    public TextMeshProUGUI AttackCountText;
+    public Image defenseImage;
+    public Image attackImage;
+    public TextMeshProUGUI hpCurrentText;
+    public TextMeshProUGUI hpEnemyText;
     //public Animator animator;
-    private SpriteRenderer sprRend;   
+    private SpriteRenderer sprRend;
+    private int shieldCount = 0;
+    private int attackCount;
+    private int defenseCount;
     private int hpEnemy;
     private int hpCurrent;
+    //private string nameEnemy;
+    private int minAttackOrDefenseCount;
+    private int maxAttackOrDefenseCount;
+    private bool isAttack;
+    //private int minAttackCount;
+    //public int maxAttackCount;
+    private void Awake()
+    {
+         WhatEnemy();
+    }
     void Start()
     {
+        Debug.Log(name);
         //animator = GetComponent<Animator>();
-        sprRend = GetComponent<SpriteRenderer>();       
+        sprRend = GetComponent<SpriteRenderer>();
         hpCurrent = hpEnemy;
+        shieldCountText.text = shieldCount.ToString();
+        hpCurrentText.text = hpCurrent.ToString();
+        hpEnemyText.text = "/    " + hpEnemy.ToString();      
+        AttackOrDefence();  
     }
-    void Update()
+    public void WhatEnemy()
     {
-        
-    }
-   
-    private void Damage()
-    {
-
-        //if ()
+        switch (name)
         {
-            hpCurrent--;
-            imageHpEnemy.fillAmount = (float)hpCurrent / hpEnemy;
-            sprRend.color = colorDamage;
+            case "Enemy1":
+                hpEnemy = 6;
+                minAttackOrDefenseCount = 1;
+                maxAttackOrDefenseCount = 2;
+                Debug.Log($"{hpEnemy}, {minAttackOrDefenseCount}, {maxAttackOrDefenseCount}");
+                break;
 
-            if (hpCurrent <= 0)
-            {
-                Destroy(gameObject);
-                Time.timeScale = 0;
-                gameUI.TheEnd();
+            case "Enemy2":
+                hpEnemy = 8;
+                minAttackOrDefenseCount = 1;
+                maxAttackOrDefenseCount = 3;
+                break;
 
+            case "Enemy3":
+                hpEnemy = 10;
+                minAttackOrDefenseCount = 1;
+                maxAttackOrDefenseCount = 4;
+                break;
 
-            }
-            else
-            {
-                Invoke("ResetMaterial", 0.5f);
-            }
+            case "Enemy4":
+                hpEnemy = 12;
+                minAttackOrDefenseCount = 2;
+                maxAttackOrDefenseCount = 6;
+                break;
+
+            case "Enemy5":
+                hpEnemy = 15;
+                minAttackOrDefenseCount = 3;
+                maxAttackOrDefenseCount = 8;
+                break;
+        }
+    }
+    public void AttackOrDefence()
+    {
+        isAttack = Random.Range(0, 2) == 1;
+        Debug.Log(isAttack);
+
+        if (isAttack == true)
+        {
+            attackCount = Random.Range(minAttackOrDefenseCount, maxAttackOrDefenseCount);
+            StatusDisplayAttack();
+        }
+        else
+        {
+            defenseCount = Random.Range(minAttackOrDefenseCount, maxAttackOrDefenseCount);
+            StatusDisplayDefense();
+        }
+    }
+    private void StatusDisplayAttack()
+    {
+        attackImage.gameObject.SetActive(true);
+        defenseImage.gameObject.SetActive(false);
+        AttackCountText.text = attackCount.ToString();
+    }
+    private void StatusDisplayDefense()
+    {   
+        defenseImage.gameObject.SetActive(true);
+        attackImage.gameObject.SetActive(false);
+        DefenseCountText.text = defenseCount.ToString();
+    }
+    public void StartAttackOrDefenseEnemy()
+    {
+        if (isAttack == true)
+        {
+        player.Damage(attackCount);
+        Invoke("AttackOrDefence",1f);
+            //AttackEnemy();
+        }
+        else
+        {
+        ShieldCount(defenseCount);
+        Invoke("AttackOrDefence", 1f);
+            //DefenseEnemy();
+        }
+    }
+    //private void AttackEnemy()
+    //{
+       
+    //}
+    //private void DefenseEnemy()
+    //{
+        
+    //}
+    public void ShieldCount(int shield)
+    {
+        shieldCount += shield;
+        shieldCountText.text = shieldCount.ToString();
+    }
+    public void Damage(int damage)
+    {
+        hpCurrent -= damage;
+        hpCurrentText.text = hpCurrent.ToString();
+        imageHpEnemy.fillAmount = (float)hpCurrent / hpEnemy;
+        sprRend.color = colorDamage;
+
+        if (hpCurrent <= 0)
+        {
+            Destroy(gameObject);
+            Time.timeScale = 0;
+            gameUI.TheEnd();
+        }
+        else
+        {
+            Invoke("ResetMaterial", 0.5f);
         }
 
     }
@@ -51,7 +161,7 @@ public class EnemyScript : MonoBehaviour
     {
         sprRend.color = Color.white;
     }
-    
+
 }
 
 

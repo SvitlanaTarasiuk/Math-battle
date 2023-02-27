@@ -8,44 +8,47 @@ using TMPro;
 public class OnClickCard : MonoBehaviour, IPointerClickHandler
 {
     GameObject cardClick;
-    public string number1;
-    public string number2;
-    public string operator3;
-    GameObject cardToCalculete;
+    string number1;
+    string number2;
+    string operator3;
+    GameObject cardToCalculate;
     string nameCard;
-    
+
+    void Start()
+    {
+        cardToCalculate = GameObject.Find("GameController");    
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("OnClickTriger");
-        cardToCalculete = GameObject.Find("GameController");       
+        Debug.Log("OnClickTriger");       
         cardClick = eventData.pointerClick.GameObject();
         nameCard = cardClick.GetComponent<CardInfoScript>().nameCard.text;
 
-        if (nameCard == "Number" && cardToCalculete.GetComponent<CardToCalculete>().numberCard1CalculeteText.text == "N")
+        if (nameCard == "Number" && cardToCalculate.GetComponent<CardToCalculate>().numberCard1CalculateText.text == "N")
         {
             Debug.Log("name: " + nameCard);
             number1 = cardClick.GetComponent<CardInfoScript>().numberCard.text;
             Debug.Log($"number1:{number1}");
-            cardToCalculete.GetComponent<CardToCalculete>().Card1Text(number1);            
+            cardToCalculate.GetComponent<CardToCalculate>().Card1Text(number1);            
         }
-        else if (nameCard == "Number"&& cardToCalculete.GetComponent<CardToCalculete>().numberCard2CalculeteText.text == "N")
+        else if (nameCard == "Number"&& cardToCalculate.GetComponent<CardToCalculate>().numberCard2CalculateText.text == "N")
         {
             Debug.Log("name: " + nameCard);
             number2 = cardClick.GetComponent<CardInfoScript>().numberCard.text;
-            Debug.Log($"number1:{number1}");
-            cardToCalculete.GetComponent<CardToCalculete>().Card2Text(number2);
+            Debug.Log($"number1:{number2}");
+            cardToCalculate.GetComponent<CardToCalculate>().Card2Text(number2);
         }
-        else if (nameCard == "Operator"&& cardToCalculete.GetComponent<CardToCalculete>().operatorCard3CalculeteText.text == "O")
+        else if (nameCard == "Operator"&& cardToCalculate.GetComponent<CardToCalculate>().operatorCard3CalculateText.text == "O")
         {
             Debug.Log("name: " + nameCard);
             operator3 = cardClick.GetComponent<CardInfoScript>().operatorCard.text;
             Debug.Log($"operator3: {operator3}");
-            cardToCalculete.GetComponent<CardToCalculete>().Card3Text(operator3);
+            cardToCalculate.GetComponent<CardToCalculate>().Card3Text(operator3);
         }
          
         //cardClick.SetActive(false);
         //GetComponent<GameManagerScript>().countCardNotGame++;
-        // GetComponent<CardToCalculete>().SelectedCardToCalculete();
         //GetComponent<CanvasGroup>().blocksRaycasts = false;//карта перестає взаємодіяти з мишкою
     }
 

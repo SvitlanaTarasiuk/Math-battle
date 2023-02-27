@@ -7,21 +7,17 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
-        OnClickCard objClick;
-        [SerializeField] private GameObject panelPause;
-        [SerializeField] private GameObject panelGameOver;
-        [SerializeField] private GameObject panelTheEnd;
-        [SerializeField] private GameObject panelInfoGame;
-        //TextMeshProUGUI numberCard1CalculeteText;
-        //public TextMeshProUGUI numberCard2CalculeteText;
-        //public TextMeshProUGUI operatorCard3CalculeteText;
-        //int number1;
-        //string number2;
-        public Button CalculeteBtn;
+    [SerializeField] private GameObject panelPause;
+    [SerializeField] private GameObject panelGameOver;
+    [SerializeField] private GameObject panelTheEnd;
+    [SerializeField] private GameObject panelInfoGame;
+    [SerializeField] private GameObject panelSelecteddards;
+    [SerializeField] private GameObject panelHandPlayer;
+
     public void Start()
     {
         //numberCard1CalculeteText.text = "N";
-       
+
         //number1 = int.Parse(objClick.number1);
         //number2 = objClick.number1;
         //Debug.Log($"{number1}");
@@ -40,41 +36,48 @@ public class GameUI : MonoBehaviour
     //}
     public void DebugGame()
     {
-       // objClick = 
+        // objClick = 
     }
     public void NewGame()
-        {
-            SceneManager.LoadScene(1);
-            Time.timeScale = 1;
-        }
-        public void PauseOn()
-        {
-            Time.timeScale = 0.00001f;
-            panelPause.SetActive(true);
-        }
-
-        public void PauseOffContinue()
-        {
-            Time.timeScale = 1;
-            panelPause.SetActive(false);
-        }
-   
-        public void GameOver()
-        {
-            panelGameOver.SetActive(true);
-        }
-
-        public void TheEnd()
-        {
-            panelTheEnd.SetActive(true);
-        }
-        public void InfoGame()
-        {
-            panelInfoGame.SetActive(true);
-        }
-        public void ExitGame()
-        {
-            Application.Quit();
-        }
-
+    {
+        SceneManager.LoadScene(1);
+        Time.timeScale = 1; 
+        //panelHandPlayer.SetActive(false);
+        //panelSelecteddards.SetActive(false);
     }
+    public void PauseOn()
+    {
+        Time.timeScale = 0.00001f;
+        panelPause.SetActive(true);
+    }
+
+    public void PauseOffContinue()
+    {
+        Time.timeScale = 1;
+        panelPause.SetActive(false);
+    }
+
+    public void GameOver()
+    {
+        panelGameOver.SetActive(true);
+        panelHandPlayer.SetActive(false);
+        panelSelecteddards.SetActive(false);
+    }
+
+    public void TheEnd()
+    {
+        panelTheEnd.SetActive(true);
+        panelHandPlayer.SetActive(false);
+        panelSelecteddards.SetActive(false);
+    }
+    public void InfoGame()
+    {
+        panelInfoGame.SetActive(true);
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
+
+}
