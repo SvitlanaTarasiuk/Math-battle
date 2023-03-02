@@ -11,33 +11,9 @@ public class GameUI : MonoBehaviour
     [SerializeField] private GameObject panelGameOver;
     [SerializeField] private GameObject panelTheEnd;
     [SerializeField] private GameObject panelInfoGame;
-    [SerializeField] private GameObject panelSelecteddards;
+    [SerializeField] private GameObject panelSelectedCards;
     [SerializeField] private GameObject panelHandPlayer;
-
-    public void Start()
-    {
-        //numberCard1CalculeteText.text = "N";
-
-        //number1 = int.Parse(objClick.number1);
-        //number2 = objClick.number1;
-        //Debug.Log($"{number1}");
-        //Debug.Log($"{number2}");
-    }
-    //public void SelectedCardToCalculete(string cardCalculate)
-    //{
-    //    Debug.Log("SelectCard");
-    //    numberCard1CalculeteText.text = cardCalculate.ToString();
-    //    //GetComponent<CardInfoScript>().numberCard.text;
-    //    Debug.Log($"SelectCard:{numberCard1CalculeteText.text} ");
-    //}
-    //public void SelectedCardToCalculete()
-    //{
-    //    Debug.Log("SelectCard");
-    //}
-    public void DebugGame()
-    {
-        // objClick = 
-    }
+  
     public void NewGame()
     {
         SceneManager.LoadScene(1);
@@ -61,14 +37,14 @@ public class GameUI : MonoBehaviour
     {
         panelGameOver.SetActive(true);
         panelHandPlayer.SetActive(false);
-        panelSelecteddards.SetActive(false);
+        panelSelectedCards.SetActive(false);
     }
 
     public void TheEnd()
     {
         panelTheEnd.SetActive(true);
         panelHandPlayer.SetActive(false);
-        panelSelecteddards.SetActive(false);
+        panelSelectedCards.SetActive(false);
     }
     public void InfoGame()
     {

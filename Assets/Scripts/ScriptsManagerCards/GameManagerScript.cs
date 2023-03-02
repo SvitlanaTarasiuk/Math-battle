@@ -1,31 +1,64 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using Unity.VisualScripting;
-using System;
 using Random = UnityEngine.Random;
 using static Card;
-using UnityEngine.XR;
-using UnityEngine.EventSystems;
+using UnityEditor.SceneManagement;
 //using Random = System.Random;
 
 public class Game
 {
-    public List<Card> PlayerDesk;
+    public List<Card> PlayerDesk;//головна колода карт
+    //public List<Card> NewSceneDesk;//список карт для вибору в кінці рівня
 
     public Game()
     {
         PlayerDesk = GiveDeskCard();
+        //NewSceneDesk = GiveDeskCard();
     }
-    List<Card> GiveDeskCard()
-    {
+    List<Card> GiveDeskCard()// метод утворення колоди карт
+    {   
+        RandomCardScript randomCardScript=new RandomCardScript();
         List<Card> list = new List<Card>();
+       
+        for (int i = 0; i < CardManager.AllCards.Count; i++)
+        Debug.Log("list.Count "+ CardManager.AllCards.Count);
+        //list.Add(CardManager.AllCards[RandomCard()]);
+        list.Add(CardManager.AllCards[randomCardScript.RandomCard(CardManager.AllCards.Count)]);
 
-        for (int i = 0; i < 24; i++)
-            list.Add(CardManager.AllCards[Random.Range(0, CardManager.AllCards.Count)]);
+        //for (int i = 0; i < 20; i++)
+        //list.Add(CardManager.AllCards[Random.Range(0, CardManager.AllCards.Count)]);//звичайний рандом
         return list;
+    }
+    public int RandomCard()//передавати довжину колоди і вибирати відповідний масив//винести в окремий скрипт
+    { 
+
+        float[] chanceArray = new float[6]
+        {0.25f,0.1f,0.1f,0.20f,0.15f,0.15f};
+        int result = (int)Chance(chanceArray);
+
+        float Chance(float[]percent)
+        {
+            float total = 0;
+            foreach (float elem in percent)
+            {
+                total += elem;
+            }
+            float randomPoint = Random.value * total;
+            for (int i = 0; i < percent.Length; i++)
+            {
+                if (randomPoint < percent[i])
+                {
+                    return i;  
+                }
+                else
+                {
+                    randomPoint -= percent[i];
+                }
+            }
+            return percent.Length - 1;
+        }
+        return result;
     }
 }
 
@@ -34,12 +67,12 @@ public class GameManagerScript : MonoBehaviour
     public Game currentGame;
     public Card selfCard;
     public GameObject cardPref;
-    public Button EndTurnBtn;
+    public EnemyScript enemy;
     public Transform PlayerHand;
-    public TextMeshProUGUI countCardPlayerText;//залишок карт в колоді
+    public TextMeshProUGUI countCardPlayerText;//залишок карт в колоді(-6 розданих)
     public TextMeshProUGUI countCardNotGameText;//відбій карт
 
-    int countCardPlayer = 6;
+    int countCardPlayer = 0;
     public int countCardNotGame = 0;
 
     public List<CardInfoScript> PlayerHandCards = new List<CardInfoScript>();
@@ -47,8 +80,9 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         currentGame = new Game();
-
+        Debug.Log("currentGameStart " + currentGame.PlayerDesk.Count);
         StartGame();
+        countCardPlayer = currentGame.PlayerDesk.Count;      
         countCardPlayerText.text = countCardPlayer.ToString();
         countCardNotGameText.text = countCardNotGame.ToString();
     }
@@ -75,24 +109,62 @@ public class GameManagerScript : MonoBehaviour
 
         cardGo.GetComponent<CardInfoScript>().ShowCardInfo(card);
         PlayerHandCards.Add(cardGo.GetComponent<CardInfoScript>());
+        
         countCardPlayer--;
 
         desk.RemoveAt(0);
+        Debug.Log("currentGame.PlayerDesk.Count " + currentGame.PlayerDesk.Count);
+        Debug.Log("Desk.Count " + desk.Count);
+
     }
-    public void GiveNewCards()//додає по дві карти
+    public void GiveNewCardsNewScene()//додати дві карти в кінці рівня
     {
         int i = 0;
         while (i++ < 2)
+        {
             GiveCardToHand(currentGame.PlayerDesk, PlayerHand);
+        }
+        Debug.Log("PlayerHand.childCount "+ PlayerHand.childCount);
+        Debug.Log("currentGame.PlayerDesk.Count "+ currentGame.PlayerDesk.Count);
+        Debug.Log("PlayerHandCards.Count " + PlayerHandCards.Count);
+        enemy.StartAttackOrDefenseEnemy();
+    }
+    public void CountCardNotGame(int inactiveCards)
+    {
+        countCardNotGame += inactiveCards;
+        Debug.Log("countNot; " + countCardNotGame);
+        countCardNotGameText.text=countCardNotGame.ToString();
     }
 
-    public void ClearHandCards()////
+    public void EndTurn()
     {
-        if (currentGame.PlayerDesk.Count > 0)
+        //перевірити чи є карти і роздати нові або додати карту
+       // ClearHandCards();
+        int i = 0;
+        while (i++ < 2)
         {
-            PlayerHandCards.Remove(GetComponent<CardInfoScript>());
+            GiveCardToHand(currentGame.PlayerDesk, PlayerHand);
         }
+        Debug.Log("PlayerHand.childCount " + PlayerHand.childCount);
+        Debug.Log("currentGame.PlayerDesk.Count " + currentGame.PlayerDesk.Count);
+        Debug.Log("PlayerHandCards.Count " + PlayerHandCards.Count);
+        //countCardNotGame =0;
+        //countCardNotGameText.text = countCardNotGame.ToString();
+        enemy.StartAttackOrDefenseEnemy(); // ? coroutine
+    }
 
+    public void ClearHandCards()////?????
+    {
+        if(PlayerHand.childCount>0)
+        {
+            currentGame.PlayerDesk.RemoveRange(0, currentGame.PlayerDesk.Count);
+        }
+        //if (currentGame.PlayerDesk.Count > 0)
+        //{
+        //    currentGame.PlayerDesk.RemoveRange(0, currentGame.PlayerDesk.Count);
+       
+        //}
+    
         //currentGame.PlayerDesk.RemoveRange(0, currentGame.PlayerDesk.Count);
 
         //PlayerHandCards.Remove(card);

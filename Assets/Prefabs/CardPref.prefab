@@ -391,7 +391,6 @@ MonoBehaviour:
   nameCard: {fileID: 4915795598375070965}
   numberCard: {fileID: 1231914357904044948}
   operatorCard: {fileID: 5176917501260825228}
-  isPlayer: 0
 --- !u!114 &-6450219107680471558
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -404,9 +403,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9164c012251f47458a68ca7fff257e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  number1: 
-  number2: 
-  operator3: 
 --- !u!225 &609013571132876031
 CanvasGroup:
   m_ObjectHideFlags: 0

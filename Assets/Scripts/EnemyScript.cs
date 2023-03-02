@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +11,7 @@ public class EnemyScript : MonoBehaviour
     public TextMeshProUGUI shieldCountText;
     public TextMeshProUGUI DefenseCountText;
     public TextMeshProUGUI AttackCountText;
+    public TextMeshProUGUI hpDamageText;
     public Image defenseImage;
     public Image attackImage;
     public TextMeshProUGUI hpCurrentText;
@@ -116,13 +114,13 @@ public class EnemyScript : MonoBehaviour
         {
         player.Damage(attackCount);
         Invoke("AttackOrDefence",1f);
-            //AttackEnemy();
+
         }
         else
         {
         ShieldCount(defenseCount);
         Invoke("AttackOrDefence", 1f);
-            //DefenseEnemy();
+
         }
     }
     //private void AttackEnemy()
@@ -138,14 +136,35 @@ public class EnemyScript : MonoBehaviour
         shieldCount += shield;
         shieldCountText.text = shieldCount.ToString();
     }
+    private void HpDamage()
+    {
+        hpDamageText.enabled = false;
+    }
     public void Damage(int damage)
     {
-        hpCurrent -= damage;
+        if (shieldCount > 0 && damage >= shieldCount)//удар більше щита
+        {
+            hpCurrent = (hpCurrent + shieldCount) - damage;
+            hpDamageText.text = "- " + (damage - shieldCount).ToString();
+            hpDamageText.enabled = true;
+            Invoke("HpDamage", 2f);
+            shieldCount = 0;
+            shieldCountText.text = shieldCount.ToString();
+        }
+        else if (shieldCount > 0 && damage < shieldCount)//удар менше щита
+        {
+            shieldCount -= damage;
+            shieldCountText.text = shieldCount.ToString();         
+        }
+        else
+        {
+            hpCurrent = hpCurrent - damage;
+        }
         hpCurrentText.text = hpCurrent.ToString();
         imageHpEnemy.fillAmount = (float)hpCurrent / hpEnemy;
         sprRend.color = colorDamage;
 
-        if (hpCurrent <= 0)
+        if (hpCurrent == 0)
         {
             Destroy(gameObject);
             Time.timeScale = 0;

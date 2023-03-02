@@ -9,16 +9,21 @@ using UnityEngine.UI;
 
 public class CardToCalculate : MonoBehaviour
 {
+    private GameManagerScript gameManager;
+    public GameObject card1Calculate;
+    public GameObject card2Calculate;
+    public GameObject card3Calculate;
     public TextMeshProUGUI numberCard1CalculateText;
     public TextMeshProUGUI numberCard2CalculateText;
     public TextMeshProUGUI operatorCard3CalculateText;
     public Button calculateBtn;
-    public GameObject objClick;
-    int countCardCalculate = 0;
-    public Image shieldImage;
-    public Image swordImage;
+    public Button resetBtn;
     public PlayerScript player;
     public EnemyScript enemy;
+    public OnClickCard clickCard;   
+    public Image shieldImage;
+    public Image swordImage;
+    int countCardCalculate = 0;
     private int card1;
     private int card2;
     private char card3;
@@ -26,13 +31,13 @@ public class CardToCalculate : MonoBehaviour
 
     private void Start()
     {
-        objClick = GameObject.Find("CardPref");
+        gameManager = GetComponent<GameManagerScript>();
         CardCalculateText();
         NotActiveImageResultCalculate();
     }
     private void Update()
     {
-        ButtonCalculateActive();
+        ButtonCalculateActive();     // зам≥нити на coroutine
         ActiveImageResultCalculate();
     }
     private void CardCalculateText()
@@ -85,6 +90,7 @@ public class CardToCalculate : MonoBehaviour
         Debug.Log($"CardText:{numberCard2CalculateText.text}");
         countCardCalculate++;
         card2 = int.Parse(numberCard2CalculateText.text);
+
         Debug.Log(countCardCalculate);
     }
     public void Card3Text(string operator3)
@@ -93,7 +99,7 @@ public class CardToCalculate : MonoBehaviour
         Debug.Log($"CardText:{operatorCard3CalculateText.text}");
         countCardCalculate++;
         card3 = Convert.ToChar(operatorCard3CalculateText.text);
-        Debug.Log(countCardCalculate);
+        Debug.Log("countCardCalculate; "+countCardCalculate);
     }
     private int CalculateCard(int card1, int card2, char sign)
     {
@@ -102,12 +108,15 @@ public class CardToCalculate : MonoBehaviour
         {
             summa = card1 + card2;
             Debug.Log($"{card1},+, {card2},=, {summa}");
+            
+            
             return summa;
         }
         else if (sign == '-')
         {
             summa = card1 - card2;
             Debug.Log($"{card1},, {card2},=, {summa}");
+            
             return summa;
         }
         return 0;
@@ -120,7 +129,7 @@ public class CardToCalculate : MonoBehaviour
             summaCard=0;
             Debug.Log(summaCard);
     }
-    public void BattleResult()
+    public void BattleResultCalculate()
     {
         if (summaCard == 0)//скидаютьс€ карти
         {
@@ -129,18 +138,35 @@ public class CardToCalculate : MonoBehaviour
         }
         else if (summaCard > 0)//>0 удар ворогу
         {
-            enemy.Damage(summaCard);
-            CleanerCalculate();
-            NotActiveImageResultCalculate();
-            enemy.StartAttackOrDefenseEnemy();
+            enemy.Damage(Mathf.Abs(summaCard));          
+            CleanerCalculate();            
+            gameManager.CountCardNotGame(3);
+            DestroyCard();//знищити карти
         }
         else if (summaCard < 0)//<0 отримано захист
         {
-            player.ShieldCount(summaCard);
+            player.ShieldCount(Mathf.Abs(summaCard));
             CleanerCalculate();
-            NotActiveImageResultCalculate();
-            enemy.StartAttackOrDefenseEnemy();
+            gameManager.CountCardNotGame(3);
+            DestroyCard();//знищити карти
         }
-
     }
+    public void ResetCard()//повернути кари з калькул€тора на поле
+    {
+        if (countCardCalculate > 0)
+        {
+            card1Calculate.SetActive(true);
+            card2Calculate.SetActive(true);
+            card3Calculate.SetActive(true);
+            CleanerCalculate();
+            Debug.Log("ResetCard");
+        }
+    }  
+    public void DestroyCard()//знищити карти,що пройшли калькул€тор
+    {
+        Destroy(card1Calculate);
+        Destroy(card2Calculate);
+        Destroy(card3Calculate);
+    }
+
 }

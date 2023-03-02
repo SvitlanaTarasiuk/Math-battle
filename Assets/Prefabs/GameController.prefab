@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2127850011606945001}
   - component: {fileID: 2127850011606944918}
+  - component: {fileID: 394168859647117358}
+  - component: {fileID: 1501127760278418985}
   - component: {fileID: 277341801735363900}
   - component: {fileID: 5290451134159255585}
   m_Layer: 0
@@ -50,7 +52,32 @@ MonoBehaviour:
   panelGameOver: {fileID: 0}
   panelTheEnd: {fileID: 0}
   panelInfoGame: {fileID: 0}
-  CalculeteBtn: {fileID: 0}
+  panelSelectedCards: {fileID: 0}
+  panelHandPlayer: {fileID: 0}
+--- !u!114 &394168859647117358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127850011606944919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b1dc65eb15d984fb3e2e6e0a5e411e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1501127760278418985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127850011606944919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e40843693af51d14ba8c122c2bbd1337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &277341801735363900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,14 +91,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardPref: {fileID: 6436394131778499789, guid: c995b49ef821756499464e8b0b483f0e, type: 3}
-  EndTurnBtn: {fileID: 0}
-  EnemyHand: {fileID: 0}
+  enemy: {fileID: 0}
   PlayerHand: {fileID: 0}
   countCardPlayerText: {fileID: 0}
   countCardNotGameText: {fileID: 0}
   countCardNotGame: 0
   PlayerHandCards: []
-  EnemyHandCards: []
 --- !u!114 &5290451134159255585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,7 +109,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222c32baadad1a3489bedb0e77a5db4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberCard1CalculeteText: {fileID: 0}
-  numberCard2CalculeteText: {fileID: 0}
-  operatorCard3CalculeteText: {fileID: 0}
-  CalculeteBtn: {fileID: 0}
+  card1Calculate: {fileID: 0}
+  card2Calculate: {fileID: 0}
+  card3Calculate: {fileID: 0}
+  numberCard1CalculateText: {fileID: 0}
+  numberCard2CalculateText: {fileID: 0}
+  operatorCard3CalculateText: {fileID: 0}
+  calculateBtn: {fileID: 0}
+  resetBtn: {fileID: 0}
+  player: {fileID: 0}
+  enemy: {fileID: 0}
+  clickCard: {fileID: 0}
+  shieldImage: {fileID: 0}
+  swordImage: {fileID: 0}

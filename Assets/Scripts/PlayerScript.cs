@@ -36,33 +36,43 @@ public class PlayerScript : MonoBehaviour
     }  
     public void ShieldCount(int shield)
     {
-        
-        shieldCount += Mathf.Abs(shield);
+
+        shieldCount += shield;
         shieldCountText.text = shieldCount.ToString();
 
     }
     private void HpDamage()
     {           
-            hpDamageText.enabled = true;
+            hpDamageText.enabled = false;
     }
     public void Damage(int damage)
     {
-        //hpCurrent-=Mathf.Abs(damage);
-        if (damage > shieldCount)
+        if (shieldCount > 0 && damage >= shieldCount)//удар більше щита
         {
-            hpDamageText.text = "- "+(damage - shieldCount).ToString();
-            Invoke(nameof(HpDamage), 2f);
-            hpDamageText.enabled = false;
-
+            hpCurrent = (hpCurrent + shieldCount) - damage;
+            hpDamageText.text = "- " + (damage - shieldCount).ToString();
+            hpDamageText.enabled = true;
+            Invoke("HpDamage", 2f);
+            shieldCount = 0;
+            shieldCountText.text = shieldCount.ToString();
         }
-        hpCurrent = (hpCurrent+shieldCount)-Mathf.Abs(damage);      
+        else if (shieldCount > 0 && damage < shieldCount)//удар менше щита
+        {
+            shieldCount -= damage;
+            shieldCountText.text = shieldCount.ToString();        
+        }
+        else
+        {
+            hpCurrent = hpCurrent - damage;
+        }
+
         hpCurrentText.text = hpCurrent.ToString();
         imageHpPlayer.fillAmount = (float)hpCurrent / hpPlayer;
         //GlobalControl.Instance.life = hpPlayer;
         //PlayerPrefs.SetInt("Life", hpPlayer);
         sprRend.color = colorDamage;
 
-        if (hpPlayer == 0) 
+        if (hpCurrent == 0) 
         {
             Time.timeScale = 0;
             gameUI.GameOver();
