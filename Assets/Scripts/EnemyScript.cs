@@ -34,8 +34,7 @@ public class EnemyScript : MonoBehaviour
          WhatEnemy();
     }
     void Start()
-    {
-        Debug.Log(name);
+    {        
         //animator = GetComponent<Animator>();
         sprRend = GetComponent<SpriteRenderer>();
         hpCurrent = hpEnemy;
@@ -52,38 +51,42 @@ public class EnemyScript : MonoBehaviour
                 hpEnemy = 6;
                 minAttackOrDefenseCount = 1;
                 maxAttackOrDefenseCount = 2;
-                Debug.Log($"{hpEnemy}, {minAttackOrDefenseCount}, {maxAttackOrDefenseCount}");
+                Debug.Log($"nameEnemy+{name}, hpEnemy: {hpEnemy}, minAttackOrDefenseCount: {minAttackOrDefenseCount}, maxAttackOrDefenseCount: {maxAttackOrDefenseCount}");
                 break;
 
             case "Enemy2":
                 hpEnemy = 8;
                 minAttackOrDefenseCount = 1;
                 maxAttackOrDefenseCount = 3;
+                Debug.Log($"nameEnemy+{name},hpEnemy: {hpEnemy}, minAttackOrDefenseCount: {minAttackOrDefenseCount}, maxAttackOrDefenseCount: {maxAttackOrDefenseCount}");
                 break;
 
             case "Enemy3":
                 hpEnemy = 10;
                 minAttackOrDefenseCount = 1;
                 maxAttackOrDefenseCount = 4;
+                Debug.Log($"nameEnemy+{name},hpEnemy: {hpEnemy}, minAttackOrDefenseCount: {minAttackOrDefenseCount}, maxAttackOrDefenseCount: {maxAttackOrDefenseCount}");
                 break;
 
             case "Enemy4":
                 hpEnemy = 12;
                 minAttackOrDefenseCount = 2;
                 maxAttackOrDefenseCount = 6;
+                Debug.Log($"nameEnemy+{name},hpEnemy: {hpEnemy}, minAttackOrDefenseCount: {minAttackOrDefenseCount}, maxAttackOrDefenseCount: {maxAttackOrDefenseCount}");
                 break;
 
             case "Enemy5":
                 hpEnemy = 15;
                 minAttackOrDefenseCount = 3;
                 maxAttackOrDefenseCount = 8;
+                Debug.Log($"vhpEnemy: {hpEnemy}, minAttackOrDefenseCount: {minAttackOrDefenseCount}, maxAttackOrDefenseCount: {maxAttackOrDefenseCount}");
                 break;
         }
     }
     public void AttackOrDefence()
     {
         isAttack = Random.Range(0, 2) == 1;
-        Debug.Log(isAttack);
+        Debug.Log("isAttackEnemy: "+isAttack);
 
         if (isAttack == true)
         {
@@ -119,18 +122,11 @@ public class EnemyScript : MonoBehaviour
         else
         {
         ShieldCount(defenseCount);
-        Invoke("AttackOrDefence", 1f);
+        Invoke("AttackOrDefence",1f);
 
         }
     }
-    //private void AttackEnemy()
-    //{
-       
-    //}
-    //private void DefenseEnemy()
-    //{
-        
-    //}
+
     public void ShieldCount(int shield)
     {
         shieldCount += shield;
@@ -164,10 +160,9 @@ public class EnemyScript : MonoBehaviour
         imageHpEnemy.fillAmount = (float)hpCurrent / hpEnemy;
         sprRend.color = colorDamage;
 
-        if (hpCurrent == 0)
+        if (hpCurrent <= 0)
         {
-            Destroy(gameObject);
-            Time.timeScale = 0;
+            Destroy(gameObject);            
             gameUI.TheEnd();
         }
         else

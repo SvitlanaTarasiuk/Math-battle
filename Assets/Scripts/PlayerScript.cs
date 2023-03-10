@@ -72,7 +72,7 @@ public class PlayerScript : MonoBehaviour
         //PlayerPrefs.SetInt("Life", hpPlayer);
         sprRend.color = colorDamage;
 
-        if (hpCurrent == 0) 
+        if (hpCurrent <= 0) 
         {
             Time.timeScale = 0;
             gameUI.GameOver();

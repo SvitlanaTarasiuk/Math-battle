@@ -82,7 +82,7 @@ public class CardToCalculate : MonoBehaviour
         Debug.Log($"CardText:{numberCard1CalculateText.text}");
         countCardCalculate++;
         card1 = int.Parse(numberCard1CalculateText.text);
-        Debug.Log(countCardCalculate);
+        Debug.Log("countCardCalculate: "+countCardCalculate);
     }
     public void Card2Text(string number2)
     {
@@ -91,7 +91,7 @@ public class CardToCalculate : MonoBehaviour
         countCardCalculate++;
         card2 = int.Parse(numberCard2CalculateText.text);
 
-        Debug.Log(countCardCalculate);
+        Debug.Log("countCardCalculate: "+countCardCalculate);
     }
     public void Card3Text(string operator3)
     {
@@ -99,7 +99,7 @@ public class CardToCalculate : MonoBehaviour
         Debug.Log($"CardText:{operatorCard3CalculateText.text}");
         countCardCalculate++;
         card3 = Convert.ToChar(operatorCard3CalculateText.text);
-        Debug.Log("countCardCalculate; "+countCardCalculate);
+        Debug.Log("countCardCalculate: "+countCardCalculate);
     }
     private int CalculateCard(int card1, int card2, char sign)
     {
@@ -121,7 +121,7 @@ public class CardToCalculate : MonoBehaviour
         }
         return 0;
     }
-    private void CleanerCalculate()
+    public void CleanerCalculate()
     {
             CardCalculateText();
             NotActiveImageResultCalculate();
@@ -141,14 +141,14 @@ public class CardToCalculate : MonoBehaviour
             enemy.Damage(Mathf.Abs(summaCard));          
             CleanerCalculate();            
             gameManager.CountCardNotGame(3);
-            DestroyCard();//знищити карти
+            //DestroyCard();//знищити карти
         }
         else if (summaCard < 0)//<0 отримано захист
         {
             player.ShieldCount(Mathf.Abs(summaCard));
             CleanerCalculate();
             gameManager.CountCardNotGame(3);
-            DestroyCard();//знищити карти
+            //DestroyCard();//знищити карти
         }
     }
     public void ResetCard()//повернути кари з калькулятора на поле

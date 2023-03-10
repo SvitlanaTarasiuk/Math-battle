@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2127850011606945001}
   - component: {fileID: 2127850011606944918}
-  - component: {fileID: 394168859647117358}
   - component: {fileID: 1501127760278418985}
   - component: {fileID: 277341801735363900}
+  - component: {fileID: 6333462384897120085}
+  - component: {fileID: 232317304116637278}
   - component: {fileID: 5290451134159255585}
   m_Layer: 0
   m_Name: GameController
@@ -53,19 +54,9 @@ MonoBehaviour:
   panelTheEnd: {fileID: 0}
   panelInfoGame: {fileID: 0}
   panelSelectedCards: {fileID: 0}
+  panelRoundGame: {fileID: 0}
+  panelNewCardNewScene: {fileID: 0}
   panelHandPlayer: {fileID: 0}
---- !u!114 &394168859647117358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2127850011606944919}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53b1dc65eb15d984fb3e2e6e0a5e411e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1501127760278418985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,6 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddeb7055cdd8c24fb3aeddfb04b34ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameUI: {fileID: 0}
   cardPref: {fileID: 6436394131778499789, guid: c995b49ef821756499464e8b0b483f0e, type: 3}
   enemy: {fileID: 0}
   PlayerHand: {fileID: 0}
@@ -97,6 +89,38 @@ MonoBehaviour:
   countCardNotGameText: {fileID: 0}
   countCardNotGame: 0
   PlayerHandCards: []
+--- !u!114 &6333462384897120085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127850011606944919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55f329ad1e25bfa4cae78c24e2b7e754, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameUI: {fileID: 0}
+  cardPref: {fileID: 0}
+  NewCardHand: {fileID: 0}
+  NewSceneCards: []
+--- !u!114 &232317304116637278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127850011606944919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 351f67f72b4162146a9a054b9030cfa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  countRoundGameText: {fileID: 0}
+  infoRoundGameText: {fileID: 0}
+  infoDamagePlayerGameText: {fileID: 0}
+  infoDamageEnemyText: {fileID: 0}
 --- !u!114 &5290451134159255585
 MonoBehaviour:
   m_ObjectHideFlags: 0
