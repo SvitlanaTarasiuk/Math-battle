@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,9 +7,10 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Color colorDamage;
     [SerializeField] private Image imageHpPlayer;
     [SerializeField] private GameUI gameUI;
-    public TextMeshProUGUI shieldCountText;
+    [SerializeField] private ShieldImageResultScript shieldImageResultScript;
+   public TextMeshProUGUI shieldCountText;
     public TextMeshProUGUI hpCurrentText;  
-    public TextMeshProUGUI hpDamageText;
+    public TextMeshProUGUI hpDamageText;    
     //public Animator animator;
     private SpriteRenderer sprRend;
     private int shieldCount = 0;
@@ -23,23 +22,27 @@ public class PlayerScript : MonoBehaviour
     {
         sprRend = GetComponent<SpriteRenderer>();
         hpCurrent = hpPlayer;
-        shieldCountText.text = shieldCount.ToString();
+        ShieldCountStart();
         hpCurrentText.text = hpCurrent.ToString();
-       //audioSource = GetComponent<AudioSource>(); 
-       //animator = GetComponent<Animator>();   
+        //audioSource = GetComponent<AudioSource>(); //audioSource.PlayOneShot(audioClip);
+        //animator = GetComponent<Animator>();   
     }
     void Start()
     {
         // GlobalControl.Instance.SaveScene();
         // hpPlayer = GlobalControl.Instance.life;        
         //gameUI.SetCountLifeUI(life);        
-    }  
+    }
+    public void ShieldCountStart()//Start
+    {
+        shieldCount = 0;
+        shieldCountText.text = shieldCount.ToString();
+    }
     public void ShieldCount(int shield)
     {
-
+        shieldImageResultScript.StartCoroutineShieldImage();
         shieldCount += shield;
         shieldCountText.text = shieldCount.ToString();
-
     }
     private void HpDamage()
     {           
@@ -73,8 +76,7 @@ public class PlayerScript : MonoBehaviour
         sprRend.color = colorDamage;
 
         if (hpCurrent <= 0) 
-        {
-            Time.timeScale = 0;
+        {          
             gameUI.GameOver();
         }       
             else

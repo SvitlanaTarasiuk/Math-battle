@@ -18,22 +18,18 @@ public class OnClickCard : MonoBehaviour, IPointerClickHandler
     string nameCard;
     GameObject gameController;
     CardToCalculate cardToCalculate;   
-    GameManagerScript gameManagerScript;
+    CardManagerScript cardManagerScript;
     GameUI gameUI;
-    //GameObject panelNewCard;
-    //GameObject panelHandPlayer;
     Transform panelHandPlayer;
     Transform panelNewCard;
     void Start()
     {
         gameController= GameObject.Find("GameController");
         cardToCalculate = gameController.GetComponent<CardToCalculate>();
-        gameManagerScript = gameController.GetComponent<GameManagerScript>();
+        cardManagerScript = gameController.GetComponent<CardManagerScript>();   
         gameUI= gameController.GetComponent<GameUI>();
         panelHandPlayer = gameController.GetComponent<GameManagerScript>().PlayerHand;
-        panelNewCard = gameController.GetComponent<NewCardScript>().NewCardHand;
-        //Debug.Log("panelHandPlayer.activeInHierarchy: "+panelHandPlayer.name);
-        //Debug.Log("panelNewCard.activeInHierarchy: "+panelNewCard.name);      
+        panelNewCard = gameController.GetComponent<NewCardScript>().NewCardHand;     
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -47,23 +43,13 @@ public class OnClickCard : MonoBehaviour, IPointerClickHandler
          if (panelNewCard!=null && cardClick.transform.parent == panelNewCard)
         {
             Debug.Log("panelNewCard.transform");
-            //gameManagerScript.GetComponent<GameManagerScript>().PlayerHandCards.Add(cardClick.GetComponent<CardInfoScript>());
-            //Debug.Log("CountNewCard" + gameManagerScript.GetComponent<GameManagerScript>().PlayerHandCards.Count);
+                     
+            Card card=cardClick.GetComponent<CardInfoScript>().selfCard;
 
-            //CardManager.AllCards.Add(new Card(cardClick.GetComponent<Card>().Name, cardClick.GetComponent<Card>().LogoBG.ToString(),
-            //                                cardClick.GetComponent<Card>().LogoImage.ToString(), cardClick.GetComponent<Card>().Number));
-            
-            gameManagerScript.currentGame.PlayerDesk.Add(cardClick.GetComponent<Card>());
-            Debug.Log("CardManager.AllCards.count: " + CardManager.AllCards.Count);
-           
-            //gameManagerScript.GetComponent<GameManagerScript>().currentGame.PlayerDesk.Add(cardClick.GetComponent<Card>());
-            Debug.Log("currentGame.PlayerDesk.Count: " + gameManagerScript.currentGame.PlayerDesk.Count);
-           
-            //game.PlayerDesk.Add(cardClick.GetComponent<Card>());
-
-            //CardManager.NewCard.Add(cardClick.GetComponent<Card>());            
-            //Debug.Log("CardManager.NewCard.Add.//CountNewCard" + CardManager.NewCard.Count);
-
+            cardManagerScript.AddAllCards(card);
+      
+            Debug.Log("CardManager.AllCard.Count " + CardManager.AllCards.Count);                  
+          
             cardClick.SetActive(false);
             gameUI.NewScene();
         }

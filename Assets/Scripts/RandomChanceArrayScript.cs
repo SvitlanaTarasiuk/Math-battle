@@ -52,27 +52,6 @@ public class RandomChanceArrayScript //: MonoBehaviour
         float[] percent = Chance(countArray);
         int result = RandomNumberChance(percent);
         return result;
-        ////int result = (int)Chance(chanceArray);
-
-        //    float total = 0;
-        //    foreach (float elem in percent)
-        //    {
-        //        total += elem;
-        //    }
-        //    float randomPoint = Random.value * total;
-        //    for (int i = 0; i < percent.Length; i++)
-        //    {
-        //        if (randomPoint < percent[i])
-        //        {
-        //            return i;
-        //        }
-        //        else
-        //        {
-        //            randomPoint -= percent[i];
-        //        }
-        //    }
-        //    return percent.Length - 1;
-        //}
     }
     int RandomNumberChance(float[] percent)
     {
@@ -97,7 +76,7 @@ public class RandomChanceArrayScript //: MonoBehaviour
         return percent.Length - 1;
     }
 
-    public int RandomShuffleNewCard(int numberRandom)//перемішування і рандом без повторень
+    public float[] RandomShuffle(int numberRandom)//перемішування
     {
         float[] percent = Chance(numberRandom);
 
@@ -108,8 +87,32 @@ public class RandomChanceArrayScript //: MonoBehaviour
             percent[i] = percent[randomIndex];
             percent[randomIndex] = temp;
         }
+        return percent;
+    }
+    //public int RandomShuffleNewCard(int numberRandom)//рандом без повторень???
+    //{
+    //    float[] percentShuffle = RandomShuffle(numberRandom);
+    //    int lastNumber= RandomNumberChance(percentShuffle);
+    //    int resultNumber = RandomNumber(lastNumber);      
+      
+    //    int RandomNumber(int lastN)
+    //    {
+    //        int result = RandomNumberChance(percentShuffle);
+    //        lastNumber = result;
+    //        if (result == lastN)
+    //        {
+    //            RandomNumber(lastN);               
+    //        }
+    //        return result;
+    //    }
 
-        int result = RandomNumberChance(percent);
+    //    return resultNumber;
+    //}
+    public int RandomNewCard(int numberRandom)
+    {
+        float[] percentShuffle = RandomShuffle(numberRandom);
+        int result = RandomNumberChance(percentShuffle);
         return result;
     }
+
 }

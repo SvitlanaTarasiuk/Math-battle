@@ -8,14 +8,17 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private Image imageHpEnemy;
     [SerializeField] private GameUI gameUI;
     [SerializeField] private PlayerScript player;
+    [SerializeField] private ShieldImageResultScript shieldImageResultScript;
     public TextMeshProUGUI shieldCountText;
-    public TextMeshProUGUI DefenseCountText;
-    public TextMeshProUGUI AttackCountText;
+    public TextMeshProUGUI defenseCountText;
+    public TextMeshProUGUI attackCountText;
     public TextMeshProUGUI hpDamageText;
     public Image defenseImage;
     public Image attackImage;
     public TextMeshProUGUI hpCurrentText;
     public TextMeshProUGUI hpEnemyText;
+    public Image shieldImageResultPlayer;
+    public GameMusicController gameMusicController;
     //public Animator animator;
     private SpriteRenderer sprRend;
     private int shieldCount = 0;
@@ -31,18 +34,19 @@ public class EnemyScript : MonoBehaviour
     //public int maxAttackCount;
     private void Awake()
     {
-         WhatEnemy();
+        WhatEnemy();
     }
     void Start()
-    {        
+    {
         //animator = GetComponent<Animator>();
         sprRend = GetComponent<SpriteRenderer>();
+        ShieldCountStart();
         hpCurrent = hpEnemy;
-        shieldCountText.text = shieldCount.ToString();
         hpCurrentText.text = hpCurrent.ToString();
-        hpEnemyText.text = "/    " + hpEnemy.ToString();      
-        AttackOrDefence();  
+        hpEnemyText.text = "/    " + hpEnemy.ToString();
+        AttackOrDefence();
     }
+
     public void WhatEnemy()
     {
         switch (name)
@@ -86,7 +90,7 @@ public class EnemyScript : MonoBehaviour
     public void AttackOrDefence()
     {
         isAttack = Random.Range(0, 2) == 1;
-        Debug.Log("isAttackEnemy: "+isAttack);
+        Debug.Log("isAttackEnemy: " + isAttack);
 
         if (isAttack == true)
         {
@@ -103,32 +107,39 @@ public class EnemyScript : MonoBehaviour
     {
         attackImage.gameObject.SetActive(true);
         defenseImage.gameObject.SetActive(false);
-        AttackCountText.text = attackCount.ToString();
+        attackCountText.text = attackCount.ToString();
     }
     private void StatusDisplayDefense()
-    {   
+    {
         defenseImage.gameObject.SetActive(true);
         attackImage.gameObject.SetActive(false);
-        DefenseCountText.text = defenseCount.ToString();
+        defenseCountText.text = defenseCount.ToString();
     }
     public void StartAttackOrDefenseEnemy()
     {
+        //ShieldCount();
         if (isAttack == true)
         {
-        player.Damage(attackCount);
-        Invoke("AttackOrDefence",1f);
-
+            gameMusicController.DamageEffectMusic();
+            player.Damage(attackCount);
+            Invoke("AttackOrDefence", 0.5f);
         }
         else
         {
-        ShieldCount(defenseCount);
-        Invoke("AttackOrDefence",1f);
-
+            gameMusicController.ShieldEffectMusic();
+            ShieldCount(defenseCount);
+            Invoke("AttackOrDefence", 0.5f);
         }
     }
-
+    public void ShieldCountStart()//Start
+    {
+        shieldCount = 0;
+        shieldCountText.text = shieldCount.ToString();
+    }
     public void ShieldCount(int shield)
     {
+        shieldImageResultScript.StartCoroutineShieldImage();
+        shieldImageResultPlayer.gameObject.SetActive(true);
         shieldCount += shield;
         shieldCountText.text = shieldCount.ToString();
     }
@@ -143,14 +154,14 @@ public class EnemyScript : MonoBehaviour
             hpCurrent = (hpCurrent + shieldCount) - damage;
             hpDamageText.text = "- " + (damage - shieldCount).ToString();
             hpDamageText.enabled = true;
-            Invoke("HpDamage", 2f);
+            Invoke("HpDamage", 2.0f);
             shieldCount = 0;
             shieldCountText.text = shieldCount.ToString();
         }
         else if (shieldCount > 0 && damage < shieldCount)//удар менше щита
         {
             shieldCount -= damage;
-            shieldCountText.text = shieldCount.ToString();         
+            shieldCountText.text = shieldCount.ToString();
         }
         else
         {
@@ -162,14 +173,13 @@ public class EnemyScript : MonoBehaviour
 
         if (hpCurrent <= 0)
         {
-            Destroy(gameObject);            
+            Destroy(gameObject);
             gameUI.TheEnd();
         }
         else
         {
             Invoke("ResetMaterial", 0.5f);
         }
-
     }
     void ResetMaterial()
     {
