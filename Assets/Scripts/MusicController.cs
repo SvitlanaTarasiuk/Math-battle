@@ -12,10 +12,10 @@ public class MusicController : MonoBehaviour
     private int firstPlayInt;
     private float musicFloat;
     private float soundEffectsFloat;
-    public Slider musicSlider;
+    public Slider musicGameSlider;
     public Slider soundEffectsSlider;
-    public AudioSource musicAudio;
-    public AudioSource[] soundEffectsAudio;
+    public AudioSource musicGame;
+    public AudioSource soundEffect;
     
 
     private void Start()
@@ -26,7 +26,7 @@ public class MusicController : MonoBehaviour
             musicFloat = 0.25f;
             soundEffectsFloat = 0.75f;
 
-            musicSlider.value = musicFloat;
+            musicGameSlider.value = musicFloat;
             soundEffectsSlider.value = soundEffectsFloat;
 
             PlayerPrefs.SetFloat(MusicPref,musicFloat);
@@ -36,7 +36,7 @@ public class MusicController : MonoBehaviour
         else
         {
             musicFloat=PlayerPrefs.GetFloat(MusicPref);
-            musicSlider.value=musicFloat;
+            musicGameSlider.value=musicFloat;
 
             soundEffectsFloat=PlayerPrefs.GetFloat(SoundEffectPref);
             soundEffectsSlider.value=soundEffectsFloat;
@@ -44,7 +44,7 @@ public class MusicController : MonoBehaviour
     }
     public void SaveSoundSetting()//добавити метод на кнопку виходу з меню(старт)
     {
-        PlayerPrefs.SetFloat(MusicPref,musicSlider.value);
+        PlayerPrefs.SetFloat(MusicPref,musicGameSlider.value);
         PlayerPrefs.SetFloat(SoundEffectPref, soundEffectsSlider.value);
     }
     
@@ -55,32 +55,12 @@ public class MusicController : MonoBehaviour
     }
    public void UpdateSound()//добавити метод у обидва слайдери
     {
-        musicAudio.volume=musicSlider.value;
-        for ( int i = 0; i<soundEffectsAudio.Length; i++ )
-        {
-            soundEffectsAudio[i].volume = soundEffectsSlider.value;
-        }
+        musicGame.volume=musicGameSlider.value;
+        soundEffect.volume = soundEffectsSlider.value;
     }
     public void MusicMenu()
     {
-        musicAudio.Pause();       
-        soundEffectsAudio[0].Play();
+        musicGame.Stop();
+        soundEffect.Play();
     }
-        //public AudioMixer audioMixer;
-
-        //public void SetVolume(float volume)
-        //{
-        //    audioMixer.SetFloat("volume", Mathf.Log10(volume) * 20);
-        //}
-
-        //public void SetQuality(int qualityIndex)
-        //{
-        //    QualitySettings.SetQualityLevel(qualityIndex);
-        //}
-        //public void Sound()
-        //{
-
-        //    AudioListener.pause = !AudioListener.pause;
-
-        //}  
 }

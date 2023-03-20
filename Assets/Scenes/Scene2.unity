@@ -5523,7 +5523,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1082903339
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9868,14 +9868,17 @@ MonoBehaviour:
   imageHpEnemy: {fileID: 1955492054}
   gameUI: {fileID: 1833799359}
   player: {fileID: 2105901129}
+  shieldImageResultScript: {fileID: 0}
   shieldCountText: {fileID: 797359803}
-  DefenseCountText: {fileID: 1485220042}
-  AttackCountText: {fileID: 1045775732}
+  defenseCountText: {fileID: 0}
+  attackCountText: {fileID: 0}
   hpDamageText: {fileID: 1960119590}
   defenseImage: {fileID: 572182552}
   attackImage: {fileID: 1583087872}
   hpCurrentText: {fileID: 2028828564}
   hpEnemyText: {fileID: 1489929278}
+  shieldImageResultPlayer: {fileID: 0}
+  gameMusicController: {fileID: 0}
 --- !u!1 &2028828562
 GameObject:
   m_ObjectHideFlags: 0
@@ -10513,6 +10516,7 @@ MonoBehaviour:
   colorDamage: {r: 0.9811321, g: 0.43873262, b: 0.43873262, a: 1}
   imageHpPlayer: {fileID: 1487820178}
   gameUI: {fileID: 1833799359}
+  shieldImageResultScript: {fileID: 0}
   shieldCountText: {fileID: 681109492}
   hpCurrentText: {fileID: 503156385}
   hpDamageText: {fileID: 1044663070}

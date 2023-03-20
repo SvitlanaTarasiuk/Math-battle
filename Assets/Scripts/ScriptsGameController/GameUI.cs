@@ -15,7 +15,9 @@ public class GameUI : MonoBehaviour
     public void NewGame()
     {
         SceneManager.LoadScene(1);
-        Time.timeScale = 1; 
+        Time.timeScale = 1;
+        //AudioManagerMixer.instance.MusicMenuOff();
+
         //panelHandPlayer.SetActive(false);
         //panelSelecteddards.SetActive(false);
     }
@@ -24,12 +26,14 @@ public class GameUI : MonoBehaviour
         Time.timeScale = 0.00001f;
         panelPause.SetActive(true);
         gameMusicController.MusicMenuOn();
+        //AudioManagerMixer.instance.MusicMenu();
     }
 
     public void PauseOffContinue()
     {      
         panelPause.SetActive(false);
         gameMusicController.MusicMenuOff();
+       // AudioManagerMixer.instance.MusicMenuOff();
         Time.timeScale = 1;
     }
 

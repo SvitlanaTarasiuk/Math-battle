@@ -120,12 +120,14 @@ public class EnemyScript : MonoBehaviour
         //ShieldCount();
         if (isAttack == true)
         {
+            //AudioManagerMixer.instance.DamageEffect();
             gameMusicController.DamageEffectMusic();
             player.Damage(attackCount);
             Invoke("AttackOrDefence", 0.5f);
         }
         else
-        {
+        {  
+            //AudioManagerMixer.instance.ShieldEffect();
             gameMusicController.ShieldEffectMusic();
             ShieldCount(defenseCount);
             Invoke("AttackOrDefence", 0.5f);

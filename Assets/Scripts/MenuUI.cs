@@ -12,6 +12,7 @@ public class MenuUI : MonoBehaviour
     {
         SceneManager.LoadScene(1);
         Time.timeScale = 1;
+        //AudioManagerMixer.instance.MusicMenuOff();//????
     }
     public void ExitGame()
     {
@@ -24,6 +25,7 @@ public class MenuUI : MonoBehaviour
     {
         panelMenu.SetActive(true);
         musicController.MusicMenu();
+        //AudioManagerMixer.instance.MusicMenu();
     }
 }
 

@@ -6,8 +6,10 @@ public class GameMusicController : MonoBehaviour
 {
     private static readonly string MusicPref = "MusicPref";
     private static readonly string SoundEffectPref = "SoundEffectPref";
-    public AudioSource musicAudio;
-    public AudioSource[] soundEffectsAudio;    
+    public AudioSource musicGame;
+    //public AudioSource[] soundEffectsAudio; 
+    public AudioSource soundEffect;
+    public AudioClip[] soundEffectClip;
     private float musicFloat;
     private float soundEffectsFloat;
 
@@ -15,42 +17,48 @@ public class GameMusicController : MonoBehaviour
     {
         LevelSoundSettings();
     }
-
     void LevelSoundSettings()
     {
-        musicFloat=PlayerPrefs.GetFloat(MusicPref);
-        soundEffectsFloat =PlayerPrefs.GetFloat(SoundEffectPref);
+        musicFloat = PlayerPrefs.GetFloat(MusicPref);
+        soundEffectsFloat = PlayerPrefs.GetFloat(SoundEffectPref);
 
-        musicAudio.volume=musicFloat;
-        for (int i = 0; i < soundEffectsAudio.Length; i++)
-        {
-            soundEffectsAudio[i].volume = soundEffectsFloat;      
-        }
+        musicGame.volume = musicFloat;
+        soundEffect.volume = soundEffectsFloat;
+        //for (int i = 0; i < soundEffectsAudio.Length; i++)
+        //{
+        //    soundEffectsAudio[i].volume = soundEffectsFloat;      
+        //}
     }
     public void MusicMenuOn()
     {
-        musicAudio.Pause();
-        soundEffectsAudio[0].Play();
+        musicGame.Stop();
+        soundEffect.Play();
+        //soundEffectsAudio[0].Play();
     }
     public void MusicMenuOff()
     {
-        musicAudio.UnPause();
-        soundEffectsAudio[0].Pause();
+        musicGame.Play();
+        soundEffect.Stop();
+        //soundEffectsAudio[0].Stop();
     }
     public void ShieldEffectMusic()
     {
-        soundEffectsAudio[1].PlayOneShot(soundEffectsAudio[1].clip);       
+        soundEffect.PlayOneShot(soundEffectClip[0]);
+        //soundEffectsAudio[1].PlayOneShot(soundEffectsAudio[1].clip);       
     }
     public void DamageEffectMusic()
     {
-        soundEffectsAudio[2].PlayOneShot(soundEffectsAudio[2].clip);
+        soundEffect.PlayOneShot(soundEffectClip[1]);
+        //soundEffectsAudio[2].PlayOneShot(soundEffectsAudio[2].clip);
     }
     public void CardFromDescMusic()
     {
-        soundEffectsAudio[3].PlayOneShot(soundEffectsAudio[3].clip);
+        soundEffect.PlayOneShot(soundEffectClip[2]);
+        //soundEffectsAudio[3].PlayOneShot(soundEffectsAudio[3].clip);
     }
     public void OneCardMusic()
     {
-        soundEffectsAudio[4].PlayOneShot(soundEffectsAudio[4].clip);
+        soundEffect.PlayOneShot(soundEffectClip[3]);
+        //soundEffectsAudio[4].PlayOneShot(soundEffectsAudio[4].clip);
     }
 }

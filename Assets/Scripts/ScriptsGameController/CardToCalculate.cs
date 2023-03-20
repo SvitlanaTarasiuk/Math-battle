@@ -29,7 +29,6 @@ public class CardToCalculate : MonoBehaviour
     private char card3;
     private int summaCard = 0;
     
-
     private void Start()
     {
         gameManager = GetComponent<GameManagerScript>();
@@ -89,8 +88,9 @@ public class CardToCalculate : MonoBehaviour
         }
     }
     public void Card1Text(string number1)
-
-    {   gameMusicController.OneCardMusic();
+    {
+        //AudioManagerMixer.instance.OneCard();
+        gameMusicController.OneCardMusic();
         tempCardGoScript.CardGoMove();
         numberCard1CalculateText.text = number1;
         Debug.Log($"CardText:{numberCard1CalculateText.text}");
@@ -100,6 +100,7 @@ public class CardToCalculate : MonoBehaviour
     }
     public void Card2Text(string number2)
     {
+        //AudioManagerMixer.instance.OneCard();
         gameMusicController.OneCardMusic();
         numberCard2CalculateText.text = number2;
         Debug.Log($"CardText:{numberCard2CalculateText.text}");
@@ -110,6 +111,7 @@ public class CardToCalculate : MonoBehaviour
     }
     public void Card3Text(string operator3)
     {
+        //AudioManagerMixer.instance.OneCard();
         gameMusicController.OneCardMusic();
         operatorCard3CalculateText.text = operator3;
         Debug.Log($"CardText:{operatorCard3CalculateText.text}");
@@ -154,6 +156,7 @@ public class CardToCalculate : MonoBehaviour
         }
         else if (summaCard > 0)//>0 удар ворогу
         {
+            //AudioManagerMixer.instance.DamageEffect();
             gameMusicController.DamageEffectMusic();
             enemy.Damage(Mathf.Abs(summaCard));           
             CleanerCalculate();            
@@ -163,6 +166,7 @@ public class CardToCalculate : MonoBehaviour
         }
         else if (summaCard < 0)//<0 отримано захист
         {
+            //AudioManagerMixer.instance.ShieldEffect();
             gameMusicController.ShieldEffectMusic();
             player.ShieldCount(Mathf.Abs(summaCard));
             CleanerCalculate();

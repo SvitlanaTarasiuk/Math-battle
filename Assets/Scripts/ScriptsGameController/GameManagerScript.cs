@@ -61,9 +61,9 @@ public class GameManagerScript : MonoBehaviour
         countCardNotGameText.text = countCardNotGame.ToString();
     }
     public void GiveHandCards(List<Card> desk, Transform hand)
-    { 
+    {
         gameMusicController.CardFromDescMusic();
-
+        //AudioManagerMixer.instance.MusicCardFromDesk();
         int i = 0;
         while (i++ < 6)
             GiveCardToHand(desk, hand);
