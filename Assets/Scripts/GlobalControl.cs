@@ -1,42 +1,52 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-
 public class GlobalControl : MonoBehaviour
 {
-    public int life = 3;
-    public int currentSceneIndex;
-
-    public static GlobalControl Instance;
-
+    public int currentSceneIndex = 1;
+    public int lifePlayer = 20;
+    public int lifeEnemy;
+    public int lifeEnemyStart;   
+    //public 
+    public static GlobalControl Instance { get; private set; }
 
     void Awake()
     {
-        print("AwakeGlobalControl");
         if (Instance == null)
         {
-            print("DontDestroy");
-            DontDestroyOnLoad(gameObject);
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+
             LoadAllData();
         }
         else if (Instance != this)
         {
-            print("Destroy");
             Destroy(gameObject);
         }
     }
-    public void LoadAllData()
-    { 
-        life = PlayerPrefs.GetInt("Life", 3);
-    }
-    public void ResetData()
+
+    public void HpEnemyStart(int hpStart)
     {
-        print("ResetData");
-        life = 3;
-        PlayerPrefs.SetInt("Life", life);
+        lifeEnemyStart = hpStart;
+        lifeEnemy = PlayerPrefs.GetInt("LifeEnemy", lifeEnemyStart);
+        if (lifeEnemy <= 0)
+        {
+            lifeEnemy = lifeEnemyStart;
+        }
+        Debug.Log($"StartGame /lifeEnemy:{lifeEnemy} /lifeEnemyStart:{lifeEnemyStart}");
     }
+    public void LoadAllData()
+    {
+        lifePlayer = PlayerPrefs.GetInt("LifePlayer", 20);
+        Debug.Log("LoadDATA/ Get/ lifePlayer:" + lifePlayer);
+    }
+    public void ResetDataPlayer()
+    {
+        lifePlayer = 20;
+        PlayerPrefs.SetInt("LifePlayer", lifePlayer);
+        Debug.Log($" ResetDATA /Set/ lifePlayer:{lifePlayer}");        
+    }
+
     public void SaveScene()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -47,4 +57,5 @@ public class GlobalControl : MonoBehaviour
         currentSceneIndex = PlayerPrefs.GetInt("SceneIndex");
         return currentSceneIndex;
     }
+
 }

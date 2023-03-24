@@ -473,9 +473,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1114244188}
-        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
-        m_MethodName: NewGame
+      - m_Target: {fileID: 1114244189}
+        m_TargetAssemblyTypeName: StartUI, Assembly-CSharp
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1708,6 +1708,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 833107251}
   m_CullTransparentMesh: 1
+--- !u!1 &835201751
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 835201753}
+  - component: {fileID: 835201752}
+  m_Layer: 0
+  m_Name: GlobalControl
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &835201752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835201751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df197399e8497a547b0ab5c56667396b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentSceneIndex: 0
+  lifePlayer: 20
+  lifeEnemy: 0
+  lifeEnemyStart: 0
+--- !u!4 &835201753
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 835201751}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6550616, y: -1.0068177, z: 1182.0049}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &852798894
 GameObject:
   m_ObjectHideFlags: 0
@@ -2219,6 +2267,7 @@ GameObject:
   - component: {fileID: 1114244186}
   - component: {fileID: 1114244185}
   - component: {fileID: 1114244188}
+  - component: {fileID: 1114244189}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2306,6 +2355,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panelMenu: {fileID: 1918449020}
   musicController: {fileID: 6240943741524532026}
+--- !u!114 &1114244189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1114244184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4637a7e524fb234189fab33cf3ff8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1136527411
 GameObject:
   m_ObjectHideFlags: 0
@@ -4322,8 +4383,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1114244188}
-        m_TargetAssemblyTypeName: MenuUI, Assembly-CSharp
+      - m_Target: {fileID: 1114244189}
+        m_TargetAssemblyTypeName: StartUI, Assembly-CSharp
         m_MethodName: ExitGame
         m_Mode: 1
         m_Arguments:

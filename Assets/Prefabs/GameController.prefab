@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2127850011606945001}
+  - component: {fileID: 7805536689671569282}
   - component: {fileID: 2127850011606944918}
   - component: {fileID: 1501127760278418985}
   - component: {fileID: 277341801735363900}
@@ -37,6 +38,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7805536689671569282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127850011606944919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4637a7e524fb234189fab33cf3ff8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2127850011606944918
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,6 +68,9 @@ MonoBehaviour:
   panelInfoGame: {fileID: 0}
   panelSelectedCards: {fileID: 0}
   panelRoundGame: {fileID: 0}
+  newCardScript: {fileID: 6333462384897120085}
+  gameManagerScript: {fileID: 277341801735363900}
+  gameMusicController: {fileID: 0}
   panelNewCardNewScene: {fileID: 0}
   panelHandPlayer: {fileID: 0}
 --- !u!114 &1501127760278418985
@@ -84,9 +100,11 @@ MonoBehaviour:
   gameUI: {fileID: 0}
   cardPref: {fileID: 6436394131778499789, guid: c995b49ef821756499464e8b0b483f0e, type: 3}
   enemy: {fileID: 0}
+  player: {fileID: 0}
   PlayerHand: {fileID: 0}
   countCardPlayerText: {fileID: 0}
   countCardNotGameText: {fileID: 0}
+  gameMusicController: {fileID: 0}
   countCardNotGame: 0
   PlayerHandCards: []
 --- !u!114 &6333462384897120085
@@ -103,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameUI: {fileID: 0}
   cardPref: {fileID: 0}
-  NewCardHand: {fileID: 0}
+  newCardHand: {fileID: 0}
   NewSceneCards: []
 --- !u!114 &232317304116637278
 MonoBehaviour:
@@ -146,3 +164,4 @@ MonoBehaviour:
   clickCard: {fileID: 0}
   shieldImage: {fileID: 0}
   swordImage: {fileID: 0}
+  gameMusicController: {fileID: 0}

@@ -14,11 +14,11 @@ public class RandomChanceArrayScript //: MonoBehaviour
         }
         else if (countArray == 7)
         {
-            chanceArray = new float[7] { 0.25f, 0.10f, 0.10f, 0.25f, 0.10f, 0.10f, 0.10f };
+            chanceArray = new float[7] { 0.20f, 0.10f, 0.10f, 0.20f, 0.15f, 0.15f, 0.10f };
         }
         else if (countArray == 8)
         {
-            chanceArray = new float[8] { 0.25f, 0.10f, 0.10f, 0.20f, 0.10f, 0.10f, 0.10f, 0.05f };
+            chanceArray = new float[8] { 0.25f, 0.10f, 0.10f, 0.10f, 0.15f, 0.15f, 0.10f, 0.05f };
         }
         else if (countArray == 9)
         {
@@ -38,11 +38,11 @@ public class RandomChanceArrayScript //: MonoBehaviour
         }
         else if (countArray == 13)
         {
-            chanceArray = new float[13] { 0.10f, 0.10f, 0.10f, 0.10f, 0.10f, 0.10f, 0.10f, 0.10f, 0.05f, 0.05f, 0.02f, 0.03f, 0.05f };
+            chanceArray = new float[13] { 0.10f, 0.10f, 0.08f, 0.10f, 0.12f, 0.12f, 0.10f, 0.08f, 0.05f, 0.05f, 0.02f, 0.03f, 0.05f };
         }
         else if (countArray == 14)
         {
-            chanceArray = new float[14] { 0.10f, 0.10f, 0.10f, 0.10f, 0.10f, 0.10f, 0.10f, 0.05f, 0.05f, 0.05f, 0.02f, 0.03f, 0.05f, 0.05f };
+            chanceArray = new float[14] { 0.10f, 0.10f, 0.10f, 0.08f, 0.12f, 0.12f, 0.08f, 0.05f, 0.05f, 0.05f, 0.02f, 0.03f, 0.05f, 0.05f };
         }
         return chanceArray;
 
