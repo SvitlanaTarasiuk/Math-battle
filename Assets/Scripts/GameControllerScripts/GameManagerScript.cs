@@ -12,41 +12,40 @@ public class Game
         PlayerDesk = GiveDeskCard();
         NewCardDesk = GiveDeskNewCard();
     }
-    List<Card> GiveDeskCard()// метод утворення колоди карт
+    List<Card> GiveDeskCard()// метод утворення колоди ігрових карт
     {
         List<Card> list = new List<Card>();
         for (int i = 0; i < CardManager.AllCards.Count; i++)
-            // list.Add(CardManager.AllCards[RandomCard(CardManager.AllCards.Count)]);// шанс випадіння %
             list.Add(CardManager.AllCards[randomChanceArray.RandomChance(CardManager.AllCards.Count)]);
-        Debug.Log("listPlayer.Count " + CardManager.AllCards.Count);
+        //Debug.Log("listPlayer.Count " + CardManager.AllCards.Count);
         return list;
     }
-    List<Card> GiveDeskNewCard()// метод утворення колоди карт
+    List<Card> GiveDeskNewCard()//метод утворення колоди карт на вибір для нового рівня
     {
         List<Card> listNewCard = new List<Card>();
-        for (int i = 0; i < CardManager.NewCard.Count; i++)//довжина колоди
-                                                           //listNewCard.Add(CardManager.NewCard[Random.Range(0, CardManager.NewCard.Count)]);//звичайний рандом
+        for (int i = 0; i < CardManager.NewCard.Count; i++)
             listNewCard.Add(CardManager.NewCard[randomChanceArray.RandomNewCard(CardManager.NewCard.Count)]);
-        Debug.Log("listNewCard.Count " + CardManager.NewCard.Count);
+        //Debug.Log("listNewCard.Count " + CardManager.NewCard.Count);
         return listNewCard;
     }
 }
 
 public class GameManagerScript : MonoBehaviour
 {
+    [SerializeField] private GameObject cardPref;
     [SerializeField] private GameUI gameUI;
     [SerializeField] private ShieldCountScript shieldCountPlayerScript;
     [SerializeField] private ShieldCountScript shieldCountEnemyScript;
+    [SerializeField] private CountRoundScript countRoundScript;
+    [SerializeField] private CardToCalculate cardToCalculate;
+    [SerializeField] private EnemyScript enemy;
+    [SerializeField] private GameMusicController gameMusicController;
+    [SerializeField] private TextMeshProUGUI countCardPlayerText;//залишок карт в колоді(-6 розданих)
+    [SerializeField] private TextMeshProUGUI countCardNotGameText;//відбій карт
+    private Game currentGame;
     private GameObject cardGo;
-    public Game currentGame;
-    public GameObject cardPref;
-    public EnemyScript enemy;
     public Transform PlayerHand;
-    public TextMeshProUGUI countCardPlayerText;//залишок карт в колоді(-6 розданих)
-    public TextMeshProUGUI countCardNotGameText;//відбій карт
-    public GameMusicController gameMusicController;
-    int countRound = 1;
-    int countCardPlayer = 0;
+    private int countCardPlayer = 0;
     public int countCardNotGame = 0;
 
     public List<CardInfoScript> PlayerHandCards = new List<CardInfoScript>();
@@ -54,11 +53,11 @@ public class GameManagerScript : MonoBehaviour
     void Start()
     {
         GlobalControl.Instance.SaveScene();
-       
+
         currentGame = new Game();
-        Debug.Log("currentGameStart " + currentGame.PlayerDesk.Count);
-   
-        GiveHandCards(currentGame.PlayerDesk, PlayerHand);        
+        //Debug.Log("currentGameStart " + currentGame.PlayerDesk.Count);
+
+        GiveHandCards(currentGame.PlayerDesk, PlayerHand);
 
         countCardPlayer = currentGame.PlayerDesk.Count;
         countCardPlayerText.text = countCardPlayer.ToString();
@@ -94,28 +93,28 @@ public class GameManagerScript : MonoBehaviour
     public void CountCardNotGame(int inactiveCards)
     {
         countCardNotGame += inactiveCards;
-        Debug.Log("countNot; " + countCardNotGame);
         countCardNotGameText.text = countCardNotGame.ToString();
+        //Debug.Log("countNot; " + countCardNotGame);
     }
 
-    public void EndTurn()//перевірити чи є карти/очистити і роздати нові або додати карту
+    public void EndTurn()//перевірити чи є карти/очистити і роздати нові
     {
-        countRound++;
-        GetComponent<InfoCountGameScript>().CountRoundText(countRound);
-        GetComponent<CardToCalculate>().CleanerCalculate();
         
+        countRoundScript.CountRound();
+        cardToCalculate.CleanerCalculate();
+        //GetComponent<CardToCalculate>().CleanerCalculate();
+
         ClearHandCards();
 
         shieldCountEnemyScript.ShieldCountStart();
-        enemy.StartAttackOrDefenseEnemy();
+        enemy.Invoke("StartAttackOrDefenseEnemy", 0.5f);
 
-        shieldCountPlayerScript.ShieldCountStart();
+        shieldCountPlayerScript.Invoke("ShieldCountStart", 1f);
+        Invoke(nameof(Start), 1.5f);
+        gameUI.Invoke("RoundGameActive", 1.7f);
 
-        Invoke(nameof(Start), 1f);
-        gameUI.Invoke("RoundGameActive", 1.5f);
-
-        Debug.Log("PlayerHand.childCount " + PlayerHand.childCount);
-        //Debug.Log("PlayerHandCards.Count " + PlayerHandCards.Count);
+        //Debug.Log("EndTurn/ PlayerHand.childCount " + PlayerHand.childCount);
+        //Debug.Log("EndTurn/ PlayerHandCards.Count " + PlayerHandCards.Count);
     }
 
     public void ClearHandCards()

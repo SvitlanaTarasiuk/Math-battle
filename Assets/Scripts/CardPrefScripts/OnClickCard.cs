@@ -18,6 +18,7 @@ public class OnClickCard : MonoBehaviour, IPointerClickHandler
     GameUI gameUI;
     Transform panelHandPlayer;
     Transform panelNewCard;
+
     void Start()
     {
         gameController= GameObject.Find("GameController");
@@ -30,7 +31,7 @@ public class OnClickCard : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {        
-        Debug.Log("OnClickTriger");        
+        //Debug.Log("OnClickTriger");        
         cardClick = eventData.pointerClick.GameObject();    
         nameCard = cardClick.GetComponent<CardInfoScript>().nameCard.text;
         //Debug.Log("panelNewCard.transform.name: "+ cardClick.transform.parent.name);
@@ -44,7 +45,7 @@ public class OnClickCard : MonoBehaviour, IPointerClickHandler
 
             cardManagerScript.AddAllCards(card);
       
-            Debug.Log("CardManager.AllCard.Count " + CardManager.AllCards.Count);                  
+            Debug.Log("OnClick/CardManager.AllCard.Count " + CardManager.AllCards.Count);                  
           
             cardClick.SetActive(false);
             gameUI.NewScene();

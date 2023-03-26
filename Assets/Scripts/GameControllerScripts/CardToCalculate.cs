@@ -7,26 +7,24 @@ using UnityEngine.UI;
 public class CardToCalculate : MonoBehaviour
 {
     [SerializeField] private ShieldCountScript shieldCountPlayerScript;
-    private GameManagerScript gameManager;
-    public GameMusicController gameMusicController;
-    public GameObject card1Calculate;
-    public GameObject card2Calculate;
-    public GameObject card3Calculate;
-    public TextMeshProUGUI numberCard1CalculateText;
-    public TextMeshProUGUI numberCard2CalculateText;
-    public TextMeshProUGUI operatorCard3CalculateText;
-    public Button calculateBtn;
-    public Button resetBtn;
-    //public PlayerScript player;
-    public EnemyScript enemy;
-    public OnClickCard clickCard;
-    public Image shieldImage;
-    public Image swordImage;
+    [SerializeField] private GameMusicController gameMusicController;
+    [SerializeField] private EnemyScript enemy;
+    [SerializeField] private OnClickCard clickCard;
+    [SerializeField] private GameManagerScript gameManager;
+    [SerializeField] private Button calculateBtn;
+    [SerializeField] private Image shieldImage;
+    [SerializeField] private Image swordImage;
     private int countCardCalculate = 0;
     private int card1;
     private int card2;
     private char card3;
     private int summaCard = 0;
+    public TextMeshProUGUI numberCard1CalculateText;
+    public TextMeshProUGUI numberCard2CalculateText;
+    public TextMeshProUGUI operatorCard3CalculateText;
+    public GameObject card1Calculate;
+    public GameObject card2Calculate;
+    public GameObject card3Calculate;
 
     private void Start()
     {
@@ -118,13 +116,13 @@ public class CardToCalculate : MonoBehaviour
         if (sign == '+')
         {
             summa = card1 + card2;
-            Debug.Log($"{card1},+, {card2},=, {summa}");
+            //Debug.Log($"{card1},+, {card2},=, {summa}");
             return summa;
         }
         else if (sign == '-')
         {
             summa = card1 - card2;
-            Debug.Log($"{card1},, {card2},=, {summa}");
+            //Debug.Log($"{card1},, {card2},=, {summa}");
             return summa;
         }
         return 0;
@@ -158,7 +156,6 @@ public class CardToCalculate : MonoBehaviour
             //AudioManagerMixer.instance.ShieldEffect();
             gameMusicController.ShieldEffectMusic();
             shieldCountPlayerScript.ShieldCountGame(Mathf.Abs(summaCard));
-            //player.ShieldCountGame(Mathf.Abs(summaCard));
             CleanerCalculate();
             gameManager.CountCardNotGame(3);
         }
@@ -167,7 +164,7 @@ public class CardToCalculate : MonoBehaviour
     {
         if (numberCard1CalculateText.text != "N")
         {
-            card1Calculate.SetActive(true);           
+            card1Calculate.SetActive(true);
         }
         if (numberCard2CalculateText.text != "N")
         {
@@ -178,7 +175,7 @@ public class CardToCalculate : MonoBehaviour
             card3Calculate.SetActive(true);
         }
         CleanerCalculate();
-           
+
     }
     public void DestroyCard()//знищити карти,що пройшли калькулятор
     {

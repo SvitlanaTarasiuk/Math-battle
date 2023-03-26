@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Audio;
 using UnityEngine.UI;
 
 public class MusicController : MonoBehaviour
@@ -16,12 +13,11 @@ public class MusicController : MonoBehaviour
     public Slider soundEffectsSlider;
     public AudioSource musicGame;
     public AudioSource soundEffect;
-    
 
     private void Start()
     {
-        firstPlayInt=PlayerPrefs.GetInt(FirstPlay);
-        if(firstPlayInt==0 )
+        firstPlayInt = PlayerPrefs.GetInt(FirstPlay);
+        if (firstPlayInt == 0)
         {
             musicFloat = 0.25f;
             soundEffectsFloat = 0.75f;
@@ -29,33 +25,33 @@ public class MusicController : MonoBehaviour
             musicGameSlider.value = musicFloat;
             soundEffectsSlider.value = soundEffectsFloat;
 
-            PlayerPrefs.SetFloat(MusicPref,musicFloat);
-            PlayerPrefs.SetFloat(SoundEffectPref,soundEffectsFloat);
+            PlayerPrefs.SetFloat(MusicPref, musicFloat);
+            PlayerPrefs.SetFloat(SoundEffectPref, soundEffectsFloat);
             PlayerPrefs.SetInt(FirstPlay, firstPlayInt - 1);
         }
         else
         {
-            musicFloat=PlayerPrefs.GetFloat(MusicPref);
-            musicGameSlider.value=musicFloat;
+            musicFloat = PlayerPrefs.GetFloat(MusicPref);
+            musicGameSlider.value = musicFloat;
 
-            soundEffectsFloat=PlayerPrefs.GetFloat(SoundEffectPref);
-            soundEffectsSlider.value=soundEffectsFloat;
+            soundEffectsFloat = PlayerPrefs.GetFloat(SoundEffectPref);
+            soundEffectsSlider.value = soundEffectsFloat;
         }
     }
     public void SaveSoundSetting()//добавити метод на кнопку виходу з меню(старт)
     {
-        PlayerPrefs.SetFloat(MusicPref,musicGameSlider.value);
+        PlayerPrefs.SetFloat(MusicPref, musicGameSlider.value);
         PlayerPrefs.SetFloat(SoundEffectPref, soundEffectsSlider.value);
     }
-    
+
     private void OnApplicationFocus(bool infocus)
     {
-        if( !infocus )
+        if (!infocus)
             SaveSoundSetting();
     }
-   public void UpdateSound()//добавити метод у обидва слайдери
+    public void UpdateSound()//добавити метод у обидва слайдери
     {
-        musicGame.volume=musicGameSlider.value;
+        musicGame.volume = musicGameSlider.value;
         soundEffect.volume = soundEffectsSlider.value;
     }
     public void MusicMenu()

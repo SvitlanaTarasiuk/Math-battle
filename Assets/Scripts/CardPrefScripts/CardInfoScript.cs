@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,25 +10,9 @@ public class CardInfoScript : MonoBehaviour
     public TextMeshProUGUI nameCard;
     public TextMeshProUGUI numberCard;
     public TextMeshProUGUI operatorCard;
-    //public bool isPlayer;
-    //public GameObject hideobj;//рубашка карти
-    //public GameObject highliteobj;//підсвітка карти
 
-    //public void HideCardInfo(Card card)
-    //{
-    //    selfCard = card;
-    //    hideobj.SetActive(true);
-    //    isPlayer = false;
-
-        //ShowCardInfo(card);
-        //selfCard = card;
-        //logoCard.sprite = null;
-        //nameCard.text = "";
-        //}
-        public void ShowCardInfo(Card card)    //,bool is_Player)
+    public void ShowCardInfo(Card card)
     {
-        //isPlayer = is_Player;
-        // hideobj.SetActive(false);
         selfCard = card;
         logoCard1.sprite = card.LogoBG;
         logoCard1.preserveAspect = true;
@@ -48,17 +30,5 @@ public class CardInfoScript : MonoBehaviour
         else
             operatorCard.text = selfCard.Operator.ToString();
     }
-
-         
-        //public void HighlightCard()
-        //{
-        //    highliteobj.SetActive(true );
-        //}
-        //public void DeHighlightCard()
-        //{
-        //    highliteobj.SetActive(false );  
-        //}
-
-    
 }
 

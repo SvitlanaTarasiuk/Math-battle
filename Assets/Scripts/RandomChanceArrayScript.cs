@@ -10,7 +10,7 @@ public class RandomChanceArrayScript //: MonoBehaviour
 
         if (countArray == 6)
         {
-            chanceArray = new float[6] { 0.25f, 0.1f, 0.1f, 0.25f, 0.15f, 0.15f };
+            chanceArray = new float[6] { 0.20f, 0.15f, 0.15f, 0.20f, 0.15f, 0.15f };
         }
         else if (countArray == 7)
         {
@@ -28,22 +28,7 @@ public class RandomChanceArrayScript //: MonoBehaviour
         {
             chanceArray = new float[10] { 0.15f, 0.10f, 0.10f, 0.10f, 0.15f, 0.15f, 0.10f, 0.05f, 0.05f, 0.05f };
         }
-        else if (countArray == 11)
-        {
-            chanceArray = new float[11] { 0.13f, 0.10f, 0.10f, 0.10f, 0.15f, 0.15f, 0.10f, 0.05f, 0.05f, 0.05f, 0.02f };
-        }
-        else if (countArray == 12)
-        {
-            chanceArray = new float[12] { 0.10f, 0.10f, 0.10f, 0.10f, 0.15f, 0.15f, 0.10f, 0.05f, 0.05f, 0.05f, 0.02f, 0.03f };
-        }
-        else if (countArray == 13)
-        {
-            chanceArray = new float[13] { 0.10f, 0.10f, 0.08f, 0.10f, 0.12f, 0.12f, 0.10f, 0.08f, 0.05f, 0.05f, 0.02f, 0.03f, 0.05f };
-        }
-        else if (countArray == 14)
-        {
-            chanceArray = new float[14] { 0.10f, 0.10f, 0.10f, 0.08f, 0.12f, 0.12f, 0.08f, 0.05f, 0.05f, 0.05f, 0.02f, 0.03f, 0.05f, 0.05f };
-        }
+        
         return chanceArray;
 
     }
@@ -89,25 +74,7 @@ public class RandomChanceArrayScript //: MonoBehaviour
         }
         return percent;
     }
-    //public int RandomShuffleNewCard(int numberRandom)//рандом без повторень???
-    //{
-    //    float[] percentShuffle = RandomShuffle(numberRandom);
-    //    int lastNumber= RandomNumberChance(percentShuffle);
-    //    int resultNumber = RandomNumber(lastNumber);      
-      
-    //    int RandomNumber(int lastN)
-    //    {
-    //        int result = RandomNumberChance(percentShuffle);
-    //        lastNumber = result;
-    //        if (result == lastN)
-    //        {
-    //            RandomNumber(lastN);               
-    //        }
-    //        return result;
-    //    }
 
-    //    return resultNumber;
-    //}
     public int RandomNewCard(int numberRandom)
     {
         float[] percentShuffle = RandomShuffle(numberRandom);

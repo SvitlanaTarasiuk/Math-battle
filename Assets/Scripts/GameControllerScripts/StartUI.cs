@@ -7,8 +7,8 @@ public class StartUI : MonoBehaviour
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
-        GlobalControl.Instance.ResetDataPlayer();
-        
+        GlobalControl.Instance.ResetData();
+
         //AudioManagerMixer.instance.MusicMenuOff();
     }
 

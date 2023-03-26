@@ -4,10 +4,13 @@ using UnityEngine.SceneManagement;
 public class GlobalControl : MonoBehaviour
 {
     public int currentSceneIndex = 1;
+    public int countRound= 1;
+    public int countAllRound= 1;
     public int lifePlayer = 20;
     public int lifeEnemy;
-    public int lifeEnemyStart;   
-    //public 
+    public int lifeEnemyStart;
+    public GlobalJsonController jsonController;
+
     public static GlobalControl Instance { get; private set; }
 
     void Awake()
@@ -17,12 +20,13 @@ public class GlobalControl : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
 
-            LoadAllData();
+            LoadData();
         }
         else if (Instance != this)
         {
             Destroy(gameObject);
         }
+        //Debug.Log("Awake GlobalControl");
     }
 
     public void HpEnemyStart(int hpStart)
@@ -33,20 +37,40 @@ public class GlobalControl : MonoBehaviour
         {
             lifeEnemy = lifeEnemyStart;
         }
-        Debug.Log($"StartGame /lifeEnemy:{lifeEnemy} /lifeEnemyStart:{lifeEnemyStart}");
+                 
+        //Debug.Log($"Awake/HpEnemyStart/lifeEnemy:{lifeEnemy} /lifeEnemyStart:{lifeEnemyStart}");
     }
-    public void LoadAllData()
+    public void LoadData()
     {
         lifePlayer = PlayerPrefs.GetInt("LifePlayer", 20);
-        Debug.Log("LoadDATA/ Get/ lifePlayer:" + lifePlayer);
+        countRound = PlayerPrefs.GetInt("CountRound", 1);
+        countAllRound = PlayerPrefs.GetInt("CountAllRound", 1);
     }
-    public void ResetDataPlayer()
+
+    public void ResetData()
     {
         lifePlayer = 20;
         PlayerPrefs.SetInt("LifePlayer", lifePlayer);
-        Debug.Log($" ResetDATA /Set/ lifePlayer:{lifePlayer}");        
-    }
 
+        countRound = 1;
+        PlayerPrefs.SetInt("CountRound", countRound);
+
+        lifeEnemy = 0;
+        PlayerPrefs.SetInt("LifeEnemy", lifeEnemy);
+
+        countAllRound = 1;
+        PlayerPrefs.SetInt("CountAllRound", countRound);
+
+        jsonController.DeleteJson();
+        CardManager.AllCards.Clear();
+        //Debug.Log($"ResetData/ AllCards: {CardManager.AllCards.Count}");
+        //Debug.Log($" ResetDATA /Set/ lifePlayer:{lifePlayer}");
+    }
+    public void CountAllRound()
+    {
+        countAllRound++;
+        PlayerPrefs.SetInt("CountAllRound", countRound);
+    }
     public void SaveScene()
     {
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;

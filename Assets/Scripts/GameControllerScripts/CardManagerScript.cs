@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class Card
 {
     public string Name;
@@ -35,8 +37,19 @@ public class CardManagerScript : MonoBehaviour
 {
     public void Awake()
     {
-        CreateAllCards();
-        CreateNewCards();
+        GlobalControl.Instance.jsonController.LoadJson();
+
+        if (CardManager.AllCards.Count == 0)
+        {
+            CreateAllCards();
+            GlobalControl.Instance.jsonController.SaveJson();
+        }
+        if (CardManager.NewCard.Count == 0)
+        {
+            CreateNewCards();
+        }
+
+        //Debug.Log("AwakeCardManagerScript/ AllCards.Count:" + CardManager.AllCards.Count);
     }
     void CreateAllCards()
     {
@@ -63,5 +76,6 @@ public class CardManagerScript : MonoBehaviour
     public void AddAllCards(Card card)
     {
         CardManager.AllCards.Add(card);
-    }
+        GlobalControl.Instance.jsonController.SaveJson();
+    }   
 }

@@ -5,7 +5,8 @@ public class ShieldCountScript : MonoBehaviour
 {
     [SerializeField] private ShieldImageResultScript shieldImageResultScript;
     [SerializeField] private TextMeshProUGUI shieldCountText;
-    private int shieldCount;
+    [SerializeField] private TextMeshProUGUI hpDamageText = null;
+    public int shieldCount;
     public void ShieldCountStart()
     {
         shieldCount = 0;
@@ -22,5 +23,13 @@ public class ShieldCountScript : MonoBehaviour
         shieldCount -= damage;
         shieldCountText.text = shieldCount.ToString();
     }
-
+    public void HpDamageTextCount(int damage)//кількість нанесеної шкоди,якщо невистачило щита
+    {
+        hpDamageText.text = "- " + (damage - shieldCount).ToString();
+        Invoke(nameof(HpDamage), 0.5f);
+    }
+    private void HpDamage()
+    {
+        hpDamageText.text = null;
+    }
 }

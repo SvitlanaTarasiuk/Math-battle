@@ -8,42 +8,38 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] private Image imageHpPlayer;
     [SerializeField] private GameUI gameUI;
     [SerializeField] private ShieldCountScript shieldCountScript;
-    public TextMeshProUGUI shieldCountText;
-    public TextMeshProUGUI hpCurrentText;
-    public TextMeshProUGUI hpDamageText;
+    [SerializeField] private TextMeshProUGUI hpCurrentText;
     private Image imagePlayer;
     private int shieldCount = 0;
     private int hpPlayer = 20;
     private int hpCurrent;
 
-    void Awake()
+    private void Start()
     {
         imagePlayer = GetComponent<Image>();
         shieldCountScript.ShieldCountStart();
-    }
-    void Start()
-    {
         hpCurrent = GlobalControl.Instance.lifePlayer;
+        ImageAndTextHpCurrent();        
+    }
+
+    private void ImageAndTextHpCurrent()
+    {
         hpCurrentText.text = hpCurrent.ToString();
         imageHpPlayer.fillAmount = (float)hpCurrent / hpPlayer;
     }
 
-    private void HpDamage()
-    {
-        hpDamageText.text = null;
-    }
     public void Damage(int damage)
     {
-        if (shieldCount > 0 && damage >= shieldCount)//удар більше щита
+        shieldCount = shieldCountScript.shieldCount;
+
+        if (shieldCount > 0 && damage > shieldCount)//удар більше щита
         {
             hpCurrent = (hpCurrent + shieldCount) - damage;
 
-            hpDamageText.text = "- " + (damage - shieldCount).ToString();          
-            Invoke(nameof(HpDamage), 1f);
-
+            shieldCountScript.HpDamageTextCount(damage);
             shieldCountScript.ShieldCountStart();
         }
-        else if (shieldCount > 0 && damage < shieldCount)//удар менше щита
+        else if (shieldCount > 0 && damage <= shieldCount)//удар менше щита
         {
             shieldCountScript.ShieldCountAfterDamage(damage);
         }
@@ -54,8 +50,7 @@ public class PlayerScript : MonoBehaviour
         GlobalControl.Instance.lifePlayer = hpCurrent;
         PlayerPrefs.SetInt("LifePlayer", hpCurrent);
 
-        hpCurrentText.text = hpCurrent.ToString();
-        imageHpPlayer.fillAmount = (float)hpCurrent / hpPlayer;
+        ImageAndTextHpCurrent();
 
         imagePlayer.color = colorDamage;
 
@@ -69,7 +64,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    void ResetMaterial()
+    private void ResetMaterial()
     {
         imagePlayer.color = Color.white;
     }

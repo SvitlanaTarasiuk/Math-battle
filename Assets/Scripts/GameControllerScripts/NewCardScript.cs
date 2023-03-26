@@ -1,14 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class NewCardScript : MonoBehaviour
 {
-    [SerializeField] private GameUI gameUI;
     private GameObject cardGo;
-    public Game newSceneGame;
-    public Card selfCard;
+    private Game newSceneGame;
     public GameObject cardPref;
     public Transform newCardHand;
 
