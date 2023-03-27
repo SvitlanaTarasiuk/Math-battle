@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomChanceArrayScript //: MonoBehaviour
@@ -10,23 +8,23 @@ public class RandomChanceArrayScript //: MonoBehaviour
 
         if (countArray == 6)
         {
-            chanceArray = new float[6] { 0.20f, 0.15f, 0.15f, 0.20f, 0.15f, 0.15f };
+            chanceArray = new float[6] { 0.22f, 0.16f, 0.13f, 0.20f, 0.15f, 0.14f };
         }
         else if (countArray == 7)
         {
-            chanceArray = new float[7] { 0.20f, 0.10f, 0.10f, 0.20f, 0.15f, 0.15f, 0.10f };
+            chanceArray = new float[7] { 0.18f, 0.11f, 0.12f, 0.19f, 0.15f, 0.14f, 0.11f };
         }
         else if (countArray == 8)
         {
-            chanceArray = new float[8] { 0.25f, 0.10f, 0.10f, 0.10f, 0.15f, 0.15f, 0.10f, 0.05f };
+            chanceArray = new float[8] { 0.08f, 0.11f, 0.10f, 0.12f, 0.15f, 0.14f, 0.13f, 0.17f };
         }
         else if (countArray == 9)
         {
-            chanceArray = new float[9] { 0.15f, 0.10f, 0.10f, 0.15f, 0.15f, 0.15f, 0.10f, 0.05f, 0.05f };
+            chanceArray = new float[9] { 0.05f, 0.07f, 0.09f, 0.14f, 0.15f, 0.14f, 0.11f, 0.10f, 0.14f };
         }
         else if (countArray == 10)
         {
-            chanceArray = new float[10] { 0.15f, 0.10f, 0.10f, 0.10f, 0.15f, 0.15f, 0.10f, 0.05f, 0.05f, 0.05f };
+            chanceArray = new float[10] { 0.06f, 0.07f, 0.05f, 0.08f, 0.15f, 0.14f, 0.13f, 0.11f, 0.09f, 0.12f };
         }
         
         return chanceArray;

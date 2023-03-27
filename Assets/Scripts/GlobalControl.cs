@@ -63,6 +63,7 @@ public class GlobalControl : MonoBehaviour
 
         jsonController.DeleteJson();
         CardManager.AllCards.Clear();
+       
         //Debug.Log($"ResetData/ AllCards: {CardManager.AllCards.Count}");
         //Debug.Log($" ResetDATA /Set/ lifePlayer:{lifePlayer}");
     }
@@ -78,7 +79,7 @@ public class GlobalControl : MonoBehaviour
     }
     public int GetLastSavedScene()
     {
-        currentSceneIndex = PlayerPrefs.GetInt("SceneIndex");
+        currentSceneIndex = PlayerPrefs.GetInt("SceneIndex",1);
         return currentSceneIndex;
     }
 

@@ -40,7 +40,7 @@ public class NewCardScript : MonoBehaviour
         NewSceneCards.Add(cardGo.GetComponent<CardInfoScript>());
 
         desk.RemoveAt(0);
-        Debug.Log("NewDesk.Count " + desk.Count);
+        //Debug.Log("NewDesk.Count " + desk.Count);
     }
 
 }

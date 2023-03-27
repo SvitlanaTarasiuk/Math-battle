@@ -665,6 +665,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSceneIndex: 0
   countRound: 1
+  countAllRound: 1
   lifePlayer: 20
   lifeEnemy: 0
   lifeEnemyStart: 0
@@ -1179,9 +1180,9 @@ PrefabInstance:
       propertyPath: shieldImageResultScript
       value: 
       objectReference: {fileID: 1421382890}
-    - target: {fileID: 3336374535386093525, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
+    - target: {fileID: 3059036081441738797, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 59.30005
+      value: 12.458008
       objectReference: {fileID: 0}
     - target: {fileID: 3563632756350915142, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
       propertyPath: m_IsActive
@@ -1211,10 +1212,6 @@ PrefabInstance:
       propertyPath: gameUI
       value: 
       objectReference: {fileID: 1833799359}
-    - target: {fileID: 7141295698130338946, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 146.40002
-      objectReference: {fileID: 0}
     - target: {fileID: 7318851884220518052, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1378,6 +1375,10 @@ PrefabInstance:
     - target: {fileID: 7318851885290677576, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GameUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318851885312584550, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 12.457794
       objectReference: {fileID: 0}
     - target: {fileID: 7318851885477671653, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
       propertyPath: m_IsActive

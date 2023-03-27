@@ -599,6 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSceneIndex: 0
   countRound: 1
+  countAllRound: 1
   lifePlayer: 20
   lifeEnemy: 0
   lifeEnemyStart: 0
@@ -1109,7 +1110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1496193159323656364, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 51.4
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 2942377512598169396, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
       propertyPath: m_Sprite
@@ -1130,10 +1131,6 @@ PrefabInstance:
     - target: {fileID: 4208469450097531282, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
       propertyPath: m_Name
       value: Enemy3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7141295698130338946, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 139.70996
       objectReference: {fileID: 0}
     - target: {fileID: 7318851884220518052, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1294,6 +1291,10 @@ PrefabInstance:
     - target: {fileID: 7318851885290677576, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: Calculate
+      objectReference: {fileID: 0}
+    - target: {fileID: 7318851885312584550, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 12.457794
       objectReference: {fileID: 0}
     - target: {fileID: 7318851885705868190, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
       propertyPath: m_Sprite

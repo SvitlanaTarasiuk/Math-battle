@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class StartUI : MonoBehaviour
@@ -22,9 +23,11 @@ public class StartUI : MonoBehaviour
     }
     public void ExitGame()
     {
-#if UNITY_EDITOR
-        UnityEditor.EditorApplication.isPlaying = false;
-#endif
-        Application.Quit();
+        //#if UNITY_EDITOR
+        //        UnityEditor.EditorApplication.isPlaying = false;
+        //#endif
+        //        Application.Quit();
+
+        SceneManager.LoadScene(0);//для WEBGL
     }
 }

@@ -72,20 +72,23 @@ public class GameManagerScript : MonoBehaviour
             GiveCardToHand(desk, hand);
     }
     void GiveCardToHand(List<Card> desk, Transform hand)
-    {
-        if (desk.Count == 0)
-            return;
+    {      
+            if (desk.Count == 0)
+                return;
 
-        Card card = desk[0];
+            Card card = desk[0];
 
-        cardGo = Instantiate(cardPref, hand, false);
+            cardGo = Instantiate(cardPref, hand, false);
 
-        cardGo.GetComponent<CardInfoScript>().ShowCardInfo(card);
-        PlayerHandCards.Add(cardGo.GetComponent<CardInfoScript>());
+            cardGo.GetComponent<CardInfoScript>().ShowCardInfo(card);
 
-        countCardPlayer--;
 
-        desk.RemoveAt(0);
+            PlayerHandCards.Add(cardGo.GetComponent<CardInfoScript>());
+
+            countCardPlayer--;
+
+            desk.RemoveAt(0);       
+
         //Debug.Log("currentGame.PlayerDesk.Count " + currentGame.PlayerDesk.Count);
         //Debug.Log("Desk.Count " + desk.Count);
     }
@@ -99,18 +102,17 @@ public class GameManagerScript : MonoBehaviour
 
     public void EndTurn()//перевірити чи є карти/очистити і роздати нові
     {
-        
         countRoundScript.CountRound();
         cardToCalculate.CleanerCalculate();
-        //GetComponent<CardToCalculate>().CleanerCalculate();
 
         ClearHandCards();
-
         shieldCountEnemyScript.ShieldCountStart();
         enemy.Invoke("StartAttackOrDefenseEnemy", 0.5f);
 
         shieldCountPlayerScript.Invoke("ShieldCountStart", 1f);
+
         Invoke(nameof(Start), 1.5f);
+
         gameUI.Invoke("RoundGameActive", 1.7f);
 
         //Debug.Log("EndTurn/ PlayerHand.childCount " + PlayerHand.childCount);

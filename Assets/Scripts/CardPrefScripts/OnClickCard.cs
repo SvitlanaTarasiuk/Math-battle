@@ -45,7 +45,7 @@ public class OnClickCard : MonoBehaviour, IPointerClickHandler
 
             cardManagerScript.AddAllCards(card);
       
-            Debug.Log("OnClick/CardManager.AllCard.Count " + CardManager.AllCards.Count);                  
+            //Debug.Log("OnClick/CardManager.AllCard.Count " + CardManager.AllCards.Count);                  
           
             cardClick.SetActive(false);
             gameUI.NewScene();

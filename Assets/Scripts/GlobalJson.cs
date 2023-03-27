@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class GlobalJson
 {
     public List<Card> AllCards;
+
 }
 
 
