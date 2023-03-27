@@ -9,8 +9,8 @@ Battle conditions on the cards:
 - the enemy gets a turn until the next card deal.
 
 Buttons:
-"Calculate" - the hero's move according to the result of the calculator.
-"Reset" - reset cards from the calculator.
-"End Turn" - the enemy's turn and the cards are dealt again.
+- "Calculate" - the hero's move according to the result of the calculator.
+- "Reset" - reset cards from the calculator.
+- "End Turn" - the enemy's turn and the cards are dealt again. 
 
 The game can be played online: https://tarasiuk-svitlana.itch.io/math-battle
