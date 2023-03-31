@@ -36,14 +36,15 @@ Image shield - https://craftpix.net/freebies/free-shield-2d-game-assets-pack/
 Image cup and medal- https://craftpix.net/freebies/free-game-icons-of-fantasy-things-pack-15/
 
 Background - https://craftpix.net/freebies/free-pixel-art-fantasy-2d-battlegrounds/
-             
-             https://craftpix.net/freebies/free-post-apocalyptic-pixel-art-game-backgrounds/
+
+
+https://craftpix.net/freebies/free-post-apocalyptic-pixel-art-game-backgrounds/
 
 UI - https://assetstore.unity.com/packages/2d/gui/fantasy-wooden-gui-free-103811 
-     
-     https://assetstore.unity.com/packages/2d/gui/icons/free-ui-pack-170878
+
+https://assetstore.unity.com/packages/2d/gui/icons/free-ui-pack-170878
 
 Hero - https://craftpix.net/freebies/free-halfling-characters-pixel-art/
-       
-       https://craftpix.net/freebies/free-demon-characters-pixel-art/
+
+https://craftpix.net/freebies/free-demon-characters-pixel-art/
 
