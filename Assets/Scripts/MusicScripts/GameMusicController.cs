@@ -4,12 +4,12 @@ public class GameMusicController : MonoBehaviour
 {
     private static readonly string MusicPref = "MusicPref";
     private static readonly string SoundEffectPref = "SoundEffectPref";
+    private float musicFloat;
+    private float soundEffectsFloat;
     public AudioSource musicGame;
     //public AudioSource[] soundEffectsAudio; 
     public AudioSource soundEffect;
     public AudioClip[] soundEffectClip;
-    private float musicFloat;
-    private float soundEffectsFloat;
 
     private void Awake()
     {

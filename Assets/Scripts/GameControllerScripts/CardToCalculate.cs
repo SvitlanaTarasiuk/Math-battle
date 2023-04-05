@@ -33,6 +33,7 @@ public class CardToCalculate : MonoBehaviour
         NotActiveImageResultCalculate();
         StartCoroutine(ActiveButonCoroutine());
     }
+
     IEnumerator ActiveButonCoroutine()
     {
         while (true)
@@ -41,17 +42,20 @@ public class CardToCalculate : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
     }
+
     private void CardCalculateText()
     {
         numberCard1CalculateText.text = "N";
         numberCard2CalculateText.text = "N";
         operatorCard3CalculateText.text = "O";
     }
+
     private void NotActiveImageResultCalculate()
     {
         shieldImage.color = new Color(shieldImage.color.r, shieldImage.color.g, shieldImage.color.b, 0.5f);
         swordImage.color = new Color(swordImage.color.r, swordImage.color.g, swordImage.color.b, 0.5f);
     }
+
     private void ButtonCalculateActive()
     {
         if (countCardCalculate == 3)
@@ -65,21 +69,23 @@ public class CardToCalculate : MonoBehaviour
             calculateBtn.interactable = false;
         //Debug.Log("button false");
     }
+
     public void ActiveImageResultCalculate()
     {
         if (summaCard == 0)
         {
             NotActiveImageResultCalculate();
         }
-        else if (summaCard > 0)//>0 меч активний
+        else if (summaCard > 0)//>0 active sword
         {
             swordImage.color = new Color(swordImage.color.r, swordImage.color.g, swordImage.color.b, 1f);
         }
-        else if (summaCard < 0)//<0 щит активний
+        else if (summaCard < 0)//<0 active shield
         {
             shieldImage.color = new Color(shieldImage.color.r, shieldImage.color.g, shieldImage.color.b, 1f);
         }
     }
+
     public void Card1Text(string number1)
     {
         //AudioManagerMixer.instance.OneCard();
@@ -90,6 +96,7 @@ public class CardToCalculate : MonoBehaviour
         card1 = int.Parse(numberCard1CalculateText.text);
         //Debug.Log("countCardCalculate: " + countCardCalculate);
     }
+
     public void Card2Text(string number2)
     {
         //AudioManagerMixer.instance.OneCard();
@@ -100,6 +107,7 @@ public class CardToCalculate : MonoBehaviour
         card2 = int.Parse(numberCard2CalculateText.text);
         //Debug.Log("countCardCalculate: " + countCardCalculate);
     }
+
     public void Card3Text(string operator3)
     {
         //AudioManagerMixer.instance.OneCard();
@@ -110,6 +118,7 @@ public class CardToCalculate : MonoBehaviour
         card3 = Convert.ToChar(operatorCard3CalculateText.text);
         //Debug.Log("countCardCalculate: " + countCardCalculate);
     }
+
     private int CalculateCard(int card1, int card2, char sign)
     {
         int summa;
@@ -127,6 +136,7 @@ public class CardToCalculate : MonoBehaviour
         }
         return 0;
     }
+
     public void CleanerCalculate()
     {
         CardCalculateText();
@@ -135,32 +145,33 @@ public class CardToCalculate : MonoBehaviour
         summaCard = 0;
         //Debug.Log("summaCard:"+ summaCard);
     }
+
     public void BattleResultCalculate()
     {
-        if (summaCard == 0)//скидаються карти
+        if (summaCard == 0)//discard cards
         {
+            gameManager.CountCardNotGame(countCardCalculate);
             CleanerCalculate();
-            gameManager.CountCardNotGame(3);
-
         }
-        else if (summaCard > 0)//>0 удар ворогу
+        else if (summaCard > 0)//>0 sword strike
         {
             //AudioManagerMixer.instance.DamageEffect();
             gameMusicController.DamageEffectMusic();
             enemy.Damage(Mathf.Abs(summaCard));
+            gameManager.CountCardNotGame(countCardCalculate);
             CleanerCalculate();
-            gameManager.CountCardNotGame(3);
         }
-        else if (summaCard < 0)//<0 отримано захист
+        else if (summaCard < 0)//<0 protection received
         {
             //AudioManagerMixer.instance.ShieldEffect();
             gameMusicController.ShieldEffectMusic();
             shieldCountPlayerScript.ShieldCountGame(Mathf.Abs(summaCard));
+            gameManager.CountCardNotGame(countCardCalculate);
             CleanerCalculate();
-            gameManager.CountCardNotGame(3);
         }
     }
-    public void ResetCard()//повернути кари з калькулятора на поле
+
+    public void ResetCard()//return penalties from the calculator to the field
     {
         if (numberCard1CalculateText.text != "N")
         {
@@ -177,7 +188,7 @@ public class CardToCalculate : MonoBehaviour
         CleanerCalculate();
 
     }
-    public void DestroyCard()//знищити карти,що пройшли калькулятор
+    public void DestroyCard()//destroy the cards that passed the calculator
     {
         if (countCardCalculate > 0)
         {

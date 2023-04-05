@@ -15,6 +15,7 @@ public class StatusDisplayAttackOrDefenseEnemy : MonoBehaviour
         defenseImage.gameObject.SetActive(false);
         attackCountText.text = attackCount.ToString();
     }
+   
     public void StatusDisplayDefense(int defenseCount)
     {
         defenseImage.gameObject.SetActive(true);

@@ -3,13 +3,14 @@ using UnityEngine;
 
 public class CountRoundScript : MonoBehaviour
 {
-    public TextMeshProUGUI countRoundGameText;   
-    public int countRound;
-   
+    [SerializeField] private TextMeshProUGUI countRoundGameText;
+    private int countRound;
+
     private void Start()
     {
-        countRound = PlayerPrefs.GetInt("CountRound");//GlobalControl.Instance.countRound;
+        countRound = PlayerPrefs.GetInt("CountRound");
     }
+
     public void CountRound()
     {
         countRound++;

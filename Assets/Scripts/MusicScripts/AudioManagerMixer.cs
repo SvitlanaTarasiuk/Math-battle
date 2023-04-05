@@ -25,7 +25,7 @@ public class AudioManagerMixer : MonoBehaviour
         }
         LoadVolume();
     }
-    private void LoadVolume()//volume збережена у MusicControllerMixer.cs
+    private void LoadVolume()//volume saved MusicControllerMixer.cs
     {
         float musicVolume = PlayerPrefs.GetFloat(Musik_Key, 0.5f);
         float effectVolume = PlayerPrefs.GetFloat(Effect_Key, 0.5f);
@@ -33,7 +33,7 @@ public class AudioManagerMixer : MonoBehaviour
         mixer.SetFloat(MusicControllerMixer.Mixer_Music, Mathf.Log10(musicVolume) * 20);
         mixer.SetFloat(MusicControllerMixer.Mixer_Effect, Mathf.Log10(effectVolume) * 20);
     }
-    public void MusicMenu()                  //виклик: AudioManagerMixer.instance.MusicMenu();
+    public void MusicMenu()                  //AudioManagerMixer.instance.MusicMenu();
     {
         audioGame.Stop();
         audioEffectMenu.Play();

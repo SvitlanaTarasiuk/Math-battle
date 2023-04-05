@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class MusicControllerMixer : MonoBehaviour
 {
     [SerializeField] private AudioMixer audioMixer;
-    public AudioMixerGroup mixer;
+    //public AudioMixerGroup mixer;
     [SerializeField] private Slider musicSlider;//Inspector minValue 0.0001
     [SerializeField] private Slider effectSlider;//Inspector minValue 0.0001
     public const string Mixer_Music = "GameVolume";//Exposed parameters, name

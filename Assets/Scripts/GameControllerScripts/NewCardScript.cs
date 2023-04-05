@@ -3,12 +3,11 @@ using UnityEngine;
 
 public class NewCardScript : MonoBehaviour
 {
-    private GameObject cardGo;
+    [SerializeField] private GiveHandCardsScript giveHandCardsScript;
     private Game newSceneGame;
-    public GameObject cardPref;
+    private int countCardsHand = 2;
+    private List<CardInfoScript> newSceneCards = new List<CardInfoScript>();
     public Transform newCardHand;
-
-    public List<CardInfoScript> NewSceneCards = new List<CardInfoScript>();
 
     void Start()
     {
@@ -17,30 +16,9 @@ public class NewCardScript : MonoBehaviour
             newSceneGame = new Game();
         }
     }
+    
     public void NewCardPanelStart()
     {
-        GiveHandCards(newSceneGame.NewCardDesk, newCardHand);
+        giveHandCardsScript.GiveHandCards(newSceneGame.NewCardDesk, newCardHand, countCardsHand, newSceneCards);
     }
-    void GiveHandCards(List<Card> desk, Transform hand)
-    {
-        int i = 0;
-        while (i++ < 2)
-            GiveCardToHand(desk, hand);
-    }
-    void GiveCardToHand(List<Card> desk, Transform hand)
-    {
-        if (desk.Count == 0)
-            return;
-
-        Card card = desk[0];
-
-        cardGo = Instantiate(cardPref, hand, false);
-
-        cardGo.GetComponent<CardInfoScript>().ShowCardInfo(card);
-        NewSceneCards.Add(cardGo.GetComponent<CardInfoScript>());
-
-        desk.RemoveAt(0);
-        //Debug.Log("NewDesk.Count " + desk.Count);
-    }
-
 }

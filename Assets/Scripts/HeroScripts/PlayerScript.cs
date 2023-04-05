@@ -32,14 +32,14 @@ public class PlayerScript : MonoBehaviour
     {
         shieldCount = shieldCountScript.shieldCount;
 
-        if (shieldCount > 0 && damage > shieldCount)//удар більше щита
+        if (shieldCount > 0 && damage > shieldCount)//hit more shield
         {
             hpCurrent = (hpCurrent + shieldCount) - damage;
 
             shieldCountScript.HpDamageTextCount(damage);
             shieldCountScript.ShieldCountStart();
         }
-        else if (shieldCount > 0 && damage <= shieldCount)//удар менше щита
+        else if (shieldCount > 0 && damage <= shieldCount)//hit less shield
         {
             shieldCountScript.ShieldCountAfterDamage(damage);
         }
@@ -64,10 +64,7 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void ResetMaterial()
-    {
-        imagePlayer.color = Color.white;
-    }
+    private void ResetMaterial() =>  imagePlayer.color = Color.white;  
 
 }
 

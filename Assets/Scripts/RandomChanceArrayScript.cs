@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class RandomChanceArrayScript //: MonoBehaviour
+public class RandomChanceArrayScript 
 {
-    float[] Chance(int countArray)//передавати довжину колоди і вибирати відповідний масив
+    private float[] Chance(int countArray)//transfer the length of the log and select the appropriate array
     {
         float[] chanceArray = new float[countArray];
 
@@ -26,7 +26,7 @@ public class RandomChanceArrayScript //: MonoBehaviour
         {
             chanceArray = new float[10] { 0.06f, 0.07f, 0.05f, 0.08f, 0.15f, 0.14f, 0.13f, 0.11f, 0.09f, 0.12f };
         }
-        
+
         return chanceArray;
 
     }
@@ -36,7 +36,8 @@ public class RandomChanceArrayScript //: MonoBehaviour
         int result = RandomNumberChance(percent);
         return result;
     }
-    int RandomNumberChance(float[] percent)
+
+    private int RandomNumberChance(float[] percent)
     {
 
         float total = 0;
@@ -59,11 +60,11 @@ public class RandomChanceArrayScript //: MonoBehaviour
         return percent.Length - 1;
     }
 
-    public float[] RandomShuffle(int numberRandom)//перемішування
+    public float[] RandomShuffle(int numberRandom)//mixing
     {
         float[] percent = Chance(numberRandom);
 
-        for (int i = 0; i < percent.Length; i++)//перемішування масиву
+        for (int i = 0; i < percent.Length; i++)//mixing array
         {
             float temp = percent[i];
             int randomIndex = Random.Range(0, percent.Length);

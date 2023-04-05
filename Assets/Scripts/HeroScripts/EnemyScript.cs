@@ -23,7 +23,8 @@ public class EnemyScript : MonoBehaviour
     private int minAttackOrDefenseCount;
     private int maxAttackOrDefenseCount;
     private bool isAttack;
-    public Image shieldImageResultPlayer;
+    //public Image shieldImageResultPlayer { get; set; }
+  
     private void Awake()
     {
         EnemyStart();
@@ -31,6 +32,7 @@ public class EnemyScript : MonoBehaviour
         hpCurrent = GlobalControl.Instance.lifeEnemy;
         //Debug.Log("AwakeEnemy");
     }
+  
     private void Start()
     {
         //Debug.Log("Start Enemy");
@@ -40,20 +42,22 @@ public class EnemyScript : MonoBehaviour
         ImageAndTextHpCurrent();
         AttackOrDefence();
     }
+  
     private void EnemyStart()
     {
         enemyAllScript.WhatEnemy();
         hpEnemy = enemyAllScript.hpEnemy;
         minAttackOrDefenseCount = enemyAllScript.minAttackOrDefenseCount;
         maxAttackOrDefenseCount = enemyAllScript.maxAttackOrDefenseCount;
-
     }
+  
     private void ImageAndTextHpCurrent()
     {
         hpCurrentText.text = hpCurrent.ToString();
         imageHpEnemy.fillAmount = (float)hpCurrent / hpEnemy;
     }  
-    public void AttackOrDefence()
+   
+    private void AttackOrDefence()
     {
         isAttack = Random.Range(0, 2) == 1;
         //Debug.Log("isAttackEnemy: " + isAttack);
@@ -69,33 +73,26 @@ public class EnemyScript : MonoBehaviour
             statusDisplayAttackOrDefense.StatusDisplayDefense(defenseCount);
         }
     }
-    //private void StatusDisplayAttack()
-    //{
-    //    attackImage.gameObject.SetActive(true);
-    //    defenseImage.gameObject.SetActive(false);
-    //    attackCountText.text = attackCount.ToString();
-    //}
-    //private void StatusDisplayDefense()
-    //{
-    //    defenseImage.gameObject.SetActive(true);
-    //    attackImage.gameObject.SetActive(false);
-    //    defenseCountText.text = defenseCount.ToString();
-    //}
-    public void StartAttackOrDefenseEnemy()
+   
+    public void StartAttackOrDefenseEnemyInvoke()
+    {
+        Invoke(nameof(StartAttackOrDefenseEnemy), 0.5f);
+    }
+    private void StartAttackOrDefenseEnemy()
     {
         if (isAttack == true)
         {
             //AudioManagerMixer.instance.DamageEffect();
             gameMusicController.DamageEffectMusic();
             player.Damage(attackCount);
-            Invoke("AttackOrDefence", 0.5f);
+            Invoke(nameof(AttackOrDefence), 0.5f);
         }
         else
         {
             //AudioManagerMixer.instance.ShieldEffect();
             gameMusicController.ShieldEffectMusic();
             shieldCountScript.ShieldCountGame(defenseCount);
-            Invoke("AttackOrDefence", 0.5f);
+            Invoke(nameof(AttackOrDefence), 0.5f);
         }
     }
 
@@ -103,14 +100,14 @@ public class EnemyScript : MonoBehaviour
     {
         shieldCount = shieldCountScript.shieldCount;
 
-        if (shieldCount > 0 && damage > shieldCount)//удар більше щита
+        if (shieldCount > 0 && damage > shieldCount)//hit more shield
         {
             hpCurrent = (hpCurrent + shieldCount) - damage;
 
             shieldCountScript.HpDamageTextCount(damage);
             shieldCountScript.ShieldCountStart();
         }
-        else if (shieldCount > 0 && damage <= shieldCount)//удар менше щита
+        else if (shieldCount > 0 && damage <= shieldCount)//hit less shield
         {
             shieldCountScript.ShieldCountAfterDamage(damage);
         }
@@ -135,10 +132,8 @@ public class EnemyScript : MonoBehaviour
             Invoke(nameof(ResetMaterial), 0.5f);
         }
     }
-    private void ResetMaterial()
-    {
-        imageEnemy.color = Color.white;
-    }
+    
+    private void ResetMaterial() => imageEnemy.color = Color.white;             
 
 }
 

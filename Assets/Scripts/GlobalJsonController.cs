@@ -1,7 +1,6 @@
 using System.IO;
 using UnityEngine;
 
-
 public class GlobalJsonController : MonoBehaviour
 {
     public void SaveJson()
@@ -13,6 +12,7 @@ public class GlobalJsonController : MonoBehaviour
         File.WriteAllText(Application.persistentDataPath + "/AllCardsGame.txt", json);
         //Debug.Log("Json Save");
     } 
+    
     public void LoadJson()
     {
         if (File.Exists(Application.persistentDataPath + "/AllCardsGame.txt"))
@@ -23,15 +23,10 @@ public class GlobalJsonController : MonoBehaviour
             //Debug.Log("Json Load");
         }
     }
+   
     public void DeleteJson()
     {
         File.Delete(Application.persistentDataPath + "/AllCardsGame.txt");
-        //Debug.Log("DeleteJson");
-        //if (File.Exists(Application.persistentDataPath + "/AllCardsGame.txt"))
-        //{
-        //    var json = File.ReadAllText(Application.persistentDataPath + "/AllCardsGame.txt");
-        //    //Debug.Log(json);
-        //}
     }
       
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 [Serializable]
 public class Card
@@ -18,6 +19,7 @@ public class Card
         LogoImage = Resources.Load<Sprite>(logoImage);
         Number = numberCard;
     }
+
     public Card(string name, string logoBG, string logoImage, char operatorCard)
     {
         Name = name;
@@ -35,6 +37,18 @@ public static class CardManager
 
 public class CardManagerScript : MonoBehaviour
 {
+    private string nameCardNumber = "Number";
+    private string nameCardOperator = "Operator";
+    private string bgNumberCard = "Sprites/Cards/CardNumberBG";
+    private string imageNumberCard = "Sprites/Cards/CardNumberImage";
+    private string bgOperatorCard = "Sprites/Cards/CardOperatorBG";
+    private string imageOperatorCard = "Sprites/Cards/CardOperatorImage";
+    private int[] numberAllCardArray = { 1, -1, -1, -2 };
+    private int[] numberNewCardsArray = { -4, -3, -2, -1, 1, 2, 3, 4 };
+    private char[] operatorCardsArray = { '+', '-' };
+    private int numberCard;
+    private char operatorCard;
+   
     public void Awake()
     {
         GlobalControl.Instance.jsonController.LoadJson();
@@ -48,34 +62,67 @@ public class CardManagerScript : MonoBehaviour
         {
             CreateNewCards();
         }
-
         //Debug.Log("AwakeCardManagerScript/ AllCards.Count:" + CardManager.AllCards.Count);
     }
-    void CreateAllCards()
+
+    //private void CreateAllCards()
+    //{
+    //    CardManager.AllCards.Add(new Card(nameCardNumber, bgNumberCard, imageNumberCard, 1));
+    //    CardManager.AllCards.Add(new Card(nameCardNumber, bgNumberCard, imageNumberCard, -1));
+    //    CardManager.AllCards.Add(new Card(nameCardNumber, bgNumberCard, imageNumberCard, -1));
+    //    CardManager.AllCards.Add(new Card(nameCardNumber, bgNumberCard, imageNumberCard, -2));
+    //    CardManager.AllCards.Add(new Card(nameCardOperator, bgOperatorCard, imageOperatorCard, '+'));
+    //    CardManager.AllCards.Add(new Card(nameCardOperator, bgOperatorCard, imageOperatorCard, '-'));
+    //}
+    //private void CreateNewCards()
+    //{
+    //    CardManager.NewCard.Add(new Card(nameCardNumber, bgNumberCard, imageNumberCard, -4));
+    //    CardManager.NewCard.Add(new Card(nameCardNumber, bgNumberCard, imageNumberCard, -3));
+    //    CardManager.NewCard.Add(new Card(nameCardNumber, bgNumberCard, imageNumberCard, -2));
+    //    CardManager.NewCard.Add(new Card(nameCardNumber, bgNumberCard, imageNumberCard, -1));
+    //    CardManager.NewCard.Add(new Card(nameCardNumber, bgNumberCard, imageNumberCard, 1));
+    //    CardManager.NewCard.Add(new Card(nameCardNumber, bgNumberCard, imageNumberCard, 2));
+    //    CardManager.NewCard.Add(new Card(nameCardNumber, bgNumberCard, imageNumberCard, 3));
+    //    CardManager.NewCard.Add(new Card(nameCardNumber, bgNumberCard, imageNumberCard, 4));
+    //    CardManager.NewCard.Add(new Card(nameCardOperator, bgOperatorCard, imageOperatorCard, '+'));
+    //    CardManager.NewCard.Add(new Card(nameCardOperator, bgOperatorCard, imageOperatorCard, '-'));
+    //}
+    private void CreateAllCards()
     {
-        CardManager.AllCards.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage", 1));
-        CardManager.AllCards.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage", -1));
-        CardManager.AllCards.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage", -1));
-        CardManager.AllCards.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage", -2));
-        CardManager.AllCards.Add(new Card("Operator", "Sprites/Cards/CardOperatorBG", "Sprites/Cards/CardOperatorImage", '+'));
-        CardManager.AllCards.Add(new Card("Operator", "Sprites/Cards/CardOperatorBG", "Sprites/Cards/CardOperatorImage", '-'));
+        CreateCardsNumber(numberAllCardArray,CardManager.AllCards);
+        CreateCardsOperator(operatorCardsArray,CardManager.AllCards);    
     }
-    void CreateNewCards()
+    private void CreateNewCards()
     {
-        CardManager.NewCard.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage", -4));
-        CardManager.NewCard.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage", -3));
-        CardManager.NewCard.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage", -2));
-        CardManager.NewCard.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage", -1));
-        CardManager.NewCard.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage", 1));
-        CardManager.NewCard.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage", 2));
-        CardManager.NewCard.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage", 3));
-        CardManager.NewCard.Add(new Card("Number", "Sprites/Cards/CardNumberBG", "Sprites/Cards/CardNumberImage", 4));
-        CardManager.NewCard.Add(new Card("Operator", "Sprites/Cards/CardOperatorBG", "Sprites/Cards/CardOperatorImage", '+'));
-        CardManager.NewCard.Add(new Card("Operator", "Sprites/Cards/CardOperatorBG", "Sprites/Cards/CardOperatorImage", '-'));
+        CreateCardsNumber(numberNewCardsArray, CardManager.NewCard);
+        CreateCardsOperator(operatorCardsArray,CardManager.NewCard);
     }
+   
+    private void CreateCardsNumber(int[] numberArray, List<Card> list)
+    {
+        int i = 0;
+        while (i < numberArray.Length)
+        {
+            numberCard = numberArray[i];
+            list.Add(new Card(nameCardNumber, bgNumberCard, imageNumberCard, numberCard));
+            i++;
+        }
+    }
+   
+    private void CreateCardsOperator(char [] operatorArray,List<Card>list)
+    {
+        int i = 0;
+        while (i < operatorArray.Length)
+        {
+            operatorCard = operatorArray[i];
+            list.Add(new Card(nameCardOperator, bgOperatorCard, imageOperatorCard, operatorCard));
+            i++;
+        }
+    }
+
     public void AddAllCards(Card card)
     {
         CardManager.AllCards.Add(card);
         GlobalControl.Instance.jsonController.SaveJson();
-    }   
+    }
 }

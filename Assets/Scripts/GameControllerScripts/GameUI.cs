@@ -24,7 +24,6 @@ public class GameUI : MonoBehaviour
         panelPause.SetActive(true);
         PauseBtn.interactable = false;
         gameMusicController.MusicMenuOn();
-
         //AudioManagerMixer.instance.MusicMenu();
     }
 
@@ -49,9 +48,8 @@ public class GameUI : MonoBehaviour
         panelSelectedCards.SetActive(false);
         gameManagerScript.EndTurn();
         Invoke(nameof(PanelSelectedCardsActive), 1f);
-
     }
-    void PanelSelectedCardsActive()
+    private void PanelSelectedCardsActive()
     {
         panelSelectedCards.SetActive(true);
     }
@@ -78,7 +76,6 @@ public class GameUI : MonoBehaviour
         {
             newCardScript.NewCardPanelStart();
             panelTheEndNewScene.SetActive(true);
-            //panelNewCardNewScene.SetActive(true);
             panelHandPlayer.SetActive(false);
             panelSelectedCards.SetActive(false);
         }
@@ -95,12 +92,18 @@ public class GameUI : MonoBehaviour
         panelNewCardNewScene.SetActive(true);
         panelTheEndNewScene.SetActive(false); ;
     }
-    public void RoundGameActive()//GameManager
+
+    public void RoundGameActiveInvoke()
+    {
+        Invoke(nameof(RoundGameActive), 1.7f);
+    }
+
+    private void RoundGameActive()//GameManager
     {
         panelRoundGame.SetActive(true);
         Invoke(nameof(RoundGameNotActive), 0.5f);
     }
-    void RoundGameNotActive()
+    private void RoundGameNotActive()
     {
         panelRoundGame.SetActive(false);
     }

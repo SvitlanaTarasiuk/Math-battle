@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2127850011606944918}
   - component: {fileID: 1501127760278418985}
   - component: {fileID: 277341801735363900}
+  - component: {fileID: 8901699788815308926}
   - component: {fileID: 8436334886782884668}
   - component: {fileID: 6333462384897120085}
   - component: {fileID: 5290451134159255585}
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ddeb7055cdd8c24fb3aeddfb04b34ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPref: {fileID: 6436394131778499789, guid: c995b49ef821756499464e8b0b483f0e, type: 3}
+  giveHandCardsScript: {fileID: 8901699788815308926}
   gameUI: {fileID: 2127850011606944918}
   shieldCountPlayerScript: {fileID: 0}
   shieldCountEnemyScript: {fileID: 0}
@@ -111,7 +112,20 @@ MonoBehaviour:
   countCardNotGameText: {fileID: 0}
   PlayerHand: {fileID: 0}
   countCardNotGame: 0
-  PlayerHandCards: []
+  playerHandCards: []
+--- !u!114 &8901699788815308926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127850011606944919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0986330db8a55d946b87147d2fb31fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardPref: {fileID: 6436394131778499789, guid: c995b49ef821756499464e8b0b483f0e, type: 3}
 --- !u!114 &8436334886782884668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -125,7 +139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   countRoundGameText: {fileID: 0}
-  countRound: 0
 --- !u!114 &6333462384897120085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,9 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f329ad1e25bfa4cae78c24e2b7e754, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPref: {fileID: 6436394131778499789, guid: c995b49ef821756499464e8b0b483f0e, type: 3}
+  giveHandCardsScript: {fileID: 8901699788815308926}
   newCardHand: {fileID: 0}
-  NewSceneCards: []
 --- !u!114 &5290451134159255585
 MonoBehaviour:
   m_ObjectHideFlags: 0

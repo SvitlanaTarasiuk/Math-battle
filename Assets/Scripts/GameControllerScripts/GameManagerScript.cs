@@ -4,15 +4,17 @@ using TMPro;
 
 public class Game
 {
-    public List<Card> PlayerDesk;//головна колода карт
-    public List<Card> NewCardDesk;//список карт для вибору в кінці рівня
-    RandomChanceArrayScript randomChanceArray = new RandomChanceArrayScript();
+    private RandomChanceArrayScript randomChanceArray = new RandomChanceArrayScript();
+    public List<Card> PlayerDesk;//the main deck of cards
+    public List<Card> NewCardDesk;//a list of cards to choose from at the end of the level
+
     public Game()
     {
         PlayerDesk = GiveDeskCard();
         NewCardDesk = GiveDeskNewCard();
     }
-    List<Card> GiveDeskCard()// метод утворення колоди ігрових карт
+
+    List<Card> GiveDeskCard()// method of forming a deck of playing cards
     {
         List<Card> list = new List<Card>();
         for (int i = 0; i < CardManager.AllCards.Count; i++)
@@ -20,7 +22,8 @@ public class Game
         //Debug.Log("listPlayer.Count " + CardManager.AllCards.Count);
         return list;
     }
-    List<Card> GiveDeskNewCard()//метод утворення колоди карт на вибір для нового рівня
+
+    List<Card> GiveDeskNewCard()//method of creating a deck of cards to choose from for a new level
     {
         List<Card> listNewCard = new List<Card>();
         for (int i = 0; i < CardManager.NewCard.Count; i++)
@@ -32,7 +35,7 @@ public class Game
 
 public class GameManagerScript : MonoBehaviour
 {
-    [SerializeField] private GameObject cardPref;
+    [SerializeField] private GiveHandCardsScript giveHandCardsScript;
     [SerializeField] private GameUI gameUI;
     [SerializeField] private ShieldCountScript shieldCountPlayerScript;
     [SerializeField] private ShieldCountScript shieldCountEnemyScript;
@@ -40,15 +43,14 @@ public class GameManagerScript : MonoBehaviour
     [SerializeField] private CardToCalculate cardToCalculate;
     [SerializeField] private EnemyScript enemy;
     [SerializeField] private GameMusicController gameMusicController;
-    [SerializeField] private TextMeshProUGUI countCardPlayerText;//залишок карт в колоді(-6 розданих)
-    [SerializeField] private TextMeshProUGUI countCardNotGameText;//відбій карт
+    [SerializeField] private TextMeshProUGUI countCardPlayerText;//remaining cards in the deck (-6 dealt)
+    [SerializeField] private TextMeshProUGUI countCardNotGameText;//card rejection
     private Game currentGame;
-    private GameObject cardGo;
-    public Transform PlayerHand;
+    private int countCardsHand = 6;
     private int countCardPlayer = 0;
+    public Transform PlayerHand;
     public int countCardNotGame = 0;
-
-    public List<CardInfoScript> PlayerHandCards = new List<CardInfoScript>();
+    public List<CardInfoScript> playerHandCards = new List<CardInfoScript>();
 
     void Start()
     {
@@ -57,66 +59,39 @@ public class GameManagerScript : MonoBehaviour
         currentGame = new Game();
         //Debug.Log("currentGameStart " + currentGame.PlayerDesk.Count);
 
-        GiveHandCards(currentGame.PlayerDesk, PlayerHand);
+        GivePlayerHandCards();
 
         countCardPlayer = currentGame.PlayerDesk.Count;
         countCardPlayerText.text = countCardPlayer.ToString();
         countCardNotGameText.text = countCardNotGame.ToString();
     }
-    public void GiveHandCards(List<Card> desk, Transform hand)
+    private void GivePlayerHandCards()
     {
         gameMusicController.CardFromDescMusic();
-        //AudioManagerMixer.instance.MusicCardFromDesk();
-        int i = 0;
-        while (i++ < 6)
-            GiveCardToHand(desk, hand);
-    }
-    void GiveCardToHand(List<Card> desk, Transform hand)
-    {      
-            if (desk.Count == 0)
-                return;
-
-            Card card = desk[0];
-
-            cardGo = Instantiate(cardPref, hand, false);
-
-            cardGo.GetComponent<CardInfoScript>().ShowCardInfo(card);
-
-
-            PlayerHandCards.Add(cardGo.GetComponent<CardInfoScript>());
-
-            countCardPlayer--;
-
-            desk.RemoveAt(0);       
-
+        giveHandCardsScript.GiveHandCards(currentGame.PlayerDesk, PlayerHand, countCardsHand, playerHandCards);
         //Debug.Log("currentGame.PlayerDesk.Count " + currentGame.PlayerDesk.Count);
-        //Debug.Log("Desk.Count " + desk.Count);
     }
-
+   
     public void CountCardNotGame(int inactiveCards)
     {
         countCardNotGame += inactiveCards;
         countCardNotGameText.text = countCardNotGame.ToString();
-        //Debug.Log("countNot; " + countCardNotGame);
     }
 
-    public void EndTurn()//перевірити чи є карти/очистити і роздати нові
+    public void EndTurn()//check if there are cards/clear them and give out new ones
     {
         countRoundScript.CountRound();
         cardToCalculate.CleanerCalculate();
-
         ClearHandCards();
         shieldCountEnemyScript.ShieldCountStart();
-        enemy.Invoke("StartAttackOrDefenseEnemy", 0.5f);
 
-        shieldCountPlayerScript.Invoke("ShieldCountStart", 1f);
-
+        enemy.StartAttackOrDefenseEnemyInvoke();
+        shieldCountPlayerScript.ShieldCountStartInvoke();
         Invoke(nameof(Start), 1.5f);
-
-        gameUI.Invoke("RoundGameActive", 1.7f);
+        gameUI.RoundGameActiveInvoke();
 
         //Debug.Log("EndTurn/ PlayerHand.childCount " + PlayerHand.childCount);
-        //Debug.Log("EndTurn/ PlayerHandCards.Count " + PlayerHandCards.Count);
+        //Debug.Log("EndTurn/ PlayerHandCards.Count " + playerHandCards.Count);
     }
 
     public void ClearHandCards()
@@ -124,7 +99,7 @@ public class GameManagerScript : MonoBehaviour
         foreach (Transform child in PlayerHand)
         {
             Destroy(child.gameObject);
-            PlayerHandCards.RemoveAt(0);
+            playerHandCards.RemoveAt(0);
             countCardNotGame = 0;
             countCardNotGameText.text = countCardNotGame.ToString();
         }

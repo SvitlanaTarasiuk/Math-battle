@@ -38,7 +38,8 @@ public class MusicController : MonoBehaviour
             soundEffectsSlider.value = soundEffectsFloat;
         }
     }
-    public void SaveSoundSetting()//добавити метод на кнопку виходу з меню(старт)
+    
+    public void SaveSoundSetting()//add a method to the menu exit button (start)
     {
         PlayerPrefs.SetFloat(MusicPref, musicGameSlider.value);
         PlayerPrefs.SetFloat(SoundEffectPref, soundEffectsSlider.value);
@@ -49,11 +50,13 @@ public class MusicController : MonoBehaviour
         if (!infocus)
             SaveSoundSetting();
     }
-    public void UpdateSound()//добавити метод у обидва слайдери
+    
+    public void UpdateSound()//add a method to both sliders
     {
         musicGame.volume = musicGameSlider.value;
         soundEffect.volume = soundEffectsSlider.value;
     }
+    
     public void MusicMenu()
     {
         musicGame.Stop();

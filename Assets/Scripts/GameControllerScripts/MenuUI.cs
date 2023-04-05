@@ -3,7 +3,7 @@ using UnityEngine;
 public class MenuUI : MonoBehaviour
 {
     [SerializeField] private GameObject panelMenu;
-    public MusicController musicController;
+    [SerializeField] private MusicController musicController;
     
     public void Menu()
     {

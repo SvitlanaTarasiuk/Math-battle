@@ -13,7 +13,7 @@ public class OnClickCard : MonoBehaviour, IPointerClickHandler
     string operator3;
     string nameCard;
     GameObject gameController;
-    CardToCalculate cardToCalculate;   
+    CardToCalculate cardToCalculate;
     CardManagerScript cardManagerScript;
     GameUI gameUI;
     Transform panelHandPlayer;
@@ -21,37 +21,37 @@ public class OnClickCard : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        gameController= GameObject.Find("GameController");
+        gameController = GameObject.Find("GameController");
         cardToCalculate = gameController.GetComponent<CardToCalculate>();
-        cardManagerScript = gameController.GetComponent<CardManagerScript>();   
-        gameUI= gameController.GetComponent<GameUI>();
+        cardManagerScript = gameController.GetComponent<CardManagerScript>();
+        gameUI = gameController.GetComponent<GameUI>();
         panelHandPlayer = gameController.GetComponent<GameManagerScript>().PlayerHand;
-        panelNewCard = gameController.GetComponent<NewCardScript>().newCardHand;     
+        panelNewCard = gameController.GetComponent<NewCardScript>().newCardHand;
     }
 
     public void OnPointerClick(PointerEventData eventData)
-    {        
+    {
         //Debug.Log("OnClickTriger");        
-        cardClick = eventData.pointerClick.GameObject();    
+        cardClick = eventData.pointerClick.GameObject();
         nameCard = cardClick.GetComponent<CardInfoScript>().nameCard.text;
         //Debug.Log("panelNewCard.transform.name: "+ cardClick.transform.parent.name);
 
-        
-         if (panelNewCard!=null && cardClick.transform.parent == panelNewCard)
+
+        if (panelNewCard != null && cardClick.transform.parent == panelNewCard)
         {
             //Debug.Log("panelNewCard.transform");
-                     
-            Card card=cardClick.GetComponent<CardInfoScript>().selfCard;
+
+            Card card = cardClick.GetComponent<CardInfoScript>().selfCard;
 
             cardManagerScript.AddAllCards(card);
-      
+
             //Debug.Log("OnClick/CardManager.AllCard.Count " + CardManager.AllCards.Count);                  
-          
+
             cardClick.SetActive(false);
             gameUI.NewScene();
         }
 
-        if (panelHandPlayer != null && cardClick.transform.parent==panelHandPlayer)
+        if (panelHandPlayer != null && cardClick.transform.parent == panelHandPlayer)
         {
             if (nameCard == "Number" && cardToCalculate.numberCard1CalculateText.text == "N")
             {
@@ -87,5 +87,5 @@ public class OnClickCard : MonoBehaviour, IPointerClickHandler
                 cardToCalculate.card3Calculate = card3;
             }
         }
-    }  
+    }
 }
