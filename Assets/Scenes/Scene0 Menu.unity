@@ -3728,7 +3728,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1597889356}
   - component: {fileID: 1597889354}
-  - component: {fileID: 1597889358}
   - component: {fileID: 1597889357}
   m_Layer: 0
   m_Name: MusicControllerMixer
@@ -3791,20 +3790,6 @@ MonoBehaviour:
   _audioMixer: {fileID: 24100000, guid: d6b887b9d6384ce459dbf3d0cb080f34, type: 2}
   _musicSlider: {fileID: 976460208}
   _effectSlider: {fileID: 1317438424}
---- !u!114 &1597889358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1597889352}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0460120f77cfbe743a131dcf01eae89c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mixer: {fileID: 24100000, guid: d6b887b9d6384ce459dbf3d0cb080f34, type: 2}
-  slider: {fileID: 976460208}
 --- !u!1 &1609662943
 GameObject:
   m_ObjectHideFlags: 0

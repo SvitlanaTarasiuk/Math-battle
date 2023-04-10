@@ -8,11 +8,11 @@ public class Card
     public string Name;
 
     public Sprite LogoBG;
-    
+
     public Sprite LogoImage;
 
     public int Number;
-    
+
     public char Operator;
 
     public Card(string name, string logoBG, string logoImage, int numberCard)
