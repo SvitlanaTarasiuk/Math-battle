@@ -16,10 +16,10 @@ public class CountRoundScript : MonoBehaviour
         countRound++;
         countRoundGameText.text = countRound.ToString();
 
-        GlobalControl.Instance.countRound = countRound;
+        GlobalControl.Instance.CountRound = countRound;
         PlayerPrefs.SetInt("CountRound", countRound);
 
-        GlobalControl.Instance.CountAllRound();
+        GlobalControl.Instance.CountAllRoundAndSave();
 
     }    
 }

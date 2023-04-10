@@ -3,13 +3,19 @@ using UnityEngine.SceneManagement;
 
 public class GlobalControl : MonoBehaviour
 {
-    public int currentSceneIndex = 1;
-    public int countRound = 1;
-    public int countAllRound = 1;
-    public int lifePlayer = 20;
-    public int lifeEnemy;
-    public int lifeEnemyStart;
-    public GlobalJsonController jsonController;
+    [SerializeField] private int lifeEnemyStart;
+    
+    [field: SerializeField] public int LifeEnemy { get; set; }
+    
+    [field: SerializeField] public int LifePlayer { get; set; } = 20;
+   
+    [field: SerializeField] public int CurrentSceneIndex{ get; set; } = 1;
+   
+    [field: SerializeField] public int CountRound { get; set; } = 1;
+   
+    [field: SerializeField] public int CountAllRound { get; set; } = 1;
+    
+    [field: SerializeField] public GlobalJsonController JsonController { get; set; }
 
     public static GlobalControl Instance { get; private set; }
     
@@ -32,58 +38,58 @@ public class GlobalControl : MonoBehaviour
     public void HpEnemyStart(int hpStart)
     {
         lifeEnemyStart = hpStart;
-        lifeEnemy = PlayerPrefs.GetInt("LifeEnemy", lifeEnemyStart);
+        LifeEnemy = PlayerPrefs.GetInt("LifeEnemy", lifeEnemyStart);
         
-        if (lifeEnemy <= 0)
+        if (LifeEnemy <= 0)
         {
-            lifeEnemy = lifeEnemyStart;
+            LifeEnemy = lifeEnemyStart;
         }
         //Debug.Log($"Awake/HpEnemyStart/lifeEnemy:{lifeEnemy} /lifeEnemyStart:{lifeEnemyStart}");
     }
     
     public void LoadData()
     {
-        lifePlayer = PlayerPrefs.GetInt("LifePlayer", 20);
-        countRound = PlayerPrefs.GetInt("CountRound", 1);
-        countAllRound = PlayerPrefs.GetInt("CountAllRound", 1);
+        LifePlayer = PlayerPrefs.GetInt("LifePlayer", 20);
+        CountRound = PlayerPrefs.GetInt("CountRound", 1);
+        CountAllRound = PlayerPrefs.GetInt("CountAllRound", 1);
     }
 
     public void ResetData()
     {
-        lifePlayer = 20;
-        PlayerPrefs.SetInt("LifePlayer", lifePlayer);
+        LifePlayer = 20;
+        PlayerPrefs.SetInt("LifePlayer", LifePlayer);
+        
+        CountRound = 1;
+        PlayerPrefs.SetInt("CountRound", CountRound);
 
-        countRound = 1;
-        PlayerPrefs.SetInt("CountRound", countRound);
+        LifeEnemy = 0;
+        PlayerPrefs.SetInt("LifeEnemy", LifeEnemy);
 
-        lifeEnemy = 0;
-        PlayerPrefs.SetInt("LifeEnemy", lifeEnemy);
+        CountAllRound = 1;
+        PlayerPrefs.SetInt("CountAllRound", CountRound);
 
-        countAllRound = 1;
-        PlayerPrefs.SetInt("CountAllRound", countRound);
-
-        jsonController.DeleteJson();
+        JsonController.DeleteJson();
         CardManager.AllCards.Clear();
 
         //Debug.Log($"ResetData/ AllCards: {CardManager.AllCards.Count}");
     }
     
-    public void CountAllRound()
+    public void CountAllRoundAndSave()
     {
-        countAllRound++;
-        PlayerPrefs.SetInt("CountAllRound", countRound);
+        CountAllRound++;
+        PlayerPrefs.SetInt("CountAllRound", CountRound);
     }
     
     public void SaveScene()
     {
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        PlayerPrefs.SetInt("SceneIndex", currentSceneIndex);
+        CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        PlayerPrefs.SetInt("SceneIndex", CurrentSceneIndex);
     }
     
     public int GetLastSavedScene()
     {
-        currentSceneIndex = PlayerPrefs.GetInt("SceneIndex", 1);
-        return currentSceneIndex;
+        CurrentSceneIndex = PlayerPrefs.GetInt("SceneIndex", 1);
+        return CurrentSceneIndex;
     }
 
 }

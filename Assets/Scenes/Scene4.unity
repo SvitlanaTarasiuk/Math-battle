@@ -597,13 +597,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df197399e8497a547b0ab5c56667396b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentSceneIndex: 0
-  countRound: 1
-  countAllRound: 1
-  lifePlayer: 20
-  lifeEnemy: 0
   lifeEnemyStart: 0
-  jsonController: {fileID: 0}
+  <LifeEnemy>k__BackingField: 0
+  <LifePlayer>k__BackingField: 20
+  <CurrentSceneIndex>k__BackingField: 1
+  <CountRound>k__BackingField: 1
+  <CountAllRound>k__BackingField: 1
+  <jsonController>k__BackingField: {fileID: 0}
 --- !u!1 &1050478944 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7318851884489774935, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
@@ -827,6 +827,10 @@ PrefabInstance:
       propertyPath: operatorCard3CalculeteText
       value: 
       objectReference: {fileID: 2033246309}
+    - target: {fileID: 277341801735363900, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: <PlayerHand>k__BackingField
+      value: 
+      objectReference: {fileID: 2101107375}
     - target: {fileID: 2127850011606944918, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
       propertyPath: PauseBtn
       value: 
@@ -1035,6 +1039,18 @@ PrefabInstance:
       propertyPath: operatorCard3CalculeteText
       value: 
       objectReference: {fileID: 2033246309}
+    - target: {fileID: 5290451134159255585, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: <NumberCard1CalculateText>k__BackingField
+      value: 
+      objectReference: {fileID: 173019115}
+    - target: {fileID: 5290451134159255585, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: <NumberCard2CalculateText>k__BackingField
+      value: 
+      objectReference: {fileID: 327689021}
+    - target: {fileID: 5290451134159255585, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: <OperatorCard3CalculateText>k__BackingField
+      value: 
+      objectReference: {fileID: 2033246309}
     - target: {fileID: 6333462384897120085, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
       propertyPath: gameUI
       value: 
@@ -1049,6 +1065,14 @@ PrefabInstance:
       objectReference: {fileID: 340494529}
     - target: {fileID: 6333462384897120085, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
       propertyPath: newCardHand
+      value: 
+      objectReference: {fileID: 340494529}
+    - target: {fileID: 6333462384897120085, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: <NewCardHand>k__BackingField
+      value: 
+      objectReference: {fileID: 340494529}
+    - target: {fileID: 6333462384897120085, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: <newCardHand>k__BackingField
       value: 
       objectReference: {fileID: 340494529}
     - target: {fileID: 8436334886782884668, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
@@ -1131,6 +1155,10 @@ PrefabInstance:
     - target: {fileID: 4208469450097531282, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
       propertyPath: m_Name
       value: Enemy4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141295698130338946, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 139.86005
       objectReference: {fileID: 0}
     - target: {fileID: 7318851884220518052, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

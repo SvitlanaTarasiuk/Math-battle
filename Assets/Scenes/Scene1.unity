@@ -455,10 +455,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MusicController
       objectReference: {fileID: 0}
-    - target: {fileID: 8552658883158393659, guid: 35adedc5847ca394ab921906ece16ca1, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8672962460431314975, guid: 35adedc5847ca394ab921906ece16ca1, type: 3}
       propertyPath: m_Name
       value: cardsDesk
@@ -575,101 +571,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1004531552
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1004531554}
-  - component: {fileID: 1004531553}
-  m_Layer: 0
-  m_Name: GlobalJsonController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &1004531553
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004531552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffa84d7ee25569f41a41debb51f78f0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1004531554
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1004531552}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6043158, y: -1.3174275, z: 59.23062}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 7
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1042862521
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1042862522}
-  - component: {fileID: 1042862523}
-  m_Layer: 0
-  m_Name: GlobalControl
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1042862522
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042862521}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.6550616, y: -1.0068177, z: 1182.0049}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1042862523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1042862521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df197399e8497a547b0ab5c56667396b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentSceneIndex: 1
-  countRound: 1
-  countAllRound: 1
-  lifePlayer: 20
-  lifeEnemy: 0
-  lifeEnemyStart: 0
-  jsonController: {fileID: 0}
 --- !u!1 &1050478944 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7318851884489774935, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
@@ -718,73 +619,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7318851885477671653, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
   m_PrefabInstance: {fileID: 7318851884916874807}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1686267148
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1686267150}
-  - component: {fileID: 1686267149}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1686267149
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686267148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Content: {fileID: 0}
-  m_Horizontal: 1
-  m_Vertical: 1
-  m_MovementType: 1
-  m_Elasticity: 0.1
-  m_Inertia: 1
-  m_DecelerationRate: 0.135
-  m_ScrollSensitivity: 1
-  m_Viewport: {fileID: 0}
-  m_HorizontalScrollbar: {fileID: 0}
-  m_VerticalScrollbar: {fileID: 0}
-  m_HorizontalScrollbarVisibility: 0
-  m_VerticalScrollbarVisibility: 0
-  m_HorizontalScrollbarSpacing: 0
-  m_VerticalScrollbarSpacing: 0
-  m_OnValueChanged:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!224 &1686267150
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1686267148}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 22.315306}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.71274626, y: 0.90313965}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1708906419 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1673583309349056740, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
@@ -955,10 +789,14 @@ PrefabInstance:
       propertyPath: operatorCard3CalculeteText
       value: 
       objectReference: {fileID: 2033246309}
+    - target: {fileID: 277341801735363900, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: <PlayerHand>k__BackingField
+      value: 
+      objectReference: {fileID: 2101107375}
     - target: {fileID: 1501127760278418985, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
       propertyPath: jsonController
       value: 
-      objectReference: {fileID: 1004531553}
+      objectReference: {fileID: 0}
     - target: {fileID: 2127850011606944918, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
       propertyPath: PauseBtn
       value: 
@@ -1171,6 +1009,18 @@ PrefabInstance:
       propertyPath: operatorCard3CalculeteText
       value: 
       objectReference: {fileID: 2033246309}
+    - target: {fileID: 5290451134159255585, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: <NumberCard1CalculateText>k__BackingField
+      value: 
+      objectReference: {fileID: 173019115}
+    - target: {fileID: 5290451134159255585, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: <NumberCard2CalculateText>k__BackingField
+      value: 
+      objectReference: {fileID: 327689021}
+    - target: {fileID: 5290451134159255585, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: <OperatorCard3CalculateText>k__BackingField
+      value: 
+      objectReference: {fileID: 2033246309}
     - target: {fileID: 6333462384897120085, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
       propertyPath: gameUI
       value: 
@@ -1187,10 +1037,18 @@ PrefabInstance:
       propertyPath: newCardHand
       value: 
       objectReference: {fileID: 340494529}
+    - target: {fileID: 6333462384897120085, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: <NewCardHand>k__BackingField
+      value: 
+      objectReference: {fileID: 340494529}
+    - target: {fileID: 6333462384897120085, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: <newCardHand>k__BackingField
+      value: 
+      objectReference: {fileID: 340494529}
     - target: {fileID: 7805536689671569282, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
       propertyPath: jsonController
       value: 
-      objectReference: {fileID: 1004531553}
+      objectReference: {fileID: 0}
     - target: {fileID: 8436334886782884668, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
       propertyPath: countRoundGameText
       value: 

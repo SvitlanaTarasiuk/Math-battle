@@ -4,31 +4,36 @@ using UnityEngine.UI;
 
 public class CardInfoScript : MonoBehaviour
 {
-    public Card selfCard;
-    public Image logoCard1;
-    public Image logoCard2;
-    public TextMeshProUGUI nameCard;
-    public TextMeshProUGUI numberCard;
-    public TextMeshProUGUI operatorCard;
+    public Card SelfCard;
+
+    public Image LogoCardBG;
+
+    public Image LogoCardImage;
+
+    public TextMeshProUGUI NameCard;
+    
+    public TextMeshProUGUI NumberCard;
+    
+    public TextMeshProUGUI OperatorCard;
 
     public void ShowCardInfo(Card card)
     {
-        selfCard = card;
-        logoCard1.sprite = card.LogoBG;
-        logoCard1.preserveAspect = true;
-        logoCard2.sprite = card.LogoImage;
-        logoCard2.preserveAspect = true;
-        nameCard.text = card.Name;
+        SelfCard = card;
+        LogoCardBG.sprite = card.LogoBG;
+        LogoCardBG.preserveAspect = true;
+        LogoCardImage.sprite = card.LogoImage;
+        LogoCardImage.preserveAspect = true;
+        NameCard.text = card.Name;
 
         RefreshData();
     }
 
     public void RefreshData()
     {
-        if (selfCard.Number != 0)
-            numberCard.text = selfCard.Number.ToString();
+        if (SelfCard.Number != 0)
+            NumberCard.text = SelfCard.Number.ToString();
         else
-            operatorCard.text = selfCard.Operator.ToString();
+            OperatorCard.text = SelfCard.Operator.ToString();
     }
 }
 

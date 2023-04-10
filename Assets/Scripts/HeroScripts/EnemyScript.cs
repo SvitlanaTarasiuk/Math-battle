@@ -11,7 +11,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private ShieldCountScript shieldCountScript;
     [SerializeField] private TextMeshProUGUI hpCurrentText;
     [SerializeField] private TextMeshProUGUI hpEnemyText;
-    [SerializeField] private GameMusicController gameMusicController;
+    //[SerializeField] private GameMusicController gameMusicController;
     [SerializeField] private EnemyAllScript enemyAllScript;
     [SerializeField] private StatusDisplayAttackOrDefenseEnemy statusDisplayAttackOrDefense;
     private Image imageEnemy;
@@ -23,16 +23,18 @@ public class EnemyScript : MonoBehaviour
     private int minAttackOrDefenseCount;
     private int maxAttackOrDefenseCount;
     private bool isAttack;
-    //public Image shieldImageResultPlayer { get; set; }
-  
+    private float timerInvokeResetMaterial = 0.5f;
+    private float timerInvokeAttackOrDefence = 0.5f;
+    private float timerInvokeStartAttackOrDefenseEnemy = 0.5f;
+
     private void Awake()
     {
         EnemyStart();
         GlobalControl.Instance.HpEnemyStart(hpEnemy);
-        hpCurrent = GlobalControl.Instance.lifeEnemy;
+        hpCurrent = GlobalControl.Instance.LifeEnemy;
         //Debug.Log("AwakeEnemy");
     }
-  
+
     private void Start()
     {
         //Debug.Log("Start Enemy");
@@ -42,21 +44,21 @@ public class EnemyScript : MonoBehaviour
         ImageAndTextHpCurrent();
         AttackOrDefence();
     }
-  
+
     private void EnemyStart()
     {
         enemyAllScript.WhatEnemy();
-        hpEnemy = enemyAllScript.hpEnemy;
-        minAttackOrDefenseCount = enemyAllScript.minAttackOrDefenseCount;
-        maxAttackOrDefenseCount = enemyAllScript.maxAttackOrDefenseCount;
+        hpEnemy = enemyAllScript.HpEnemy;
+        minAttackOrDefenseCount = enemyAllScript.MinAttackOrDefenseCount;
+        maxAttackOrDefenseCount = enemyAllScript.MaxAttackOrDefenseCount;
     }
-  
+
     private void ImageAndTextHpCurrent()
     {
         hpCurrentText.text = hpCurrent.ToString();
         imageHpEnemy.fillAmount = (float)hpCurrent / hpEnemy;
-    }  
-   
+    }
+
     private void AttackOrDefence()
     {
         isAttack = Random.Range(0, 2) == 1;
@@ -73,26 +75,26 @@ public class EnemyScript : MonoBehaviour
             statusDisplayAttackOrDefense.StatusDisplayDefense(defenseCount);
         }
     }
-   
+
     public void StartAttackOrDefenseEnemyInvoke()
     {
-        Invoke(nameof(StartAttackOrDefenseEnemy), 0.5f);
+        Invoke(nameof(StartAttackOrDefenseEnemy), timerInvokeStartAttackOrDefenseEnemy);
     }
     private void StartAttackOrDefenseEnemy()
     {
         if (isAttack == true)
         {
-            //AudioManagerMixer.instance.DamageEffect();
-            gameMusicController.DamageEffectMusic();
+            AudioManagerMixer.Instance.DamageEffect();
+            //gameMusicController.DamageEffectMusic();
             player.Damage(attackCount);
-            Invoke(nameof(AttackOrDefence), 0.5f);
+            Invoke(nameof(AttackOrDefence), timerInvokeAttackOrDefence);
         }
         else
         {
-            //AudioManagerMixer.instance.ShieldEffect();
-            gameMusicController.ShieldEffectMusic();
+            AudioManagerMixer.Instance.ShieldEffect();
+            //gameMusicController.ShieldEffectMusic();
             shieldCountScript.ShieldCountGame(defenseCount);
-            Invoke(nameof(AttackOrDefence), 0.5f);
+            Invoke(nameof(AttackOrDefence), timerInvokeAttackOrDefence);
         }
     }
 
@@ -115,9 +117,9 @@ public class EnemyScript : MonoBehaviour
         {
             hpCurrent = hpCurrent - damage;
         }
-        GlobalControl.Instance.lifeEnemy = hpCurrent;
+        GlobalControl.Instance.LifeEnemy = hpCurrent;
         PlayerPrefs.SetInt("LifeEnemy", hpCurrent);
-       
+
         ImageAndTextHpCurrent();
 
         imageEnemy.color = colorDamage;
@@ -129,11 +131,11 @@ public class EnemyScript : MonoBehaviour
         }
         else
         {
-            Invoke(nameof(ResetMaterial), 0.5f);
+            Invoke(nameof(ResetMaterial), timerInvokeResetMaterial);
         }
     }
-    
-    private void ResetMaterial() => imageEnemy.color = Color.white;             
+
+    private void ResetMaterial() => imageEnemy.color = Color.white;
 
 }
 

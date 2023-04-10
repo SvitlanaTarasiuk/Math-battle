@@ -13,13 +13,14 @@ public class PlayerScript : MonoBehaviour
     private int shieldCount = 0;
     private int hpPlayer = 20;
     private int hpCurrent;
+    private float timerInvokeResetMaterial = 0.5f;
 
     private void Start()
     {
         imagePlayer = GetComponent<Image>();
         shieldCountScript.ShieldCountStart();
-        hpCurrent = GlobalControl.Instance.lifePlayer;
-        ImageAndTextHpCurrent();        
+        hpCurrent = GlobalControl.Instance.LifePlayer;
+        ImageAndTextHpCurrent();
     }
 
     private void ImageAndTextHpCurrent()
@@ -47,7 +48,7 @@ public class PlayerScript : MonoBehaviour
         {
             hpCurrent = hpCurrent - damage;
         }
-        GlobalControl.Instance.lifePlayer = hpCurrent;
+        GlobalControl.Instance.LifePlayer = hpCurrent;
         PlayerPrefs.SetInt("LifePlayer", hpCurrent);
 
         ImageAndTextHpCurrent();
@@ -60,12 +61,11 @@ public class PlayerScript : MonoBehaviour
         }
         else
         {
-            Invoke(nameof(ResetMaterial), 0.5f);
+            Invoke(nameof(ResetMaterial), timerInvokeResetMaterial);
         }
     }
 
-    private void ResetMaterial() =>  imagePlayer.color = Color.white;  
-
+    private void ResetMaterial() => imagePlayer.color = Color.white;
 }
 
 

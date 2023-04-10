@@ -1,43 +1,50 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class EnemyAllScript : MonoBehaviour
 {
-    public int hpEnemy;
-    public int minAttackOrDefenseCount;
-    public int maxAttackOrDefenseCount;
+    [SerializeField] private int _hpEnemy;
+    [SerializeField] private int _minAttackOrDefenseCount;
+    [SerializeField] private int _maxAttackOrDefenseCount;
+   
+    public int HpEnemy { get => _hpEnemy; set => _hpEnemy = value; }
+
+    public int MinAttackOrDefenseCount { get => _minAttackOrDefenseCount; private set => _minAttackOrDefenseCount = value; }
+
+    public int MaxAttackOrDefenseCount { get => _maxAttackOrDefenseCount; private set => _maxAttackOrDefenseCount = value; }
 
     public void WhatEnemy()
     {
         switch (name)
         {
             case "Enemy1":
-                hpEnemy = 6;
-                minAttackOrDefenseCount = 1;
-                maxAttackOrDefenseCount = 2;               
+                HpEnemy = 6;
+                MinAttackOrDefenseCount = 1;
+                MaxAttackOrDefenseCount = 2;
                 break;
 
             case "Enemy2":
-                hpEnemy = 8;
-                minAttackOrDefenseCount = 1;
-                maxAttackOrDefenseCount = 3;
+                HpEnemy = 8;
+                MinAttackOrDefenseCount = 1;
+                MaxAttackOrDefenseCount = 3;
                 break;
 
             case "Enemy3":
-                hpEnemy = 10;
-                minAttackOrDefenseCount = 1;
-                maxAttackOrDefenseCount = 4;
+                HpEnemy = 10;
+                MinAttackOrDefenseCount = 1;
+                MaxAttackOrDefenseCount = 4;
                 break;
 
             case "Enemy4":
-                hpEnemy = 12;
-                minAttackOrDefenseCount = 2;
-                maxAttackOrDefenseCount = 6;
+                HpEnemy = 12;
+                MinAttackOrDefenseCount = 2;
+                MaxAttackOrDefenseCount = 6;
                 break;
 
             case "Enemy5":
-                hpEnemy = 15;
-                minAttackOrDefenseCount = 3;
-                maxAttackOrDefenseCount = 8;
+                HpEnemy = 15;
+                MinAttackOrDefenseCount = 3;
+                MaxAttackOrDefenseCount = 8;
                 break;
         }
         //Debug.Log($"nameEnemy+{name}, hpEnemy: {hpEnemy}, minAttackOrDefenseCount: {minAttackOrDefenseCount}, maxAttackOrDefenseCount: {maxAttackOrDefenseCount}");

@@ -4,19 +4,23 @@ using UnityEngine.Audio;
 
 public class AudioManagerMixer : MonoBehaviour
 {
-    public static AudioManagerMixer instance;
-    [SerializeField] private AudioMixer mixer;
-    [SerializeField] private AudioSource audioGame;
-    [SerializeField] private AudioSource audioEffectMenu;
-    [SerializeField] private AudioSource audioEffect;
-    [SerializeField] private List<AudioClip> musicClip = new List<AudioClip>();
-    public const string Musik_Key = "GameVolume";
-    public const string Effect_Key = "EffectVolume";
+    [SerializeField] private AudioMixer _mixer;
+    [SerializeField] private AudioSource _audioGame;
+    [SerializeField] private AudioSource _audioEffectMenu;
+    [SerializeField] private AudioSource _audioEffect;
+    [SerializeField] private List<AudioClip> _musicClipEffect = new List<AudioClip>();
+    
+    public static string Musik_Key { get; } = "GameVolumeKey";
+   
+    public static string Effect_Key { get; } = "EffectVolumeKey";
+
+    public static AudioManagerMixer Instance { get; private set; }
+
     void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -27,37 +31,38 @@ public class AudioManagerMixer : MonoBehaviour
     }
     private void LoadVolume()//volume saved MusicControllerMixer.cs
     {
+        //Debug.Log("LoadVolume");
         float musicVolume = PlayerPrefs.GetFloat(Musik_Key, 0.5f);
         float effectVolume = PlayerPrefs.GetFloat(Effect_Key, 0.5f);
 
-        mixer.SetFloat(MusicControllerMixer.Mixer_Music, Mathf.Log10(musicVolume) * 20);
-        mixer.SetFloat(MusicControllerMixer.Mixer_Effect, Mathf.Log10(effectVolume) * 20);
+        _mixer.SetFloat(MusicControllerMixer.Mixer_Music, Mathf.Log10(musicVolume) * 20);
+        _mixer.SetFloat(MusicControllerMixer.Mixer_Effect, Mathf.Log10(effectVolume) * 20);
     }
-    public void MusicMenu()                  //AudioManagerMixer.instance.MusicMenu();
+    public void MusicMenu()
     {
-        audioGame.Stop();
-        audioEffectMenu.Play();
+        _audioGame.Stop();
+        _audioEffectMenu.Play();
     }
     public void MusicMenuOff()
     {
-        audioGame.Play();
-        audioEffectMenu.Stop();
+        _audioGame.Play();
+        _audioEffectMenu.Stop();
     }
     public void ShieldEffect()
     {
-        audioEffect.PlayOneShot(musicClip[0]);
+        _audioEffect.PlayOneShot(_musicClipEffect[0]);
     }
     public void DamageEffect()
     {
-        audioEffect.PlayOneShot(musicClip[1]);
+        _audioEffect.PlayOneShot(_musicClipEffect[1]);
     }
     public void MusicCardFromDesk()
     {
-        audioEffect.PlayOneShot(musicClip[2]);
+        _audioEffect.PlayOneShot(_musicClipEffect[2]);
     }
     public void OneCard()
     {
-        audioEffect.PlayOneShot(musicClip[3]);
+        _audioEffect.PlayOneShot(_musicClipEffect[3]);
     }
 
 }

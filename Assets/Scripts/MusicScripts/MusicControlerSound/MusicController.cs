@@ -3,16 +3,16 @@ using UnityEngine.UI;
 
 public class MusicController : MonoBehaviour
 {
+    [SerializeField] private Slider musicGameSlider;
+    [SerializeField] private Slider soundEffectsSlider;
+    [SerializeField] private AudioSource musicGame;
+    [SerializeField] private AudioSource soundEffect;
     private static readonly string FirstPlay = "FirstPlay";
     private static readonly string MusicPref = "MusicPref";
     private static readonly string SoundEffectPref = "SoundEffectPref";
     private int firstPlayInt;
     private float musicFloat;
     private float soundEffectsFloat;
-    public Slider musicGameSlider;
-    public Slider soundEffectsSlider;
-    public AudioSource musicGame;
-    public AudioSource soundEffect;
 
     private void Start()
     {
@@ -55,8 +55,12 @@ public class MusicController : MonoBehaviour
     {
         musicGame.volume = musicGameSlider.value;
         soundEffect.volume = soundEffectsSlider.value;
+        //for (int i = 0; i < soundEffectsAudio.Length; i++)
+        //{
+        //    soundEffectsAudio[i].volume = soundEffectsSlider.value;      
+        //}
     }
-    
+
     public void MusicMenu()
     {
         musicGame.Stop();

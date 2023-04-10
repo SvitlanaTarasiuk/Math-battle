@@ -8,11 +8,10 @@ public class GlobalJsonController : MonoBehaviour
         var globalJson = new GlobalJson();
         globalJson.AllCards = CardManager.AllCards;
         string json = JsonUtility.ToJson(globalJson);
-        //Debug.Log(json);
         File.WriteAllText(Application.persistentDataPath + "/AllCardsGame.txt", json);
-        //Debug.Log("Json Save");
-    } 
-    
+        //Debug.Log("Json Save"+ json);
+    }
+
     public void LoadJson()
     {
         if (File.Exists(Application.persistentDataPath + "/AllCardsGame.txt"))
@@ -20,13 +19,13 @@ public class GlobalJsonController : MonoBehaviour
             var json = File.ReadAllText(Application.persistentDataPath + "/AllCardsGame.txt");
             var globalJson = JsonUtility.FromJson<GlobalJson>(json);
             CardManager.AllCards = globalJson.AllCards;
-            //Debug.Log("Json Load");
+            //Debug.Log("Json Load"+json);
         }
     }
-   
+
     public void DeleteJson()
     {
         File.Delete(Application.persistentDataPath + "/AllCardsGame.txt");
+        //Debug.Log("DeletJson");
     }
-      
 }

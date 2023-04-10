@@ -3440,11 +3440,6 @@ MonoBehaviour:
   infoAllRoundGameText: {fileID: 8093440627017101424}
   lifePlayerText: {fileID: 4802374110657466609}
   lifeEnemyText: {fileID: 6644295592141623602}
-  countAllRoundGame: 0
-  countRoundLevel: 0
-  lifePlayer: 0
-  lifeEnemy: 0
-  countLevel: 0
 --- !u!1 &3666898393986595016
 GameObject:
   m_ObjectHideFlags: 0
@@ -4158,9 +4153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487ef604a87a96a46a4d8ca6fb7b6515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hpEnemy: 0
-  minAttackOrDefenseCount: 0
-  maxAttackOrDefenseCount: 0
+  _hpEnemy: 0
+  _minAttackOrDefenseCount: 0
+  _maxAttackOrDefenseCount: 0
 --- !u!114 &1223557870204315301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4180,7 +4175,6 @@ MonoBehaviour:
   shieldCountScript: {fileID: 2698546367035149356}
   hpCurrentText: {fileID: 7318851885598140835}
   hpEnemyText: {fileID: 7318851886137055753}
-  gameMusicController: {fileID: 7517180780195633379, guid: 35adedc5847ca394ab921906ece16ca1, type: 3}
   enemyAllScript: {fileID: 8691438827825353651}
   statusDisplayAttackOrDefense: {fileID: 223290616695237056}
 --- !u!114 &223290616695237056
@@ -4214,6 +4208,7 @@ MonoBehaviour:
   shieldImageResultScript: {fileID: 6805844407098495079}
   shieldCountText: {fileID: 7318851884237561996}
   hpDamageText: {fileID: 7318851885668897553}
+  shieldCount: 0
 --- !u!114 &6805844407098495079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6384,11 +6379,6 @@ MonoBehaviour:
   infoAllRoundGameText: {fileID: 1786313933282730455}
   lifePlayerText: {fileID: 7943683107767760495}
   lifeEnemyText: {fileID: 8956903740759762019}
-  countAllRoundGame: 0
-  countRoundLevel: 0
-  lifePlayer: 0
-  lifeEnemy: 0
-  countLevel: 0
 --- !u!1 &6911272862113863638
 GameObject:
   m_ObjectHideFlags: 0
@@ -10427,7 +10417,7 @@ GameObject:
   - component: {fileID: 7318851885121705717}
   - component: {fileID: 7318851885121705715}
   m_Layer: 5
-  m_Name: PanelNewCard
+  m_Name: PanelNewCardHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15252,6 +15242,7 @@ MonoBehaviour:
   shieldImageResultScript: {fileID: 7370872800400801649}
   shieldCountText: {fileID: 7318851884254755267}
   hpDamageText: {fileID: 7318851884485137705}
+  shieldCount: 0
 --- !u!114 &7370872800400801649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16253,11 +16244,6 @@ MonoBehaviour:
   infoAllRoundGameText: {fileID: 2450822782666175846}
   lifePlayerText: {fileID: 5360588760472701227}
   lifeEnemyText: {fileID: 4858137272727036827}
-  countAllRoundGame: 0
-  countRoundLevel: 0
-  lifePlayer: 0
-  lifeEnemy: 0
-  countLevel: 0
 --- !u!1 &8345850399415839570
 GameObject:
   m_ObjectHideFlags: 0

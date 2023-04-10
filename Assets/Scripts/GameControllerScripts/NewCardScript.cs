@@ -7,7 +7,8 @@ public class NewCardScript : MonoBehaviour
     private Game newSceneGame;
     private int countCardsHand = 2;
     private List<CardInfoScript> newSceneCards = new List<CardInfoScript>();
-    public Transform newCardHand;
+    
+    [field: SerializeField] public Transform NewCardHand { get;  set; }
 
     void Start()
     {
@@ -19,6 +20,6 @@ public class NewCardScript : MonoBehaviour
     
     public void NewCardPanelStart()
     {
-        giveHandCardsScript.GiveHandCards(newSceneGame.NewCardDesk, newCardHand, countCardsHand, newSceneCards);
+        giveHandCardsScript.GiveHandCards(newSceneGame.NewCardDesk, NewCardHand, countCardsHand, newSceneCards);
     }
 }

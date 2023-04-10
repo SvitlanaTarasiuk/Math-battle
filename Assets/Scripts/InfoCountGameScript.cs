@@ -9,22 +9,22 @@ public class InfoCountGameScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI infoAllRoundGameText;
     [SerializeField] private TextMeshProUGUI lifePlayerText;
     [SerializeField] private TextMeshProUGUI lifeEnemyText;
+    private GlobalControl globalControl = GlobalControl.Instance;
     private int countAllRoundGame;
     private int countRoundLevel;
     private int lifePlayer;
     private int lifeEnemy;
     private int countLevel;
-    private GlobalControl globalControl = GlobalControl.Instance;
    
     public void InfoGame()
     {
         panelInfoGame.SetActive(true);
 
-        lifePlayer = globalControl.lifePlayer;
-        lifeEnemy = globalControl.lifeEnemy;
-        countLevel = globalControl.currentSceneIndex;
-        countRoundLevel = globalControl.countRound;
-        countAllRoundGame = globalControl.countAllRound;
+        lifePlayer = globalControl.LifePlayer;
+        lifeEnemy = globalControl.LifeEnemy;
+        countLevel = globalControl.CurrentSceneIndex;
+        countRoundLevel = globalControl.CountRound;
+        countAllRoundGame = globalControl.CountAllRound;
 
         lifePlayerText.text = lifePlayer.ToString();
         lifeEnemyText.text = lifeEnemy.ToString();

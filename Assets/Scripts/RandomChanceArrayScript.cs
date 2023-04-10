@@ -30,6 +30,7 @@ public class RandomChanceArrayScript
         return chanceArray;
 
     }
+    
     public int RandomChance(int countArray)
     {
         float[] percent = Chance(countArray);
@@ -80,5 +81,4 @@ public class RandomChanceArrayScript
         int result = RandomNumberChance(percentShuffle);
         return result;
     }
-
 }

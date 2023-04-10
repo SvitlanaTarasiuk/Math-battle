@@ -4,13 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class StartUI : MonoBehaviour
 {
-    public void NewGame()//
+    public void NewGame()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene(1);
         GlobalControl.Instance.ResetData();
 
-        //AudioManagerMixer.instance.MusicMenuOff();
+        AudioManagerMixer.Instance.MusicMenuOff();
     }
 
     public void StartGame()//Start/Continue
@@ -19,8 +19,9 @@ public class StartUI : MonoBehaviour
         int currentScene = GlobalControl.Instance.GetLastSavedScene();
         SceneManager.LoadScene(currentScene);
 
-        //AudioManagerMixer.instance.MusicMenuOff();
+        AudioManagerMixer.Instance.MusicMenuOff();
     }
+   
     public void ExitGame()
     {
 #if UNITY_EDITOR

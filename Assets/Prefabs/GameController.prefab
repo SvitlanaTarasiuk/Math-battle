@@ -73,7 +73,6 @@ MonoBehaviour:
   panelHandPlayer: {fileID: 0}
   newCardScript: {fileID: 6333462384897120085}
   gameManagerScript: {fileID: 277341801735363900}
-  gameMusicController: {fileID: 0}
   cardToCalculate: {fileID: 5290451134159255585}
   PauseBtn: {fileID: 0}
 --- !u!114 &1501127760278418985
@@ -107,7 +106,6 @@ MonoBehaviour:
   countRoundScript: {fileID: 8436334886782884668}
   cardToCalculate: {fileID: 5290451134159255585}
   enemy: {fileID: 0}
-  gameMusicController: {fileID: 0}
   countCardPlayerText: {fileID: 0}
   countCardNotGameText: {fileID: 0}
   PlayerHand: {fileID: 0}
@@ -166,16 +164,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shieldCountPlayerScript: {fileID: 0}
-  gameMusicController: {fileID: 0}
   enemy: {fileID: 0}
   clickCard: {fileID: 0}
   gameManager: {fileID: 277341801735363900}
   calculateBtn: {fileID: 0}
   shieldImage: {fileID: 0}
   swordImage: {fileID: 0}
-  numberCard1CalculateText: {fileID: 0}
-  numberCard2CalculateText: {fileID: 0}
-  operatorCard3CalculateText: {fileID: 0}
-  card1Calculate: {fileID: 0}
-  card2Calculate: {fileID: 0}
-  card3Calculate: {fileID: 0}
+  <NumberCard1CalculateText>k__BackingField: {fileID: 0}
+  <NumberCard2CalculateText>k__BackingField: {fileID: 0}
+  <OperatorCard3CalculateText>k__BackingField: {fileID: 0}
+  <Card1Calculate>k__BackingField: {fileID: 6436394131778499789, guid: c995b49ef821756499464e8b0b483f0e, type: 3}
+  <Card2Calculate>k__BackingField: {fileID: 6436394131778499789, guid: c995b49ef821756499464e8b0b483f0e, type: 3}
+  <Card3Calculate>k__BackingField: {fileID: 6436394131778499789, guid: c995b49ef821756499464e8b0b483f0e, type: 3}

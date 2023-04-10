@@ -5,7 +5,9 @@ using TMPro;
 public class Game
 {
     private RandomChanceArrayScript randomChanceArray = new RandomChanceArrayScript();
+
     public List<Card> PlayerDesk;//the main deck of cards
+
     public List<Card> NewCardDesk;//a list of cards to choose from at the end of the level
 
     public Game()
@@ -37,20 +39,23 @@ public class GameManagerScript : MonoBehaviour
 {
     [SerializeField] private GiveHandCardsScript giveHandCardsScript;
     [SerializeField] private GameUI gameUI;
-    [SerializeField] private ShieldCountScript shieldCountPlayerScript;
-    [SerializeField] private ShieldCountScript shieldCountEnemyScript;
     [SerializeField] private CountRoundScript countRoundScript;
     [SerializeField] private CardToCalculate cardToCalculate;
+    [SerializeField] private ShieldCountScript shieldCountPlayerScript;
+    [SerializeField] private ShieldCountScript shieldCountEnemyScript;
     [SerializeField] private EnemyScript enemy;
-    [SerializeField] private GameMusicController gameMusicController;
+    //[SerializeField] private GameMusicController gameMusicController;
     [SerializeField] private TextMeshProUGUI countCardPlayerText;//remaining cards in the deck (-6 dealt)
     [SerializeField] private TextMeshProUGUI countCardNotGameText;//card rejection
     private Game currentGame;
     private int countCardsHand = 6;
     private int countCardPlayer = 0;
-    public Transform PlayerHand;
-    public int countCardNotGame = 0;
-    public List<CardInfoScript> playerHandCards = new List<CardInfoScript>();
+    private float timerInvokeStart = 1.5f;
+    private int countCardNotGame = 0;
+    private List<CardInfoScript> PlayerHandCards = new List<CardInfoScript>();
+    
+    [field: SerializeField] public Transform PlayerHand { get; set; }
+    
 
     void Start()
     {
@@ -67,11 +72,12 @@ public class GameManagerScript : MonoBehaviour
     }
     private void GivePlayerHandCards()
     {
-        gameMusicController.CardFromDescMusic();
-        giveHandCardsScript.GiveHandCards(currentGame.PlayerDesk, PlayerHand, countCardsHand, playerHandCards);
+        //gameMusicController.CardFromDescMusic();
+        AudioManagerMixer.Instance.MusicCardFromDesk();
+        giveHandCardsScript.GiveHandCards(currentGame.PlayerDesk, PlayerHand, countCardsHand, PlayerHandCards);
         //Debug.Log("currentGame.PlayerDesk.Count " + currentGame.PlayerDesk.Count);
     }
-   
+
     public void CountCardNotGame(int inactiveCards)
     {
         countCardNotGame += inactiveCards;
@@ -87,7 +93,7 @@ public class GameManagerScript : MonoBehaviour
 
         enemy.StartAttackOrDefenseEnemyInvoke();
         shieldCountPlayerScript.ShieldCountStartInvoke();
-        Invoke(nameof(Start), 1.5f);
+        Invoke(nameof(Start), timerInvokeStart);
         gameUI.RoundGameActiveInvoke();
 
         //Debug.Log("EndTurn/ PlayerHand.childCount " + PlayerHand.childCount);
@@ -99,7 +105,7 @@ public class GameManagerScript : MonoBehaviour
         foreach (Transform child in PlayerHand)
         {
             Destroy(child.gameObject);
-            playerHandCards.RemoveAt(0);
+            PlayerHandCards.RemoveAt(0);
             countCardNotGame = 0;
             countCardNotGameText.text = countCardNotGame.ToString();
         }

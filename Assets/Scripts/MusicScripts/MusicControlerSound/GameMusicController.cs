@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class GameMusicController : MonoBehaviour
 {
+    [SerializeField] private AudioSource musicGame;
+    [SerializeField] private AudioSource soundEffect;
+    [SerializeField] private AudioClip[] soundEffectClip;
     private static readonly string MusicPref = "MusicPref";
     private static readonly string SoundEffectPref = "SoundEffectPref";
     private float musicFloat;
     private float soundEffectsFloat;
-    public AudioSource musicGame;
-    //public AudioSource[] soundEffectsAudio; 
-    public AudioSource soundEffect;
-    public AudioClip[] soundEffectClip;
 
     private void Awake()
     {
@@ -19,7 +18,7 @@ public class GameMusicController : MonoBehaviour
     {
         musicFloat = PlayerPrefs.GetFloat(MusicPref);
         soundEffectsFloat = PlayerPrefs.GetFloat(SoundEffectPref);
-
+        
         musicGame.volume = musicFloat;
         soundEffect.volume = soundEffectsFloat;
         //for (int i = 0; i < soundEffectsAudio.Length; i++)
