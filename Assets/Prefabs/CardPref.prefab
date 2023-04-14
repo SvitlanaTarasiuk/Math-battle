@@ -386,17 +386,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ea004aed40375f4fb56a6136a1d930e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelfCard:
-    Name: 
-    LogoBG: {fileID: 0}
-    LogoImage: {fileID: 0}
-    Number: 0
-    Operator: 0
-  LogoCardBG: {fileID: 858275403989352625}
-  LogoCardImage: {fileID: 306332297225111671}
-  NameCard: {fileID: 4915795598375070965}
-  NumberCard: {fileID: 1231914357904044948}
-  OperatorCard: {fileID: 5176917501260825228}
+  <LogoCardBG>k__BackingField: {fileID: 858275403989352625}
+  <LogoCardImage>k__BackingField: {fileID: 306332297225111671}
+  <NameCard>k__BackingField: {fileID: 4915795598375070965}
+  <NumberCard>k__BackingField: {fileID: 1231914357904044948}
+  <OperatorCard>k__BackingField: {fileID: 5176917501260825228}
 --- !u!114 &-6450219107680471558
 MonoBehaviour:
   m_ObjectHideFlags: 0

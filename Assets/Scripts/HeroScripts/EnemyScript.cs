@@ -100,7 +100,7 @@ public class EnemyScript : MonoBehaviour
 
     public void Damage(int damage)
     {
-        shieldCount = shieldCountScript.shieldCount;
+        shieldCount = shieldCountScript.ShieldCount;
 
         if (shieldCount > 0 && damage > shieldCount)//hit more shield
         {

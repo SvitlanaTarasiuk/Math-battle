@@ -4,21 +4,21 @@ using UnityEngine.SceneManagement;
 public class GlobalControl : MonoBehaviour
 {
     [SerializeField] private int lifeEnemyStart;
-    
+
     [field: SerializeField] public int LifeEnemy { get; set; }
-    
+
     [field: SerializeField] public int LifePlayer { get; set; } = 20;
-   
-    [field: SerializeField] public int CurrentSceneIndex{ get; set; } = 1;
-   
+
+    [field: SerializeField] public int CurrentSceneIndex { get; set; } = 1;
+
     [field: SerializeField] public int CountRound { get; set; } = 1;
-   
+
     [field: SerializeField] public int CountAllRound { get; set; } = 1;
-    
-    [field: SerializeField] public GlobalJsonController JsonController { get; set; }
+
+    public GlobalJsonController JsonController { get; set; }
 
     public static GlobalControl Instance { get; private set; }
-    
+
     void Awake()
     {
         if (Instance == null)
@@ -39,16 +39,18 @@ public class GlobalControl : MonoBehaviour
     {
         lifeEnemyStart = hpStart;
         LifeEnemy = PlayerPrefs.GetInt("LifeEnemy", lifeEnemyStart);
-        
+
         if (LifeEnemy <= 0)
         {
             LifeEnemy = lifeEnemyStart;
         }
         //Debug.Log($"Awake/HpEnemyStart/lifeEnemy:{lifeEnemy} /lifeEnemyStart:{lifeEnemyStart}");
     }
-    
+
     public void LoadData()
     {
+        JsonController = GetComponent<GlobalJsonController>();      
+        JsonController.LoadJson();
         LifePlayer = PlayerPrefs.GetInt("LifePlayer", 20);
         CountRound = PlayerPrefs.GetInt("CountRound", 1);
         CountAllRound = PlayerPrefs.GetInt("CountAllRound", 1);
@@ -58,7 +60,7 @@ public class GlobalControl : MonoBehaviour
     {
         LifePlayer = 20;
         PlayerPrefs.SetInt("LifePlayer", LifePlayer);
-        
+
         CountRound = 1;
         PlayerPrefs.SetInt("CountRound", CountRound);
 
@@ -73,19 +75,19 @@ public class GlobalControl : MonoBehaviour
 
         //Debug.Log($"ResetData/ AllCards: {CardManager.AllCards.Count}");
     }
-    
+
     public void CountAllRoundAndSave()
     {
         CountAllRound++;
         PlayerPrefs.SetInt("CountAllRound", CountRound);
     }
-    
+
     public void SaveScene()
     {
         CurrentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         PlayerPrefs.SetInt("SceneIndex", CurrentSceneIndex);
     }
-    
+
     public int GetLastSavedScene()
     {
         CurrentSceneIndex = PlayerPrefs.GetInt("SceneIndex", 1);

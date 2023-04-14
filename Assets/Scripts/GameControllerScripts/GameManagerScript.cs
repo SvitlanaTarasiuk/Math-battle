@@ -6,9 +6,9 @@ public class Game
 {
     private RandomChanceArrayScript randomChanceArray = new RandomChanceArrayScript();
 
-    public List<Card> PlayerDesk;//the main deck of cards
+    public List<Card> PlayerDesk { get; set; }//the main deck of cards
 
-    public List<Card> NewCardDesk;//a list of cards to choose from at the end of the level
+    public List<Card> NewCardDesk { get; set; }//a list of cards to choose from at the end of the level
 
     public Game()
     {

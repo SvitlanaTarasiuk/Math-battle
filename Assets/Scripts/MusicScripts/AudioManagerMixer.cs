@@ -9,9 +9,9 @@ public class AudioManagerMixer : MonoBehaviour
     [SerializeField] private AudioSource _audioEffectMenu;
     [SerializeField] private AudioSource _audioEffect;
     [SerializeField] private List<AudioClip> _musicClipEffect = new List<AudioClip>();
-    
+
     public static string Musik_Key { get; } = "GameVolumeKey";
-   
+
     public static string Effect_Key { get; } = "EffectVolumeKey";
 
     public static AudioManagerMixer Instance { get; private set; }

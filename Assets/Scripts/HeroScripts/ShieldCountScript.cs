@@ -8,12 +8,12 @@ public class ShieldCountScript : MonoBehaviour
     [SerializeField] private TextMeshProUGUI hpDamageText = null;
     private float timerInvokeHpDamage = 0.5f;
     private float timerInvokeShieldCountStart = 1.0f;
-    public int shieldCount { get; private set; }
+    public int ShieldCount { get; private set; }
 
     public void ShieldCountStart()
     {
-        shieldCount = 0;
-        shieldCountText.text = shieldCount.ToString();
+        ShieldCount = 0;
+        shieldCountText.text = ShieldCount.ToString();
     }
 
     public void ShieldCountStartInvoke()
@@ -24,19 +24,19 @@ public class ShieldCountScript : MonoBehaviour
     public void ShieldCountGame(int shield)
     {
         shieldImageResultScript.StartCoroutineShieldImage();
-        shieldCount += shield;
-        shieldCountText.text = shieldCount.ToString();
+        ShieldCount += shield;
+        shieldCountText.text = ShieldCount.ToString();
     }
 
     public void ShieldCountAfterDamage(int damage)
     {
-        shieldCount -= damage;
-        shieldCountText.text = shieldCount.ToString();
+        ShieldCount -= damage;
+        shieldCountText.text = ShieldCount.ToString();
     }
 
     public void HpDamageTextCount(int damage)//the amount of damage dealt if there was not enough shield
     {
-        hpDamageText.text = "- " + (damage - shieldCount).ToString();
+        hpDamageText.text = "- " + (damage - ShieldCount).ToString();
         Invoke(nameof(HpDamage), timerInvokeHpDamage);
     }
 

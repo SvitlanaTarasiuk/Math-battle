@@ -4,17 +4,17 @@ using UnityEngine.UI;
 
 public class CardInfoScript : MonoBehaviour
 {
-    public Card SelfCard;
-
-    public Image LogoCardBG;
-
-    public Image LogoCardImage;
-
-    public TextMeshProUGUI NameCard;
-    
-    public TextMeshProUGUI NumberCard;
-    
-    public TextMeshProUGUI OperatorCard;
+    public Card SelfCard { get; private set; }
+   
+    [field: SerializeField] public Image LogoCardBG { get; private set; }
+   
+    [field: SerializeField] public Image LogoCardImage { get; private set; }
+   
+    [field: SerializeField] public TextMeshProUGUI NameCard { get; private set; }
+   
+    [field: SerializeField] public TextMeshProUGUI OperatorCard { get; private set; }
+   
+    [field: SerializeField] public TextMeshProUGUI NumberCard { get; private set; }
 
     public void ShowCardInfo(Card card)
     {

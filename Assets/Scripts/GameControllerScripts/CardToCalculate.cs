@@ -8,7 +8,6 @@ public class CardToCalculate : MonoBehaviour
 {
     [SerializeField] private ShieldCountScript shieldCountPlayerScript;
     [SerializeField] private EnemyScript enemy;
-    [SerializeField] private OnClickCard clickCard;
     [SerializeField] private GameManagerScript gameManager;
     [SerializeField] private Button calculateBtn;
     [SerializeField] private Image shieldImage;

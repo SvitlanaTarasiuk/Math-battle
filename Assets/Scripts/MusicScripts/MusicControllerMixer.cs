@@ -20,7 +20,7 @@ public class MusicControllerMixer : MonoBehaviour
     }
 
     private void Start()
-    { 
+    {
         _musicSlider.value = PlayerPrefs.GetFloat(AudioManagerMixer.Musik_Key, 0.75f);//1f
         _effectSlider.value = PlayerPrefs.GetFloat(AudioManagerMixer.Effect_Key, 0.75f);//1f
 
@@ -40,6 +40,6 @@ public class MusicControllerMixer : MonoBehaviour
     public void SetEffectVolume(float volume)
     {
         _audioMixer.SetFloat(Mixer_Effect, Mathf.Log10(volume) * _multiplier);
-    } 
+    }
 
 }

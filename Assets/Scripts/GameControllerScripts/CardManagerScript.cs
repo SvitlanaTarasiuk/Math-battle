@@ -5,15 +5,15 @@ using UnityEngine;
 [Serializable]
 public class Card
 {
-    public string Name;
-
-    public Sprite LogoBG;
-
-    public Sprite LogoImage;
-
-    public int Number;
-
-    public char Operator;
+    public string Name { get; set; }
+    
+    public Sprite LogoBG { get; set; }
+    
+    public Sprite LogoImage { get; set; }
+    
+    public int Number { get; set; }
+    
+    public char Operator { get; set; }
 
     public Card(string name, string logoBG, string logoImage, int numberCard)
     {
@@ -24,7 +24,7 @@ public class Card
     }
 
     public Card(string name, string logoBG, string logoImage, char operatorCard)
-    { 
+    {
         Name = name;
         LogoBG = Resources.Load<Sprite>(logoBG);
         LogoImage = Resources.Load<Sprite>(logoImage);
@@ -34,9 +34,9 @@ public class Card
 
 public static class CardManager
 {
-    public static List<Card> AllCards = new List<Card>();
-    
-    public static List<Card> NewCard = new List<Card>();
+    public static List<Card> AllCards { get; set; } = new List<Card>();
+
+    public static List<Card> NewCard { get; set; } = new List<Card>();
 }
 
 public class CardManagerScript : MonoBehaviour
@@ -55,12 +55,11 @@ public class CardManagerScript : MonoBehaviour
 
     public void Awake()
     {
-        GlobalControl.Instance.JsonController.LoadJson();
-
         if (CardManager.AllCards.Count == 0)
         {
             CreateAllCards();
             GlobalControl.Instance.JsonController.SaveJson();
+
         }
         if (CardManager.NewCard.Count == 0)
         {
@@ -68,13 +67,13 @@ public class CardManagerScript : MonoBehaviour
         }
         //Debug.Log("AwakeCardManagerScript/ AllCards.Count:" + CardManager.AllCards.Count);
     }
-   
+
     private void CreateAllCards()
     {
         CreateCardsNumber(numberAllCardArray, CardManager.AllCards);
         CreateCardsOperator(operatorCardsArray, CardManager.AllCards);
     }
-   
+
     private void CreateNewCards()
     {
         CreateCardsNumber(numberNewCardsArray, CardManager.NewCard);
