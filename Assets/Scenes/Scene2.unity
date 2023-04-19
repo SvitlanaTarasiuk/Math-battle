@@ -521,6 +521,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7318851885998331165, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
   m_PrefabInstance: {fileID: 7318851884916874807}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &1106421869 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 7318851885998331164, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
+  m_PrefabInstance: {fileID: 7318851884916874807}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1560052605 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7318851886069030218, guid: 76608a5327a3ace46b8a68dbb094ac86, type: 3}
@@ -969,6 +974,10 @@ PrefabInstance:
       propertyPath: newCardHand
       value: 
       objectReference: {fileID: 340494529}
+    - target: {fileID: 6333462384897120085, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
+      propertyPath: <NewCardHand>k__BackingField
+      value: 
+      objectReference: {fileID: 1106421869}
     - target: {fileID: 6333462384897120085, guid: b1c9f6769f538424b996a80c5712897b, type: 3}
       propertyPath: <newCardHand>k__BackingField
       value: 

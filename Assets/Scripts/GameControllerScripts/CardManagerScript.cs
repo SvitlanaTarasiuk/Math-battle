@@ -5,15 +5,15 @@ using UnityEngine;
 [Serializable]
 public class Card
 {
-    public string Name { get; set; }
+    public string Name; //{ get; set; }
     
-    public Sprite LogoBG { get; set; }
+    public Sprite LogoBG; //{ get; set; }
     
-    public Sprite LogoImage { get; set; }
+    public Sprite LogoImage; //{ get; set; }
     
-    public int Number { get; set; }
+    public int Number;// { get; set; }
     
-    public char Operator { get; set; }
+    public char Operator; //{ get; set; }
 
     public Card(string name, string logoBG, string logoImage, int numberCard)
     {
@@ -32,9 +32,10 @@ public class Card
     }
 }
 
+
 public static class CardManager
 {
-    public static List<Card> AllCards { get; set; } = new List<Card>();
+    public static List<Card> AllCards = new List<Card>();//{ get; set; } 
 
     public static List<Card> NewCard { get; set; } = new List<Card>();
 }

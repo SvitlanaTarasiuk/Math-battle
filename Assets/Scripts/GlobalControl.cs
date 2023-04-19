@@ -54,6 +54,7 @@ public class GlobalControl : MonoBehaviour
         LifePlayer = PlayerPrefs.GetInt("LifePlayer", 20);
         CountRound = PlayerPrefs.GetInt("CountRound", 1);
         CountAllRound = PlayerPrefs.GetInt("CountAllRound", 1);
+        //Debug.Log("Global/Load");
     }
 
     public void ResetData()

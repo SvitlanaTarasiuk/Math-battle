@@ -6,34 +6,39 @@ using System.Collections.Generic;
 [Serializable]
 public class GlobalJson
 {
-    public List<Card> AllCardsJson { get; set; } = new List<Card>();
+    public List<Card> AllCardsJson = new List<Card>();
 }
 
 public class GlobalJsonController : MonoBehaviour
 {
+    private string _fileName = "/AllCardsGame.txt";
+
     public void SaveJson()
     {
-        var globalJson = new GlobalJson();
+        var globalJson = new GlobalJson
+        {
+            AllCardsJson = CardManager.AllCards
+        };
         string json = JsonUtility.ToJson(globalJson);
-        File.WriteAllText(Application.persistentDataPath + "/AllCardsGame.txt", json);
+        File.WriteAllText(Application.persistentDataPath + _fileName, json);
         //Debug.Log("Json Save"+ json);
     }
 
     public void LoadJson()
     {
-        if (File.Exists(Application.persistentDataPath + "/AllCardsGame.txt"))
+        if (File.Exists(Application.persistentDataPath + _fileName))
         {
-            string json = File.ReadAllText(Application.persistentDataPath + "/AllCardsGame.txt");
+            string json = File.ReadAllText(Application.persistentDataPath + _fileName);
             var globalJson = JsonUtility.FromJson<GlobalJson>(json);
             CardManager.AllCards = globalJson.AllCardsJson;
             //Debug.Log("Json Load" + json);
-            //Debug.Log("Json.Count/Load" + globalJson.AllCardsJson.Count);
+            //Debug.Log("LoadJson.Count" + globalJson.AllCardsJson.Count);
         }
     }
 
     public void DeleteJson()
     {
-        File.Delete(Application.persistentDataPath + "/AllCardsGame.txt");
+        File.Delete(Application.persistentDataPath + _fileName);
         //Debug.Log("DeletJson");
     }
 }
